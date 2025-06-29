@@ -1,5 +1,7 @@
 # The Neurobehavioral Basis of Numerical Processing
 
+![N1 Analysis ERP and Topomaps](media/group_n1_plot.png)
+
 This repository contains the data and analysis scripts for a study investigating the neurobehavioral basis of the Parallel Individuation (PI) and Approximate Number System (ANS). The project analyzes EEG and behavioral data from 24 participants performing a numerical change detection task.
 
 ## Onboarding for New Research Assistants
