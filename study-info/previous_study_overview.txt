@@ -1,0 +1,231 @@
+This project is a follow-up to this dissertation. now it includes 24 participants. 
+direction and size were independent variables. 
+dependent variables are erp amplitude, latency, reaction time and accuracy of behavior data. 
+
+for background, see this dissertation.
+
+
+# The Neurobehavioral Basis of the Parallel Individuation (PI) and Approximation Number System (ANS) Study
+
+
+
+## Study Overview
+This 2023 doctoral dissertation by Jean Ee Tang-Lonardo (Columbia University) investigated the neurobehavioral basis of numerical processing, specifically examining how humans process small numbers (1-3) versus larger numbers (4-6). The study used EEG to examine Event-Related Potentials (ERPs) and behavioral measures during a numerical change detection task.
+
+## Theoretical Background
+
+### Two Systems of Numerical Processing
+Research on numerical cognition proposes two distinct systems for processing quantities:
+
+1. **Parallel Individuation (PI)** / Object File System (OFS):
+   - Used for small numbers (1-3)
+   - Enables "subitizing" - rapid, accurate enumeration without counting
+   - Limited capacity of 3-4 items
+   - Linked to visual short-term memory (VSTM)
+   - Involves tracking individual objects in parallel
+   - Associated with early visuospatial attention
+
+2. **Approximate Number System (ANS)**:
+   - Used for larger numbers (4+)
+   - Based on Weber's law of magnitude estimation
+   - Precision decreases as quantity increases
+   - Ratio-dependent effect: discrimination depends on numerical ratio
+   - Numbers represented as Gaussian curves on a mental number line
+
+### Previous Research
+- Hyde & Spelke (2009, 2012) found distinct neural signatures for small numbers (1-3) vs. large numbers (8, 16, 24)
+- Previous studies showed different ERP responses (N1, P2p, P3b) for small vs. large numbers
+- Few studies have examined the effects of change direction (increasing vs. decreasing) on numerical processing
+
+## Study Design
+
+### Population and Sample
+- 15 neurotypical adults (4 male, 11 female)
+- Mean age: 27.31 years
+- All right-handed
+- All proficient in English
+
+### Stimuli
+- Square images (650 × 650 pixels) containing 1-6 white dots on a gray background
+- Controlled for continuous parameters (dot size, spacing, etc.) using established protocols:
+  - Equated intensive parameters (individual dot size and inter-dot spacing) across targets
+  - Varied extensive parameters (total area occupied and total luminance) randomly
+  - Prevented linear covariation between numerosity and total area
+- Low contrast ratio (2.1:1, ~50%) to reduce eye strain and artifacts
+- Small white fixation cross in the center of the screen
+- Presented for 250ms each with jittered interstimulus intervals of 750-1250ms to reduce overlap in ERP responses
+
+### Procedure
+- Participants seated in an electrically-shielded, sound-attenuated EEG suite, 70cm from a 22" LCD monitor
+- 10 practice trials before the actual experiment
+- Participants viewed sequences of dot arrays showing numbers 1-6
+- In each trial, they saw 3-5 presentations of the same number ("primed" number)
+- Then a "target" number appeared that could be the same or different
+- Participants pressed a key when they detected a change in number
+- Total of 270 test trials divided into 5 experimental blocks (60 trials per block)
+- Each block contained 12 trials per condition (No Change, SS, LL, SL, LS)
+- Each unique number pair was tested 120 times throughout the study
+- The oddball "target" appeared at ~10% of the time
+- Breaks provided between blocks
+- To maintain engagement, participants received score updates during breaks and rewards (lottery scratch cards) for every 50 correct responses
+- Total experiment duration: approximately 40-60 minutes
+
+### Independent Variables (Experimental Conditions)
+1. **Direction of Change**:
+   - Increasing (e.g., 2→3, 4→6)
+   - Decreasing (e.g., 3→2, 6→4)
+   - No Change (control condition)
+
+2. **Size of Numeric Sets**:
+   - Small-to-Small (SS): Changes within 1-3 range (e.g., 1→2, 3→2)
+   - Large-to-Large (LL): Changes within 4-6 range (e.g., 4→5, 6→5)
+   - Crossovers:
+     - Small-to-Large (SL): Changes from 1-3 to 4-6 (e.g., 2→4, 3→5)
+     - Large-to-Small (LS): Changes from 4-6 to 1-3 (e.g., 4→2, 5→3)
+
+This created 6 main experimental conditions:
+1. Increasing Small-to-Small (iSS): e.g., 1→2, 2→3
+2. Decreasing Small-to-Small (dSS): e.g., 2→1, 3→2
+3. Increasing Large-to-Large (iLL): e.g., 4→5, 5→6
+4. Decreasing Large-to-Large (dLL): e.g., 5→4, 6→5
+5. Increasing Small-to-Large (iSL): e.g., 2→4, 3→5
+6. Decreasing Large-to-Small (dLS): e.g., 4→2, 5→3
+7. No Change (control): e.g., 1→1, 2→2, etc.
+
+### Dependent Variables
+
+#### Behavioral Measures:
+1. **Reaction Time (RT)**: Time to detect numerical change (milliseconds)
+2. **Accuracy**: Proportion of correct change detections
+
+#### EEG/ERP Measures:
+1. **N1 component** (125-200ms post-stimulus)
+   - Measured over left and right parietal-occipital-temporal (POT) junctions
+   - Early sensory-perceptual component
+   - Associated with visuospatial attention and visual short-term memory
+   - Indexes visual discrimination and perceptual load
+
+2. **P3b component** (435-535ms post-stimulus)
+   - Measured over the midline parietal (Pz) area
+   - Later cognitive component
+   - Associated with context updating and working memory
+   - Indexes stimulus evaluation time and attentional resource allocation
+
+For each ERP component, two main measures were analyzed:
+- **Amplitude**: Peak voltage (microvolts)
+- **Latency**: Time to peak (milliseconds)
+
+## Data Collection & Processing
+
+### EEG Recording
+- 128-channel EEG system
+- Sampling rate not explicitly stated (likely 250Hz or 500Hz)
+- Electrode placement focused on parietal-occipital-temporal regions
+
+### Data Processing
+- Filtered offline (0.3Hz high-pass, 30Hz low-pass) using FIR filter (Passband Gain: 99.0%, Stopband Gain: 1.0%, Rolloff: 2.00 Hz)
+- Segmented into 500ms epochs (100ms pre-stimulus, 400ms post-stimulus)
+- Automatic artifact detection and rejection:
+  - Electrodes exceeding 200 microvolts (μV) were replaced using spherical spline interpolation
+  - Trials with eye blinks (EOG >140 μV) were discarded
+  - Trials with more than 40% bad channels were discarded
+  - Additional manual review and rejection of artifacts
+- Baseline correction using 100ms pre-stimulus period
+- Re-referenced from the vertex electrode (applied during recording) to the average of all electrodes
+- Peak latency calculated by identifying maximum positive/negative voltage deflection within pre-selected time windows
+- Adaptive mean amplitude calculated using 5 samples (10ms) on either side of identified peak latency
+
+### Regions of Interest (ROIs)
+1. **N1 over Left POT** (Montage 1): Electrodes 66, 65, 59, 60, 67, 71, 70
+2. **N1 over Right POT** (Montage 2): Electrodes 84, 76, 77, 85, 91, 90, 83
+3. **P3b over Pz area** (Montage 3): Electrodes 62, 78, 77, 72, 67, 61, 54, 55, 79
+
+### Statistical Analysis
+- Linear Mixed Model Analysis for N1 amplitudes toward cardinal values, with subject as a random factor
+- 2×3 repeated measures ANOVA for Direction (Increasing vs. Decreasing) × Size (Small-Small, Large-Large, Crossovers)
+- Mauchly's test used to assess sphericity assumption
+- Greenhouse-Geisser correction applied when sphericity assumption was violated
+- Post-hoc pairwise t-tests with False Discovery Rate (FDR) correction (Benjamini & Hochberg, 1995)
+- One-sided significance tests for Size comparisons (based on a priori hypotheses)
+- Two-sided significance tests for Direction comparisons (no strong a priori hypotheses)
+- Pearson correlations between behavioral and ERP measures
+- Effect sizes reported as partial eta-squared (η²p) for ANOVA results
+
+## Key Findings
+
+### 1. N1 Response to Cardinal Values (No Change Condition)
+- N1 amplitudes scaled with cardinal values in the small range (1 < 2 < 3)
+- N1 amplitudes plateaued for large numbers (4-6) with no significant differences between them
+- Right POT showed significantly stronger effects than left POT (p < 0.005)
+- No differences in N1 latencies for different cardinal values
+- The categorical break between small and large numbers was clearly observed even in this continuous range (1-6)
+- These findings replicate and extend Hyde & Spelke (2009, 2012) by showing the scaling effect within a narrower numerical range
+
+### 2. Behavioral Effects of Direction and Size
+#### Reaction Time:
+- Significant effects of Direction, Size, and Direction × Size interaction
+- For Small-Small: Decreasing showed longer RTs than Increasing
+- For Large-Large and Crossovers: Decreasing showed shorter RTs than Increasing
+- Small-Small had shorter RTs than Large-Large across directions
+
+#### Accuracy:
+- Significant effects of Direction, Size, and Direction × Size interaction
+- Large-Large showed lowest accuracy regardless of direction
+- Decreasing showed higher accuracy than Increasing for Large-Large sets
+- No direction effect for Small-Small or Crossover sets
+
+### 3. N1 Response to Numerical Change
+#### N1 Amplitude:
+- Significant effects of Direction, Size, and Direction × Size interaction
+- Decreasing Small-Small showed lowest N1 amplitude (even lower than No Change)
+- "Off-loading" phenomenon observed for Decreasing Small-Small
+- Other change conditions showed higher N1 amplitudes than No Change
+
+#### N1 Latency:
+- Significant effect of Direction but not Size
+- Increasing conditions showed earlier N1 peaks than Decreasing
+- No direction effect for Large-Large sets
+
+### 4. P3b Response to Numerical Change
+#### P3b Amplitude:
+- Significant effect of Size but not Direction
+- Decreasing Small-Small showed highest P3b amplitude
+- Large-Large showed lowest P3b amplitudes for both directions
+
+#### P3b Latency:
+- Significant effect of Size and Direction × Size interaction
+- For Small-Small: Decreasing showed longer P3b latencies than Increasing
+- For Large-Large and Crossovers: Decreasing showed shorter P3b latencies than Increasing
+- P3b latency patterns mirrored reaction time patterns
+
+### 5. Correlations Between Brain and Behavior
+- Higher accuracy strongly correlated with shorter reaction times (r = -0.645, p < 0.001)
+- Earlier P3b latencies strongly correlated with shorter reaction times (r = 0.376, p < 0.001)
+- Earlier P3b latencies correlated with higher accuracy (r = -0.307, p < 0.05)
+- Higher P3b amplitudes correlated with higher accuracy (r = 0.259, p < 0.05)
+- Higher N1 amplitudes correlated with higher P3b amplitudes (r = 0.263, p < 0.05)
+- No significant correlations between N1 measures and behavioral performance
+- No significant correlation between P3b amplitude and reaction time
+
+## Theoretical Implications
+
+1. **Two Distinct Systems**: Results support the existence of two distinct systems for processing small (1-3) vs. large (4-6) numbers, aligning with the theoretical distinction between Parallel Individuation (PI) and Approximate Number System (ANS).
+
+2. **Perceptual Load Theory**: As more items are encoded in visual short-term memory, N1 amplitudes increase, reflecting greater perceptual load. This is consistent with Lavie & Tsal's (1994) perceptual load theory, suggesting that attention and working memory resources are differentially allocated during numerical processing.
+
+3. **Context-Updating Model**: P3b represents working memory updating during change detection, with more difficult updates showing lower amplitudes and longer latencies. This aligns with Donchin's (1981) context-updating theory, where P3b indexes the revision of mental representations induced by incoming stimuli.
+
+4. **"Off-loading" Phenomenon**: When decreasing to small numbers in the subitizing range, the brain "off-loads" items from perceptual load, resulting in lower N1 amplitudes. This novel finding suggests that numerical cognition involves not only encoding but also removing items from working memory, which may be unique to the subitizing range.
+
+5. **Processing Stream**: Direction effects appear to be encoded first (affecting N1), followed by Size effects (affecting P3b), suggesting a temporal processing hierarchy. This temporospatial dissociation implies that the posterior parietal cortex processes different aspects of numerical change in a sequential manner.
+
+6. **Categorical Boundary**: The study found a clear boundary between small (1-3) and large (4-6) numbers, even though they form a continuous range, suggesting that the categorical distinction is not merely an artifact of using widely separated numerical values (as in previous studies).
+
+7. **Direction-Size Interaction**: The reversal of direction effects between Small-Small and other conditions suggests that direction processing depends on which numerical system is engaged, rather than being a uniform process across all numerical cognition.
+
+## Proposed Model
+The author proposed an adaptation to the P3b Context-Updating Model where:
+1. Early sensory stage (~125ms): Objects are encoded into or off-loaded from visual short-term memory, modulating N1
+2. Later cognitive stage (~400ms): Information is integrated for context updating, modulating P3b
+
+This model integrates perceptual load theory with context-updating theory to explain numerical change processing.
