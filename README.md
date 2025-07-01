@@ -1,6 +1,8 @@
-# The Neurobehavioral Basis of Numerical Processing
-
 ![N1 Analysis ERP and Topomaps](media/group_n1_plot.png)
+![P1 Analysis Landing on Small](media/group_p1_plot_landing_on_small.png)
+![P1 Analysis Landing on Large](media/group_p1_plot_landing_on_large.png)
+
+# The Neurobehavioral Basis of Numerical Processing
 
 This repository contains the data and analysis scripts for a study investigating the neurobehavioral basis of the Parallel Individuation (PI) and Approximate Number System (ANS). The project analyzes EEG and behavioral data from 24 participants performing a numerical change detection task.
 
@@ -81,4 +83,17 @@ The scripts numbered `02`, `03`, `04`, etc., in the `code/` directories perform 
 
 *   Generate butterfly plots (`02_generate_butterfly_plots.py`)
 *   Create topographic maps of brain activity at specific time points (`03_generate_topomaps.py`)
-*   Perform source localization (e.g., LORETA) to estimate the origin of the neural signals (`04_generate_loreta_plots.py`) 
+*   Perform source localization (e.g., LORETA) to estimate the origin of the neural signals (`04_generate_loreta_plots.py`)
+
+#### Source Localization Assets (`fsaverage`)
+
+The scripts that perform source localization (`04_...`) require a standard anatomical template. This project uses the `fsaverage` model provided by MNE-Python.
+
+When you run a `04_...` script for the first time for a given dataset, it will automatically:
+1.  Download the `fsaverage` subject model from MNE.
+2.  Compute the necessary source space and forward solution files.
+
+These assets are stored in a dedicated subdirectory to keep them separate from participant-specific data, like so:
+`eeg_ds_all/derivatives/fsaverage/`
+
+This `fsaverage` directory will contain the `fs_subjects_dir/`, `fsaverage-fwd.fif`, and `fsaverage-src.fif` files for that specific dataset. 
