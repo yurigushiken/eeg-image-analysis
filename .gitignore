@@ -22,4 +22,6 @@ notes.txt
 
 # Keep the specified image but ignore other potential media files
 /media/*
-!/media/group_n1_plot.png 
+!/media/group_n1_plot.png
+!/media/group_p1_plot_landing_on_small.png
+!/media/group_p1_plot_landing_on_large.png 
