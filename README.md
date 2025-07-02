@@ -1,11 +1,21 @@
 ### N1 Component Analysis
 
 ![N1 Analysis ERP and Topomaps](media/group_n1_plot.png)
+
+### N1 Component Analysis - landing on small
+
+![N1 Analysis Landing on Small](media/group_n1_plot_landing_on_small.png)
+
+### N1 Component Analysis - landing on large
+
 ![N1 Analysis Landing on Large](media/group_n1_plot_landing_on_large.png)
 
-### P1 Component Analysis
+### P1 Component Analysis - landing on small
 
 ![P1 Analysis Landing on Small](media/group_p1_plot_landing_on_small.png)
+
+### P1 Component Analysis - landing on large
+
 ![P1 Analysis Landing on Large](media/group_p1_plot_landing_on_large.png)
 
 # The Neurobehavioral Basis of Numerical Processing
