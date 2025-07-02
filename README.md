@@ -1,12 +1,9 @@
 ### N1 Component Analysis
-The N1 is an early negative-going event-related potential (ERP) component, typically peaking around 100-200ms post-stimulus. It is often associated with discriminative attention and sensory processing. Below are visualizations of the N1 component observed in this study.
 
 ![N1 Analysis ERP and Topomaps](media/group_n1_plot.png)
-![N1 Analysis Landing on Small](media/group_n1_plot_landing_on_small.png)
 ![N1 Analysis Landing on Large](media/group_n1_plot_landing_on_large.png)
 
 ### P1 Component Analysis
-The P1 is an early positive-going ERP component, peaking around 100ms post-stimulus. It is thought to reflect initial sensory-perceptual processing in the visual cortex. Below are visualizations of the P1 component.
 
 ![P1 Analysis Landing on Small](media/group_p1_plot_landing_on_small.png)
 ![P1 Analysis Landing on Large](media/group_p1_plot_landing_on_large.png)
