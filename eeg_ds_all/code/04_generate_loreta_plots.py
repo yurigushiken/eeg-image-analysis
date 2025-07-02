@@ -15,16 +15,18 @@ def generate_loreta_plots(subjects_to_process, group_only):
     """
     base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     derivatives_dir = os.path.join(base_dir, 'derivatives')
+    fsaverage_dir = os.path.join(derivatives_dir, 'fsaverage')
+    os.makedirs(fsaverage_dir, exist_ok=True)
     
     # --- Part 0: Setup for Source Localization ---
     print("\n--- Setting up for source localization ---")
-    subjects_dir = os.path.join(derivatives_dir, 'fs_subjects_dir')
+    subjects_dir = os.path.join(fsaverage_dir, 'fs_subjects_dir')
     os.makedirs(subjects_dir, exist_ok=True)
     mne.datasets.fetch_fsaverage(subjects_dir=subjects_dir, verbose=False)
     
     subject_fs = 'fsaverage'
-    fwd_fname = os.path.join(derivatives_dir, f'{subject_fs}-fwd.fif')
-    src_fname = os.path.join(derivatives_dir, f'{subject_fs}-src.fif')
+    fwd_fname = os.path.join(fsaverage_dir, f'{subject_fs}-fwd.fif')
+    src_fname = os.path.join(fsaverage_dir, f'{subject_fs}-src.fif')
 
     if not os.path.exists(fwd_fname):
         print(f"Forward solution not found. Computing and saving to {fwd_fname}...")

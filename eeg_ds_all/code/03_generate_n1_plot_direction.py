@@ -9,17 +9,17 @@ import numpy as np
 
 # --- 1. CONFIGURATION ---
 # Base conditions to load
-BASE_CONDITIONS = ["iSS", "dSS", "iLL", "dLL", "NoChg"]
+BASE_CONDITIONS = ["iSS", "iLL", "iSL", "dSS", "dLL", "dLS", "NoChg"]
 
 # How to combine base conditions into key conditions
 KEY_CONDITIONS_MAP = {
-    "Small-Change": ["iSS", "dSS"],
-    "Large-Change": ["iLL", "dLL"],
+    "Increasing": ["iSS", "iLL", "iSL"],
+    "Decreasing": ["dSS", "dLL", "dLS"],
     "No-Change": ["NoChg"],
 }
 
 # Define colors for plots
-CONDITION_COLORS = {"Small-Change": "blue", "Large-Change": "red", "No-Change": "grey"}
+CONDITION_COLORS = {"Increasing": "blue", "Decreasing": "red", "No-Change": "grey"}
 
 # Electrodes of interest for N1 waveform (Left and Right hemispheres)
 N1_ELECTRODES_L = ['E66', 'E65', 'E59', 'E60', 'E67', 'E71', 'E70']
@@ -28,7 +28,7 @@ N1_ELECTRODES_R = ['E84', 'E76', 'E77', 'E85', 'E91', 'E90', 'E83']
 N1_ELECTRODES_BILATERAL = N1_ELECTRODES_L + N1_ELECTRODES_R
 
 # Time of interest for topomap (peak of N1)
-TOPO_TIME = 0.180  # 180 ms
+TOPO_TIME = 0.175  # 175 ms
 
 # Standard list of non-scalp channels to exclude
 NON_SCALP_CHANNELS = [
@@ -69,7 +69,7 @@ def generate_n1_plots(subjects_to_process):
 
             # --- Create the plot ---
             fig = plt.figure(figsize=(12, 8))
-            fig.suptitle(f'Subject {subject_id}: N1 Analysis', fontsize=16)
+            fig.suptitle(f'Subject {subject_id}: N1 Analysis (Direction)', fontsize=16)
             gs = gridspec.GridSpec(2, len(key_evokeds), height_ratios=[2, 1.5])
             ax_erp = fig.add_subplot(gs[0, :])
 
@@ -103,7 +103,7 @@ def generate_n1_plots(subjects_to_process):
             cbar_ax = fig.add_axes([0.88, 0.15, 0.02, 0.2])
             plt.colorbar(plt.cm.ScalarMappable(norm=plt.Normalize(vmin=-6, vmax=6), cmap='RdBu_r'), cax=cbar_ax, label='µV')
 
-            fig_path = os.path.join(subject_figure_dir, f'sub-{subject_id}_n1_plot.png')
+            fig_path = os.path.join(subject_figure_dir, f'sub-{subject_id}_n1_plot_direction.png')
             fig.savefig(fig_path, bbox_inches='tight'); plt.close(fig)
             print(f"    - Saved N1 plot to {fig_path}")
 
@@ -122,7 +122,7 @@ def generate_n1_plots(subjects_to_process):
 
     print("\n--- Generating group-level grand average N1 plot ---")
     fig_grp = plt.figure(figsize=(12, 8))
-    fig_grp.suptitle('Grand Average: N1 Analysis', fontsize=16)
+    fig_grp.suptitle('Grand Average: N1 Analysis (Direction)', fontsize=16)
     gs_grp = gridspec.GridSpec(2, len(grand_averages_key), height_ratios=[2, 1.5])
     ax_erp_grp = fig_grp.add_subplot(gs_grp[0, :])
 
@@ -152,7 +152,7 @@ def generate_n1_plots(subjects_to_process):
     cbar_ax_grp = fig_grp.add_axes([0.88, 0.15, 0.02, 0.2])
     plt.colorbar(plt.cm.ScalarMappable(norm=plt.Normalize(vmin=-6, vmax=6), cmap='RdBu_r'), cax=cbar_ax_grp, label='µV')
     
-    fig_path_grp = os.path.join(group_figure_dir, 'group_n1_plot.png')
+    fig_path_grp = os.path.join(group_figure_dir, 'group_n1_plot_direction.png')
     fig_grp.savefig(fig_path_grp, bbox_inches='tight'); plt.close(fig_grp)
     print(f"  - Saved grand average N1 plot to {fig_path_grp}")
 
