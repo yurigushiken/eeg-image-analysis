@@ -44,6 +44,7 @@ def generate_p1_plots(subjects_to_process):
     """
     base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     derivatives_dir = os.path.join(base_dir, 'derivatives')
+    script_name = os.path.basename(__file__).replace('.py', '')
     
     all_subject_evokeds = {cond: [] for cond in BASE_CONDITIONS}
 
@@ -53,21 +54,57 @@ def generate_p1_plots(subjects_to_process):
 
     print(f"--- Processing subjects for P1 plots: {subjects_to_process} ---")
 
+    # --- Individual Subject Plots ---
     for subject_id in subjects_to_process:
         subject_dir = os.path.join(derivatives_dir, f'sub-{subject_id}')
+        subject_figure_dir = os.path.join(subject_dir, 'figures', script_name)
+        os.makedirs(subject_figure_dir, exist_ok=True)
+        print(f"\nProcessing Subject {subject_id}...")
         
-        # We collect base evokeds for the group plot, no individual plots generated in this script.
         try:
-            for cond in BASE_CONDITIONS:
-                epo_file = os.path.join(subject_dir, f'sub-{subject_id}_task-numbers_cond-{cond}_epo.fif')
-                if os.path.exists(epo_file):
-                    evoked = mne.read_epochs(epo_file, preload=True, verbose=False).average()
-                    all_subject_evokeds[cond].append(evoked)
+            # Load and collect evokeds
+            base_evokeds = {cond: mne.read_epochs(os.path.join(subject_dir, f'sub-{subject_id}_task-numbers_cond-{cond}_epo.fif'), preload=True, verbose=False).average() for cond in BASE_CONDITIONS if os.path.exists(os.path.join(subject_dir, f'sub-{subject_id}_task-numbers_cond-{cond}_epo.fif'))}
+            for cond, evoked in base_evokeds.items(): all_subject_evokeds[cond].append(evoked)
+            if not base_evokeds: print(f"  - No data found. Skipping."); continue
+            
+            key_evokeds = {key_cond: mne.combine_evoked([base_evokeds[bc] for bc in bcl if bc in base_evokeds], 'equal') for key_cond, bcl in KEY_CONDITIONS_MAP.items() if any(bc in base_evokeds for bc in bcl)}
+            if not key_evokeds: print(f"  - Not enough data for key conditions. Skipping."); continue
+
+            # --- Create Plot ---
+            fig = plt.figure(figsize=(12, 8))
+            fig.suptitle(f'Subject {subject_id}: P1 Analysis (Landing on Small, ACC=1)', fontsize=16)
+            gs = gridspec.GridSpec(2, len(key_evokeds), height_ratios=[2, 1.5])
+            ax_erp = fig.add_subplot(gs[0, :])
+
+            mne.viz.plot_compare_evokeds(key_evokeds, picks=P1_ELECTRODES, combine='mean', axes=ax_erp, title="Mean ERP over Oz Region", show=False, legend='upper left', ci=False, colors=CONDITION_COLORS)
+
+            # --- Find Peaks and Plot Topomaps ---
+            for i, (cond_name, evoked) in enumerate(key_evokeds.items()):
+                ax_topo = fig.add_subplot(gs[1, i])
+                roi_evoked = evoked.copy().pick(P1_ELECTRODES)
+                mean_data = roi_evoked.data.mean(axis=0, keepdims=True)
+                mean_info = mne.create_info(ch_names=['mean_roi'], sfreq=evoked.info['sfreq'], ch_types='eeg')
+                mean_roi_evoked = mne.EvokedArray(mean_data, mean_info, tmin=evoked.tmin)
+                _, peak_time, _ = mean_roi_evoked.get_peak(tmin=P1_TMIN, tmax=P1_TMAX, mode='pos', return_amplitude=True)
+                
+                ax_erp.axvline(x=peak_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle='--', linewidth=1.5, alpha=0.8)
+                scalp_evoked = evoked.copy().pick('eeg', exclude=NON_SCALP_CHANNELS)
+                scalp_evoked.plot_topomap(times=peak_time, axes=ax_topo, show=False, vlim=(-6, 6), colorbar=False)
+                ax_topo.set_title(f"{cond_name}\nPeak at {int(peak_time*1000)} ms", color=CONDITION_COLORS.get(cond_name, 'black'))
+
+            fig.subplots_adjust(right=0.85, bottom=0.1, top=0.9, hspace=0.4)
+            cbar_ax = fig.add_axes([0.88, 0.15, 0.02, 0.2])
+            plt.colorbar(plt.cm.ScalarMappable(norm=plt.Normalize(vmin=-6, vmax=6), cmap='RdBu_r'), cax=cbar_ax, label='µV')
+            
+            fig_path = os.path.join(subject_figure_dir, f'sub-{subject_id}_p1_plot_landing_on_small_acc=1.png')
+            fig.savefig(fig_path, bbox_inches='tight'); plt.close(fig)
+            print(f"    - Saved P1 plot to {fig_path}")
+
         except Exception as e:
-            print(f"--- FAILED to load data for Subject {subject_id}. Error: {e} ---")
+            print(f"--- FAILED to generate P1 plot for Subject {subject_id}. Error: {e} ---")
 
     # --- Group-Level Plot ---
-    group_figure_dir = os.path.join(derivatives_dir, 'group', 'figures')
+    group_figure_dir = os.path.join(derivatives_dir, 'group', 'figures', script_name)
     os.makedirs(group_figure_dir, exist_ok=True)
     
     grand_averages_base = {cond: mne.grand_average(evoked_list) for cond, evoked_list in all_subject_evokeds.items() if evoked_list}

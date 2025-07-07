@@ -46,6 +46,7 @@ def generate_n1_contrast_plots(subjects_to_process):
     """
     base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     derivatives_dir = os.path.join(base_dir, 'derivatives')
+    script_name = os.path.basename(__file__).replace('.py', '')
     
     all_subject_evokeds = {cond: [] for cond in BASE_CONDITIONS}
 
@@ -58,7 +59,7 @@ def generate_n1_contrast_plots(subjects_to_process):
     # --- Individual Subject Plots ---
     for subject_id in subjects_to_process:
         subject_dir = os.path.join(derivatives_dir, f'sub-{subject_id}')
-        subject_figure_dir = os.path.join(subject_dir, 'figures')
+        subject_figure_dir = os.path.join(subject_dir, 'figures', script_name)
         os.makedirs(subject_figure_dir, exist_ok=True)
         print(f"\nProcessing Subject {subject_id}...")
         
@@ -116,7 +117,7 @@ def generate_n1_contrast_plots(subjects_to_process):
             print(f"--- FAILED to generate N1 plot for Subject {subject_id}. Error: {e} ---")
 
     # --- Group-Level Plot ---
-    group_figure_dir = os.path.join(derivatives_dir, 'group', 'figures')
+    group_figure_dir = os.path.join(derivatives_dir, 'group', 'figures', script_name)
     os.makedirs(group_figure_dir, exist_ok=True)
     
     grand_averages_base = {cond: mne.grand_average(evoked_list) for cond, evoked_list in all_subject_evokeds.items() if evoked_list}
