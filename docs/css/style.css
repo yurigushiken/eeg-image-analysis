@@ -63,6 +63,13 @@ nav a:hover {
     color: #17a2b8;
 }
 
+/* Style for the 'Home' link */
+nav a.nav-home {
+    border: 1px solid #6c757d;
+    border-radius: 5px;
+    padding: 5px 15px;
+}
+
 /* Main Content Area */
 main {
     max-width: 1200px;
