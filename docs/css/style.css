@@ -81,7 +81,7 @@ main {
 
 /* Sidebar for Jump-to Links */
 .sidebar {
-    width: 200px;
+    width: 240px;
     position: sticky;
     top: 70px; /* Adjust based on main-nav height */
     align-self: flex-start;
@@ -103,6 +103,7 @@ main {
     color: #495057;
     border-left: 3px solid transparent;
     transition: all 0.3s;
+    font-size: 0.9rem; /* Smaller font for sidebar */
 }
 
 .jump-nav li a:hover {
