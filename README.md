@@ -1,4 +1,4 @@
-### N1 Component Analysis
+[**View the Live Project Website**](https://yurigushiken.github.io/eeg-image-analysis/)
 
 ![N1 Analysis ERP and Topomaps](media/group_n1_plot.png)
 
@@ -17,7 +17,6 @@
 ### P1 Component Analysis - landing on large
 
 ![P1 Analysis Landing on Large](media/group_p1_plot_landing_on_large.png)
-
 # The Neurobehavioral Basis of Numerical Processing
 
 This repository contains the data and analysis scripts for a study investigating the neurobehavioral basis of the Parallel Individuation (PI) and Approximate Number System (ANS). The project analyzes EEG and behavioral data from 24 participants performing a numerical change detection task.
@@ -39,6 +38,13 @@ The analysis scripts are written in Python. You will need to install several key
 pip install mne pandas numpy tables scipy
 ```
 **Note:** The `tables` library is required by `mne` to handle saving and loading metadata in the HDF5 format (`.h5` files).
+
+## Project Website
+
+This repository includes a public-facing website to showcase the key results and visualizations from the study.
+
+*   **Live Site:** [https://yurigushiken.github.io/eeg-image-analysis/](https://yurigushiken.github.io/eeg-image-analysis/)
+*   **How it Works:** The website is built using GitHub Pages. The source files (HTML, CSS, images) are located in the `/docs` directory of this repository. Any changes pushed to the `main` branch in this directory will automatically update the live site.
 
 ## Datasets Overview
 
