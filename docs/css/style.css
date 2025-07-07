@@ -113,6 +113,10 @@ section h2 {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
 }
 
+.plot-container[id] {
+    scroll-margin-top: 100px;
+}
+
 /* New styles for sidebar and content layout */
 .content-wrapper {
     display: flex;
