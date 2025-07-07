@@ -3,105 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Topomap Plots - EEG Analysis</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>EEG Topomaps</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container {
+            display: flex;
+        }
+        #jump-to-sidebar {
+            width: 200px;
+            position: sticky;
+            top: 100px; 
+            align-self: flex-start;
+            border-right: 1px solid #ddd;
+            padding-right: 20px;
+            margin-right: 20px;
+            height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+        #jump-to-sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        #jump-to-sidebar li a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+            padding: 8px 10px;
+            border-radius: 4px;
+        }
+        #jump-to-sidebar li a:hover {
+            background-color: #f0f0f0;
+        }
+        .plot-container {
+            flex-grow: 1;
+        }
+        .plot {
+            margin-bottom: 50px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+            scroll-margin-top: 100px;
+        }
+        .plot img {
+            max-width: 100%;
+            height: auto;
+            width: 75%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>The Neurobehavioral Basis of Numerical Processing</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="topomaps.html" class="active">Topomaps</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <nav class="main-nav">
-        <a href="index.html" class="nav-home">Home</a>
-        <a href="erp-waveforms.html">ERP Waveforms</a>
-        <a href="topomaps.html">Topomaps</a>
-        <a href="loreta.html">LORETA</a>
-    </nav>
+    <div class="container">
+        <aside id="jump-to-sidebar">
+            <h3>Jump To</h3>
+            <ul>
+                <li><a href="#acc1_n1_small">ACC=1: N1 Small</a></li>
+                <li><a href="#acc1_n1_large">ACC=1: N1 Large</a></li>
+                <li><a href="#acc1_n1_contrast">ACC=1: N1 Contrast</a></li>
+                <li><a href="#acc1_p1_small">ACC=1: P1 Small</a></li>
+                <li><a href="#acc1_p1_large">ACC=1: P1 Large</a></li>
+                <li><a href="#acc1_p1_contrast">ACC=1: P1 Contrast</a></li>
+                <li><a href="#all_n1_small">ALL: N1 Small</a></li>
+                <li><a href="#all_n1_large">ALL: N1 Large</a></li>
+                <li><a href="#all_n1_contrast">ALL: N1 Contrast</a></li>
+                <li><a href="#all_p1_small">ALL: P1 Small</a></li>
+                <li><a href="#all_p1_large">ALL: P1 Large</a></li>
+                <li><a href="#all_p1_contrast">ALL: P1 Contrast</a></li>
+            </ul>
+        </aside>
 
-    <main>
-        <section id="topomaps">
-            <h2>ERP & Topomap Plots</h2>
-            
-            <div class="content-wrapper">
-                <aside class="sidebar">
-                    <h3>Jump to Plot</h3>
-                    <nav class="jump-nav">
-                        <ul>
-                            <li><a href="#n1_small_all">N1 Small (ALL)</a></li>
-                            <li><a href="#n1_large_all">N1 Large (ALL)</a></li>
-                            <li><a href="#p1_small_all">P1 Small (ALL)</a></li>
-                            <li><a href="#p1_large_all">P1 Large (ALL)</a></li>
-                            <li><a href="#n1_small_acc1">N1 Small (ACC=1)</a></li>
-                            <li><a href="#n1_large_acc1">N1 Large (ACC=1)</a></li>
-                            <li><a href="#p1_small_acc1">P1 Small (ACC=1)</a></li>
-                            <li><a href="#p1_large_acc1">P1 Large (ACC=1)</a></li>
-                            <li><a href="#n1_contrast_all">N1 Contrast (ALL)</a></li>
-                            <li><a href="#p1_contrast_all">P1 Contrast (ALL)</a></li>
-                            <li><a href="#n1_contrast_acc1">N1 Contrast (ACC=1)</a></li>
-                            <li><a href="#p1_contrast_acc1">P1 Contrast (ACC=1)</a></li>
-                        </ul>
-                    </nav>
-                </aside>
+        <main class="plot-container">
+            <h1>Topomap Grand Averages</h1>
 
-                <div class="plots-main">
-                    <h3>Analyses based on ALL trials</h3>
-                    <div class="plot-container" id="n1_small_all">
-                        <h4>N1 Component Analysis - Landing on Small (ALL)</h4>
-                        <img src="images/group_n1_plot_landing_on_small_all.png" alt="N1 Analysis Landing on Small (ALL)">
-                    </div>
-                    <div class="plot-container" id="n1_large_all">
-                        <h4>N1 Component Analysis - Landing on Large (ALL)</h4>
-                        <img src="images/group_n1_plot_landing_on_large_all.png" alt="N1 Analysis Landing on Large (ALL)">
-                    </div>
-                    <div class="plot-container" id="p1_small_all">
-                        <h4>P1 Component Analysis - Landing on Small (ALL)</h4>
-                        <img src="images/group_p1_plot_landing_on_small_all.png" alt="P1 Analysis Landing on Small (ALL)">
-                    </div>
-                    <div class="plot-container" id="p1_large_all">
-                        <h4>P1 Component Analysis - Landing on Large (ALL)</h4>
-                        <img src="images/group_p1_plot_landing_on_large_all.png" alt="P1 Analysis Landing on Large (ALL)">
-                    </div>
-                    <div class="plot-container" id="n1_contrast_all">
-                        <h4>N1 Contrast - Landing on "1" (ALL)</h4>
-                        <img src="images/group_n1_plot_landing_on_1_contrast_all.png" alt="N1 Contrast Landing on 1 (ALL)">
-                    </div>
-                    <div class="plot-container" id="p1_contrast_all">
-                        <h4>P1 Contrast - Landing on "1" (ALL)</h4>
-                        <img src="images/group_p1_plot_landing_on_1_contrast_all.png" alt="P1 Contrast Landing on 1 (ALL)">
-                    </div>
+            <!-- ACC=1 Plots -->
+            <section>
+                <h2>Correct Trials Only (ACC=1)</h2>
+                <div id="acc1_n1_small" class="plot"><h3>N1: Landing on Small (1, 2, 3)</h3><img src="images/group_n1_plot_landing_on_small_acc=1.png" alt="N1 Small (ACC=1)"></div>
+                <div id="acc1_n1_large" class="plot"><h3>N1: Landing on Large (4, 5, 6)</h3><img src="images/group_n1_plot_landing_on_large_acc=1.png" alt="N1 Large (ACC=1)"></div>
+                <div id="acc1_n1_contrast" class="plot"><h3>N1: Landing on 1 Contrast</h3><img src="images/group_n1_plot_landing_on_1_contrast_acc=1.png" alt="N1 Contrast (ACC=1)"></div>
+                <div id="acc1_p1_small" class="plot"><h3>P1: Landing on Small (1, 2, 3)</h3><img src="images/group_p1_plot_landing_on_small_acc=1.png" alt="P1 Small (ACC=1)"></div>
+                <div id="acc1_p1_large" class="plot"><h3>P1: Landing on Large (4, 5, 6)</h3><img src="images/group_p1_plot_landing_on_large_acc=1.png" alt="P1 Large (ACC=1)"></div>
+                <div id="acc1_p1_contrast" class="plot"><h3>P1: Landing on 1 Contrast</h3><img src="images/group_p1_plot_landing_on_1_contrast_acc=1.png" alt="P1 Contrast (ACC=1)"></div>
+            </section>
 
-                    <h3>Analyses based on ACC=1 trials (correct trials only)</h3>
-                    <div class="plot-container" id="n1_small_acc1">
-                        <h4>N1 Component Analysis - Landing on Small (ACC=1)</h4>
-                        <img src="images/group_n1_plot_landing_on_small_acc=1.png" alt="N1 Analysis Landing on Small (ACC=1)">
-                    </div>
-                    <div class="plot-container" id="n1_large_acc1">
-                        <h4>N1 Component Analysis - Landing on Large (ACC=1)</h4>
-                        <img src="images/group_n1_plot_landing_on_large_acc=1.png" alt="N1 Analysis Landing on Large (ACC=1)">
-                    </div>
-                    <div class="plot-container" id="p1_small_acc1">
-                        <h4>P1 Component Analysis - Landing on Small (ACC=1)</h4>
-                        <img src="images/group_p1_plot_landing_on_small_acc=1.png" alt="P1 Analysis Landing on Small (ACC=1)">
-                    </div>
-                    <div class="plot-container" id="p1_large_acc1">
-                        <h4>P1 Component Analysis - Landing on Large (ACC=1)</h4>
-                        <img src="images/group_p1_plot_landing_on_large_acc=1.png" alt="P1 Analysis Landing on Large (ACC=1)">
-                    </div>
-                    <div class="plot-container" id="n1_contrast_acc1">
-                        <h4>N1 Contrast - Landing on "1" (ACC=1)</h4>
-                        <img src="images/group_n1_plot_landing_on_1_contrast_acc=1.png" alt="N1 Contrast Landing on 1 (ACC=1)">
-                    </div>
-                    <div class="plot-container" id="p1_contrast_acc1">
-                        <h4>P1 Contrast - Landing on "1" (ACC=1)</h4>
-                        <img src="images/group_p1_plot_landing_on_1_contrast_acc=1.png" alt="P1 Contrast Landing on 1 (ACC=1)">
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>This project is managed on <a href="https://github.com/yurigushiken/eeg-image-analysis">GitHub</a>.</p>
-    </footer>
+            <!-- ALL Plots -->
+            <section>
+                <h2>All Trials (ALL)</h2>
+                <div id="all_n1_small" class="plot"><h3>N1: Landing on Small (1, 2, 3)</h3><img src="images/group_n1_plot_landing_on_small_all.png" alt="N1 Small (ALL)"></div>
+                <div id="all_n1_large" class="plot"><h3>N1: Landing on Large (4, 5, 6)</h3><img src="images/group_n1_plot_landing_on_large_all.png" alt="N1 Large (ALL)"></div>
+                <div id="all_n1_contrast" class="plot"><h3>N1: Landing on 1 Contrast</h3><img src="images/group_n1_plot_landing_on_1_contrast_all.png" alt="N1 Contrast (ALL)"></div>
+                <div id="all_p1_small" class="plot"><h3>P1: Landing on Small (1, 2, 3)</h3><img src="images/group_p1_plot_landing_on_small_all.png" alt="P1 Small (ALL)"></div>
+                <div id="all_p1_large" class="plot"><h3>P1: Landing on Large (4, 5, 6)</h3><img src="images/group_p1_plot_landing_on_large_all.png" alt="P1 Large (ALL)"></div>
+                <div id="all_p1_contrast" class="plot"><h3>P1: Landing on 1 Contrast</h3><img src="images/group_p1_plot_landing_on_1_contrast_all.png" alt="P1 Contrast (ALL)"></div>
+            </section>
+        </main>
+    </div>
 </body>
 </html> 
