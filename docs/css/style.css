@@ -107,8 +107,51 @@ section h2 {
 }
 
 .plot-container img {
-    max-width: 100%;
+    max-width: 75%;
     height: auto;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+}
+
+/* New styles for sidebar and content layout */
+.content-wrapper {
+    display: flex;
+    align-items: flex-start;
+}
+
+.sidebar {
+    width: 200px;
+    margin-right: 2rem;
+    position: sticky;
+    top: 100px; /* Adjust based on nav height */
+}
+
+.sidebar h3 {
+    font-size: 1.2rem;
+    color: #343a40;
+    border-bottom: 2px solid #17a2b8;
+    padding-bottom: 0.5rem;
+}
+
+.jump-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.jump-nav li a {
+    display: block;
+    padding: 0.5rem 0;
+    color: #495057;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.jump-nav li a:hover {
+    color: #17a2b8;
+    font-weight: 500;
+}
+
+.plots-main {
+    flex: 1;
 } 
