@@ -32,18 +32,14 @@ footer p {
 }
 
 footer a {
-    color: #17a2b8;
+    color: #9bf;
     text-decoration: none;
 }
 
-footer a:hover {
-    text-decoration: underline;
-}
-
-/* Navigation Bar */
+/* Main Navigation */
 .main-nav {
     background-color: #495057;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     text-align: center;
     position: sticky;
     top: 0;
@@ -51,90 +47,40 @@ footer a:hover {
 }
 
 .main-nav a {
-    color: #ffffff;
+    color: #f8f9fa;
     margin: 0 15px;
     text-decoration: none;
     font-weight: 500;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
-}
-
-.main-nav a:hover {
-    color: #17a2b8;
-}
-
-/* Style for the 'Home' link */
-.main-nav a.nav-home {
-    border: 1px solid #6c757d;
+    padding: 0.5rem 1rem;
     border-radius: 5px;
-    padding: 5px 15px;
+    transition: background-color 0.3s;
 }
 
-/* Main Content Area */
+.main-nav a.active,
+.main-nav a:hover {
+    background-color: #6c757d;
+}
+
+/* Main Content Layout */
 main {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 20px;
+    padding: 2rem 1rem;
 }
 
-section {
-    background-color: #ffffff;
-    margin-bottom: 2rem;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-section h2 {
-    margin-top: 0;
-    font-size: 2rem;
-    color: #343a40;
-    border-bottom: 3px solid #17a2b8;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
-}
-
-/* Plot Container Styles */
-.plot-container {
-    margin-bottom: 2.5rem;
-    text-align: center;
-}
-
-.plot-container h3 {
-    font-size: 1.5rem;
-    color: #495057;
-    margin-bottom: 1rem;
-}
-
-.plot-container img {
-    max-width: 75%;
-    height: auto;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
-}
-
-.plot-container[id] {
-    scroll-margin-top: 100px;
-}
-
-/* New styles for sidebar and content layout */
 .content-wrapper {
     display: flex;
-    align-items: flex-start;
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
+/* Sidebar for Jump-to Links */
 .sidebar {
     width: 200px;
-    margin-right: 2rem;
     position: sticky;
-    top: 100px; /* Adjust based on nav height */
-}
-
-.sidebar h3 {
-    font-size: 1.2rem;
-    color: #343a40;
-    border-bottom: 2px solid #17a2b8;
-    padding-bottom: 0.5rem;
+    top: 70px; /* Adjust based on main-nav height */
+    align-self: flex-start;
+    height: calc(100vh - 90px); /* Adjust based on header/nav height */
+    overflow-y: auto;
+    padding-right: 20px;
 }
 
 .jump-nav ul {
@@ -145,17 +91,64 @@ section h2 {
 
 .jump-nav li a {
     display: block;
-    padding: 0.5rem 0;
-    color: #495057;
+    padding: 8px;
     text-decoration: none;
-    transition: color 0.2s;
+    color: #495057;
+    border-left: 3px solid transparent;
+    transition: all 0.3s;
 }
 
 .jump-nav li a:hover {
-    color: #17a2b8;
-    font-weight: 500;
+    background-color: #e9ecef;
+    border-left-color: #007bff;
 }
 
+/* Main plots area */
 .plots-main {
     flex: 1;
+    padding-left: 20px;
+}
+
+.plots-main h2, .plots-main h3 {
+    border-bottom: 2px solid #dee2e6;
+    padding-bottom: 0.5rem;
+    margin-top: 2rem;
+}
+
+.plots-main h2 {
+    font-size: 2rem;
+}
+
+.plots-main h3 {
+    font-size: 1.75rem;
+    color: #495057;
+}
+
+.plot-container {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.plot-container h4 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #343a40;
+}
+
+.plot-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    width: 75%; /* Resize plots to 75% of the container */
+}
+
+/* Forcing scroll to land correctly */
+section[id] {
+  scroll-margin-top: 80px; /* Must be slightly larger than nav height */
 } 
