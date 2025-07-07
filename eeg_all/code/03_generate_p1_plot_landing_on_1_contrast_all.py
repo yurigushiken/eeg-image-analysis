@@ -9,10 +9,11 @@ import numpy as np
 
 # --- 1. CONFIGURATION ---
 # Base conditions to load
-BASE_CONDITIONS = ['21', '31', '41']
+BASE_CONDITIONS = ['11', '21', '31', '41']
 
 # How to combine base conditions into key conditions
 KEY_CONDITIONS_MAP = {
+    "1 to 1": ["11"],
     "2 to 1": ["21"],
     "3 to 1": ["31"],
     "4 to 1": ["41"],
@@ -20,6 +21,7 @@ KEY_CONDITIONS_MAP = {
 
 # Define colors for plots
 CONDITION_COLORS = {
+    "1 to 1": '#ff7f00',  # Orange
     "2 to 1": '#e41a1c',  # Red
     "3 to 1": '#377eb8',  # Blue
     "4 to 1": '#4daf4a',  # Green
