@@ -41,7 +41,7 @@ footer a:hover {
 }
 
 /* Navigation Bar */
-nav {
+.main-nav {
     background-color: #495057;
     padding: 1rem;
     text-align: center;
@@ -50,7 +50,7 @@ nav {
     z-index: 1000;
 }
 
-nav a {
+.main-nav a {
     color: #ffffff;
     margin: 0 15px;
     text-decoration: none;
@@ -59,12 +59,12 @@ nav a {
     transition: color 0.3s ease;
 }
 
-nav a:hover {
+.main-nav a:hover {
     color: #17a2b8;
 }
 
 /* Style for the 'Home' link */
-nav a.nav-home {
+.main-nav a.nav-home {
     border: 1px solid #6c757d;
     border-radius: 5px;
     padding: 5px 15px;
