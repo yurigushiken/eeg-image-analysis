@@ -9,20 +9,20 @@ import numpy as np
 
 # --- 1. CONFIGURATION ---
 # Base conditions to load
-BASE_CONDITIONS = ['14', '24', '34', '25', '35', '45', '36', '46', '56']
+BASE_CONDITIONS = ['21', '31', '41', '32', '42', '52', '43', '53', '63']
 
 # How to combine base conditions into key conditions
 KEY_CONDITIONS_MAP = {
-    "Landing on 4": ["14", "24", "34"],
-    "Landing on 5": ["25", "35", "45"],
-    "Landing on 6": ["36", "46", "56"],
+    "Landing on 1": ["21", "31", "41"],
+    "Landing on 2": ["32", "42", "52"],
+    "Landing on 3": ["43", "53", "63"],
 }
 
 # Define colors for plots
 CONDITION_COLORS = {
-    "Landing on 4": "darkred",
-    "Landing on 5": "red",
-    "Landing on 6": "salmon",
+    "Landing on 1": '#1f77b4',  # Blue
+    "Landing on 2": '#2ca02c',  # Green
+    "Landing on 3": '#9467bd',  # Purple
 }
 
 # Electrodes of interest for P1 waveform (Oz area)
@@ -78,7 +78,7 @@ def generate_p1_plots(subjects_to_process):
 
     print("\n--- Generating group-level grand average P1 plot ---")
     fig_grp = plt.figure(figsize=(12, 8))
-    fig_grp.suptitle('Grand Average: P1 Analysis (Landing on Large)', fontsize=16)
+    fig_grp.suptitle('Grand Average: P1 Analysis (Landing on Small, ACC=1)', fontsize=16)
     gs_grp = gridspec.GridSpec(2, len(grand_averages_key), height_ratios=[2, 1.5])
     ax_erp_grp = fig_grp.add_subplot(gs_grp[0, :])
 
@@ -121,7 +121,7 @@ def generate_p1_plots(subjects_to_process):
     cbar_ax_grp = fig_grp.add_axes([0.88, 0.15, 0.02, 0.2])
     plt.colorbar(plt.cm.ScalarMappable(norm=plt.Normalize(vmin=-6, vmax=6), cmap='RdBu_r'), cax=cbar_ax_grp, label='µV')
     
-    fig_path_grp = os.path.join(group_figure_dir, 'group_p1_plot_landing_on_large.png')
+    fig_path_grp = os.path.join(group_figure_dir, 'group_p1_plot_landing_on_small_acc=1.png')
     fig_grp.savefig(fig_path_grp, bbox_inches='tight'); plt.close(fig_grp)
     print(f"  - Saved grand average P1 plot to {fig_path_grp}")
 

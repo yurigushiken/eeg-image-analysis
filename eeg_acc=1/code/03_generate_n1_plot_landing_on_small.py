@@ -85,7 +85,7 @@ def generate_n1_plots(subjects_to_process):
 
             # --- Create the plot ---
             fig = plt.figure(figsize=(12, 8))
-            fig.suptitle(f'Subject {subject_id}: N1 Analysis (Landing on Small, ALL)', fontsize=16)
+            fig.suptitle(f'Subject {subject_id}: N1 Analysis (Landing on Small, ACC=1)', fontsize=16)
             gs = gridspec.GridSpec(2, len(key_evokeds), height_ratios=[2, 1.5])
             ax_erp = fig.add_subplot(gs[0, :])
 
@@ -109,6 +109,7 @@ def generate_n1_plots(subjects_to_process):
                 ax_erp.axvline(x=peak_time, color=color, linestyle='--', linewidth=1)
                 # Position text slightly above the bottom of the plot for clarity
                 text_y_pos = y_bounds[0] + 0.1 * (y_bounds[1] - y_bounds[0])
+                ax_erp.text(x=peak_time + 0.002, y=text_y_pos, s=f'{int(peak_time*1000)}ms', color=color, ha='left')
 
             # Plot Topomaps at detected peak times
             for i, (cond_name, evoked) in enumerate(key_evokeds.items()):
@@ -123,7 +124,7 @@ def generate_n1_plots(subjects_to_process):
             cbar_ax = fig.add_axes([0.88, 0.15, 0.02, 0.2])
             plt.colorbar(plt.cm.ScalarMappable(norm=plt.Normalize(vmin=-6, vmax=6), cmap='RdBu_r'), cax=cbar_ax, label='µV')
 
-            fig_path = os.path.join(subject_figure_dir, f'sub-{subject_id}_n1_plot_landing_on_small_all.png')
+            fig_path = os.path.join(subject_figure_dir, f'sub-{subject_id}_n1_plot_landing_on_small_acc=1.png')
             fig.savefig(fig_path, bbox_inches='tight'); plt.close(fig)
             print(f"    - Saved N1 plot to {fig_path}")
 
@@ -152,7 +153,7 @@ def generate_n1_plots(subjects_to_process):
         group_peak_times[cond_name] = peak_time
 
     fig_grp = plt.figure(figsize=(12, 8))
-    fig_grp.suptitle('Grand Average: N1 Analysis (Landing on Small, ALL)', fontsize=16)
+    fig_grp.suptitle('Grand Average: N1 Analysis (Landing on Small, ACC=1)', fontsize=16)
     gs_grp = gridspec.GridSpec(2, len(grand_averages_key), height_ratios=[2, 1.5])
     ax_erp_grp = fig_grp.add_subplot(gs_grp[0, :])
 
@@ -173,6 +174,7 @@ def generate_n1_plots(subjects_to_process):
         color = CONDITION_COLORS.get(cond_name, 'k')
         ax_erp_grp.axvline(x=peak_time, color=color, linestyle='--', linewidth=1)
         text_y_pos = y_bounds_grp[0] + 0.1 * (y_bounds_grp[1] - y_bounds_grp[0])
+        ax_erp_grp.text(x=peak_time + 0.002, y=text_y_pos, s=f'{int(peak_time*1000)}ms', color=color, ha='left')
 
     for i, (cond_name, evoked) in enumerate(grand_averages_key.items()):
         ax_topo_grp = fig_grp.add_subplot(gs_grp[1, i])
@@ -185,7 +187,7 @@ def generate_n1_plots(subjects_to_process):
     cbar_ax_grp = fig_grp.add_axes([0.88, 0.15, 0.02, 0.2])
     plt.colorbar(plt.cm.ScalarMappable(norm=plt.Normalize(vmin=-6, vmax=6), cmap='RdBu_r'), cax=cbar_ax_grp, label='µV')
     
-    fig_path_grp = os.path.join(group_figure_dir, 'group_n1_plot_landing_on_small_all.png')
+    fig_path_grp = os.path.join(group_figure_dir, 'group_n1_plot_landing_on_small_acc=1.png')
     fig_grp.savefig(fig_path_grp, bbox_inches='tight'); plt.close(fig_grp)
     print(f"  - Saved grand average N1 plot to {fig_path_grp}")
 

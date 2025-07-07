@@ -9,30 +9,30 @@ import numpy as np
 
 # --- 1. CONFIGURATION ---
 # Base conditions to load
-BASE_CONDITIONS = ['21', '31', '41', '32', '42', '52', '43', '53', '63']
+BASE_CONDITIONS = ['21', '31', '41']
 
 # How to combine base conditions into key conditions
+# In this case, each base condition is also a key condition
 KEY_CONDITIONS_MAP = {
-    "Landing on 1": ["21", "31", "41"],
-    "Landing on 2": ["32", "42", "52"],
-    "Landing on 3": ["43", "53", "63"],
+    "2 to 1": ["21"],
+    "3 to 1": ["31"],
+    "4 to 1": ["41"],
 }
 
 # Define colors for plots
 CONDITION_COLORS = {
-    "Landing on 1": '#1f77b4',  # Blue
-    "Landing on 2": '#2ca02c',  # Green
-    "Landing on 3": '#9467bd',  # Purple
+    "2 to 1": '#e41a1c',  # Red
+    "3 to 1": '#377eb8',  # Blue
+    "4 to 1": '#4daf4a',  # Green
 }
 
-# Electrodes of interest for N1 waveform (Left and Right hemispheres)
+# Electrodes of interest for N1 waveform (Bilateral Posterior-Occipito-Temporal)
 N1_ELECTRODES_L = ['E66', 'E65', 'E59', 'E60', 'E67', 'E71', 'E70']
 N1_ELECTRODES_R = ['E84', 'E76', 'E77', 'E85', 'E91', 'E90', 'E83']
-# Combine into a single bilateral list
 N1_ELECTRODES_BILATERAL = N1_ELECTRODES_L + N1_ELECTRODES_R
 
 # Time window of interest for N1 peak detection
-PEAK_TMIN, PEAK_TMAX = 0.125, 0.225
+PEAK_TMIN, PEAK_TMAX = 0.150, 0.200
 
 # Standard list of non-scalp channels to exclude
 NON_SCALP_CHANNELS = [
@@ -40,9 +40,9 @@ NON_SCALP_CHANNELS = [
     'E49', 'E113', 'E114', 'E119', 'E120', 'E121', 'E125', 'E126', 'E127', 'E128'
 ]
 
-def generate_n1_plots(subjects_to_process):
+def generate_n1_contrast_plots(subjects_to_process):
     """
-    Generates combined bilateral ERP waveform and topomap plots for N1 analysis.
+    Generates combined bilateral ERP and topomap plots for the N1 "landing on 1" contrast.
     """
     base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     derivatives_dir = os.path.join(base_dir, 'derivatives')
@@ -53,62 +53,47 @@ def generate_n1_plots(subjects_to_process):
         subject_dirs = glob.glob(os.path.join(derivatives_dir, 'sub-*'))
         subjects_to_process = sorted([os.path.basename(d).split('-')[1] for d in subject_dirs])
 
-    print(f"--- Processing subjects for N1 plots: {subjects_to_process} ---")
+    print(f"--- Processing subjects for N1 Contrast plots: {subjects_to_process} ---")
 
     # --- Individual Subject Plots ---
     for subject_id in subjects_to_process:
-        # ... setup directories ...
         subject_dir = os.path.join(derivatives_dir, f'sub-{subject_id}')
         subject_figure_dir = os.path.join(subject_dir, 'figures')
         os.makedirs(subject_figure_dir, exist_ok=True)
         print(f"\nProcessing Subject {subject_id}...")
         
         try:
-            # ... load data and create key evokeds ...
             base_evokeds = {cond: mne.read_epochs(os.path.join(subject_dir, f'sub-{subject_id}_task-numbers_cond-{cond}_epo.fif'), preload=True, verbose=False).average() for cond in BASE_CONDITIONS if os.path.exists(os.path.join(subject_dir, f'sub-{subject_id}_task-numbers_cond-{cond}_epo.fif'))}
             for cond, evoked in base_evokeds.items(): all_subject_evokeds[cond].append(evoked)
             if not base_evokeds: print(f"  - No data found for Subject {subject_id}. Skipping."); continue
+            
             key_evokeds = {key_cond: mne.combine_evoked([base_evokeds[bc] for bc in bcl if bc in base_evokeds], 'equal') for key_cond, bcl in KEY_CONDITIONS_MAP.items() if any(bc in base_evokeds for bc in bcl)}
             if not key_evokeds: print(f"  - Not enough data for key conditions for Subject {subject_id}. Skipping."); continue
 
             # --- Find N1 peaks for each condition ---
             peak_times = {}
             for cond_name, evoked in key_evokeds.items():
-                # Create a temporary evoked object with just the average of the ROI
                 roi_evoked_data = evoked.get_data(picks=N1_ELECTRODES_BILATERAL).mean(axis=0)
-                # Create a minimal info object for the single ROI channel
                 info = mne.create_info(['ROI_AVG'], evoked.info['sfreq'], ch_types='eeg')
                 roi_evoked = mne.EvokedArray(roi_evoked_data[np.newaxis, :], info, tmin=evoked.tmin)
-                # Find the peak in the specified time window for the ROI average
                 _, peak_time = roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='neg')
                 peak_times[cond_name] = peak_time
 
             # --- Create the plot ---
             fig = plt.figure(figsize=(12, 8))
-            fig.suptitle(f'Subject {subject_id}: N1 Analysis (Landing on Small, ALL)', fontsize=16)
+            fig.suptitle(f'Subject {subject_id}: N1 Contrast - Landing on "1" (ACC=1)', fontsize=16)
             gs = gridspec.GridSpec(2, len(key_evokeds), height_ratios=[2, 1.5])
             ax_erp = fig.add_subplot(gs[0, :])
 
-            # Plot Bilateral average on the axes
             mne.viz.plot_compare_evokeds(
-                key_evokeds,
-                picks=N1_ELECTRODES_BILATERAL,
-                combine='mean',
-                axes=ax_erp,
-                title="Mean ERP over Bilateral N1 Regions",
-                show=False,
-                legend='upper left',
-                ci=False,
-                colors=CONDITION_COLORS
+                key_evokeds, picks=N1_ELECTRODES_BILATERAL, combine='mean', axes=ax_erp,
+                title="Mean ERP over Bilateral N1 Regions", show=False, legend='upper left',
+                ci=False, colors=CONDITION_COLORS
             )
 
-            # Manually add vlines and text for each condition's peak
-            y_bounds = ax_erp.get_ylim()
+            # Manually add vlines
             for cond_name, peak_time in peak_times.items():
-                color = CONDITION_COLORS.get(cond_name, 'k')
-                ax_erp.axvline(x=peak_time, color=color, linestyle='--', linewidth=1)
-                # Position text slightly above the bottom of the plot for clarity
-                text_y_pos = y_bounds[0] + 0.1 * (y_bounds[1] - y_bounds[0])
+                ax_erp.axvline(x=peak_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle='--', linewidth=1)
 
             # Plot Topomaps at detected peak times
             for i, (cond_name, evoked) in enumerate(key_evokeds.items()):
@@ -123,7 +108,7 @@ def generate_n1_plots(subjects_to_process):
             cbar_ax = fig.add_axes([0.88, 0.15, 0.02, 0.2])
             plt.colorbar(plt.cm.ScalarMappable(norm=plt.Normalize(vmin=-6, vmax=6), cmap='RdBu_r'), cax=cbar_ax, label='µV')
 
-            fig_path = os.path.join(subject_figure_dir, f'sub-{subject_id}_n1_plot_landing_on_small_all.png')
+            fig_path = os.path.join(subject_figure_dir, f'sub-{subject_id}_n1_plot_landing_on_1_contrast_acc=1.png')
             fig.savefig(fig_path, bbox_inches='tight'); plt.close(fig)
             print(f"    - Saved N1 plot to {fig_path}")
 
@@ -152,27 +137,19 @@ def generate_n1_plots(subjects_to_process):
         group_peak_times[cond_name] = peak_time
 
     fig_grp = plt.figure(figsize=(12, 8))
-    fig_grp.suptitle('Grand Average: N1 Analysis (Landing on Small, ALL)', fontsize=16)
+    fig_grp.suptitle('Grand Average: N1 Contrast - Landing on "1" (ACC=1)', fontsize=16)
     gs_grp = gridspec.GridSpec(2, len(grand_averages_key), height_ratios=[2, 1.5])
     ax_erp_grp = fig_grp.add_subplot(gs_grp[0, :])
 
     mne.viz.plot_compare_evokeds(
-        grand_averages_key,
-        picks=N1_ELECTRODES_BILATERAL,
-        combine='mean',
-        axes=ax_erp_grp,
-        title="Grand Average Mean ERP over Bilateral N1 Regions",
-        show=False,
-        legend='upper left',
-        ci=0.95,
-        colors=CONDITION_COLORS
+        grand_averages_key, picks=N1_ELECTRODES_BILATERAL, combine='mean', axes=ax_erp_grp,
+        title="Grand Average Mean ERP over Bilateral N1 Regions", show=False, legend='upper left',
+        ci=0.95, colors=CONDITION_COLORS
     )
     
-    y_bounds_grp = ax_erp_grp.get_ylim()
     for cond_name, peak_time in group_peak_times.items():
         color = CONDITION_COLORS.get(cond_name, 'k')
         ax_erp_grp.axvline(x=peak_time, color=color, linestyle='--', linewidth=1)
-        text_y_pos = y_bounds_grp[0] + 0.1 * (y_bounds_grp[1] - y_bounds_grp[0])
 
     for i, (cond_name, evoked) in enumerate(grand_averages_key.items()):
         ax_topo_grp = fig_grp.add_subplot(gs_grp[1, i])
@@ -185,14 +162,14 @@ def generate_n1_plots(subjects_to_process):
     cbar_ax_grp = fig_grp.add_axes([0.88, 0.15, 0.02, 0.2])
     plt.colorbar(plt.cm.ScalarMappable(norm=plt.Normalize(vmin=-6, vmax=6), cmap='RdBu_r'), cax=cbar_ax_grp, label='µV')
     
-    fig_path_grp = os.path.join(group_figure_dir, 'group_n1_plot_landing_on_small_all.png')
+    fig_path_grp = os.path.join(group_figure_dir, 'group_n1_plot_landing_on_1_contrast_acc=1.png')
     fig_grp.savefig(fig_path_grp, bbox_inches='tight'); plt.close(fig_grp)
     print(f"  - Saved grand average N1 plot to {fig_path_grp}")
 
-    print("\n--- N1 plot generation complete. ---")
+    print("\n--- N1 contrast plot generation complete. ---")
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Generate EEG N1 waveform and topomap plots.')
+    parser = argparse.ArgumentParser(description='Generate EEG N1 contrast plots for landing on 1.')
     parser.add_argument('--subjects', nargs='*', help='Specific subject ID(s) to process. If not provided, all subjects will be processed.')
     args = parser.parse_args()
-    generate_n1_plots(args.subjects) 
+    generate_n1_contrast_plots(args.subjects) 
