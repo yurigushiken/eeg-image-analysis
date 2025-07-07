@@ -10,10 +10,13 @@ body {
 
 /* Header and Footer */
 header, footer {
-    background-color: #343a40;
-    color: #ffffff;
     text-align: center;
     padding: 1.5rem 1rem;
+}
+
+header {
+    background-color: #343a40;
+    color: #ffffff;
 }
 
 header h1 {
@@ -25,6 +28,10 @@ header p {
     margin: 0.5rem 0 0;
     font-size: 1.1rem;
     color: #adb5bd;
+}
+
+footer {
+    color: #212529;
 }
 
 footer p {
