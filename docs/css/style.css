@@ -149,6 +149,6 @@ main {
 }
 
 /* Forcing scroll to land correctly */
-section[id] {
-  scroll-margin-top: 80px; /* Must be slightly larger than nav height */
+.plot-container[id] {
+  scroll-margin-top: 100px; /* Must be slightly larger than nav height */
 } 
