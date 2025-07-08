@@ -175,6 +175,17 @@ main {
     color: #212529;
 }
 
+.jump-link {
+    margin-left: 8px;
+    font-size: 0.9rem;
+    color: #212529;
+    text-decoration: none;
+}
+
+.jump-link:hover {
+    text-decoration: underline;
+}
+
 
 /* Main plots area */
 .plots-main {

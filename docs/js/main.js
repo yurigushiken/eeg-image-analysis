@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 html += `
                     <div class="checkbox-container">
                         <input type="checkbox" id="cb-${plot.id}" data-plot-id="${plot.id}">
-                        <label for="cb-${plot.id}">${plot.dataset} - ${plot.name}</label>
+                        <a href="#${plot.id}" class="jump-link">${plot.dataset} - ${plot.name}</a>
                     </div>`;
             });
         });
