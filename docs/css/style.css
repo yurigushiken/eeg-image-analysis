@@ -111,6 +111,62 @@ main {
     border-left-color: #007bff;
 }
 
+/* Styles for new dynamic elements */
+.results-tabs {
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.tab-link {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-bottom: -2px;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-link.active {
+    border-bottom-color: #007bff;
+    font-weight: 600;
+}
+
+#compare-btn {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#compare-btn:hover {
+    background-color: #0056b3;
+}
+
+.sidebar-category {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #495057;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.checkbox-container label {
+    margin-left: 8px;
+    font-size: 0.9rem;
+    color: #212529;
+}
+
+
 /* Main plots area */
 .plots-main {
     flex: 1;
