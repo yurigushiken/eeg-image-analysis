@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (selectedIds.length > 0) {
             const url = `comparison.html?plots=${selectedIds.join(',')}`;
-            window.open(url, '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes');
+            window.open(url, '_blank');
         } else {
             alert('Please select at least one plot to compare.');
         }

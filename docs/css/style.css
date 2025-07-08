@@ -115,21 +115,30 @@ main {
 .results-tabs {
     margin-bottom: 1.5rem;
     border-bottom: 2px solid #dee2e6;
+    display: flex; /* Arrange tabs in a row */
 }
 
 .tab-link {
     background: none;
     border: none;
-    font-size: 1.2rem;
-    padding: 10px 20px;
+    font-size: 1.1rem; /* Slightly smaller font */
+    padding: 12px 22px; /* Adjusted padding */
     cursor: pointer;
-    margin-bottom: -2px;
-    border-bottom: 2px solid transparent;
+    margin-bottom: -2px; /* Align with bottom border */
+    border-bottom: 3px solid transparent; /* Inactive state */
+    color: #495057; /* Subtler color for inactive tabs */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+.tab-link:hover {
+    background-color: #e9ecef; /* Subtle hover effect */
+    border-bottom-color: #adb5bd; /* Hover border color */
 }
 
 .tab-link.active {
     border-bottom-color: #007bff;
     font-weight: 600;
+    color: #212529; /* Darker color for active tab */
 }
 
 #compare-btn {
