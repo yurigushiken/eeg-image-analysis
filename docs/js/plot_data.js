@@ -89,14 +89,14 @@ const plotData = [
     // ERP Waveforms
     {
         category: 'ERP Waveforms',
-        dataset: 'Group',
+        dataset: 'ds_all',
         name: 'Stimulus Comparison',
         id: 'stimulus_comparison',
         image: 'images/group_Stimulus_comparison.png'
     },
     {
         category: 'ERP Waveforms',
-        dataset: 'Group',
+        dataset: 'ds_all',
         name: 'Interaction Comparison',
         id: 'interaction_comparison',
         image: 'images/group_Interaction_comparison.png'
@@ -104,14 +104,14 @@ const plotData = [
     // LORETA
     {
         category: 'LORETA',
-        dataset: 'Group',
+        dataset: 'ds_all',
         name: 'LORETA Contrast: N1',
         id: 'loreta_n1',
         image: 'images/group_loreta_core_systems_contrast_N1.png'
     },
     {
         category: 'LORETA',
-        dataset: 'Group',
+        dataset: 'ds_all',
         name: 'LORETA Contrast: P3b',
         id: 'loreta_p3b',
         image: 'images/group_loreta_core_systems_contrast_P3b.png'

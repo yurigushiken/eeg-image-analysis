@@ -74,6 +74,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 3. EVENT LISTENERS ---
 
+    // Event listener for jump-to links to enable cross-tab jumping
+    comparisonControls.addEventListener('click', (e) => {
+        if (e.target.classList.contains('jump-link')) {
+            e.preventDefault(); // Prevent default anchor behavior
+
+            const plotId = e.target.hash.substring(1);
+            const targetPlot = plotData.find(p => p.id === plotId);
+            if (!targetPlot) return;
+
+            // Check if the plot is in the currently active tab
+            const activeTab = tabsContainer.querySelector('.tab-link.active');
+            if (activeTab.dataset.category !== targetPlot.category) {
+                // If not, find the correct tab and click it
+                const targetTab = tabsContainer.querySelector(`.tab-link[data-category="${targetPlot.category}"]`);
+                if (targetTab) {
+                    targetTab.click(); // This triggers the renderPlots function
+                }
+            }
+            
+            // The plot's element should now be in the DOM.
+            // We use a small timeout to ensure the DOM has updated before we scroll.
+            setTimeout(() => {
+                const elementToScrollTo = document.getElementById(plotId);
+                if (elementToScrollTo) {
+                    elementToScrollTo.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 50);
+        }
+    });
+
     // Event listener for tab clicks
     tabsContainer.addEventListener('click', (e) => {
         if (e.target.classList.contains('tab-link')) {
