@@ -72,6 +72,42 @@ const plotData = [
         image: 'images/group_n1_plot_within_small_acc=1.png',
         scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_plot_within_small_acc%3D1.py'
     },
+    {
+        category: 'Topomaps (ACC=1)',
+        subcategory: 'Landing on 2 (Decreasing)',
+        dataset: 'ACC=1',
+        name: 'P1',
+        id: 'acc1_p1_land2_decreasing',
+        image: 'images/group_p1_contrast_landing_on_2_decreasing_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_contrast_landing_on_2_decreasing_acc%3D1.py'
+    },
+    {
+        category: 'Topomaps (ACC=1)',
+        subcategory: 'Landing on 2 (Decreasing)',
+        dataset: 'ACC=1',
+        name: 'N1',
+        id: 'acc1_n1_land2_decreasing',
+        image: 'images/group_n1_contrast_landing_on_2_decreasing_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_contrast_landing_on_2_decreasing_acc%3D1.py'
+    },
+    {
+        category: 'Topomaps (ACC=1)',
+        subcategory: 'Landing on 2 (Any Preceding)',
+        dataset: 'ACC=1',
+        name: 'P1',
+        id: 'acc1_p1_land2_any',
+        image: 'images/group_p1_contrast_landing_on_2_any_preceding_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_contrast_landing_on_2_any_preceding_acc%3D1.py'
+    },
+    {
+        category: 'Topomaps (ACC=1)',
+        subcategory: 'Landing on 2 (Any Preceding)',
+        dataset: 'ACC=1',
+        name: 'N1',
+        id: 'acc1_n1_land2_any',
+        image: 'images/group_n1_contrast_landing_on_2_any_preceding_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_contrast_landing_on_2_any_preceding_acc%3D1.py'
+    },
     // Topomaps - ALL
     {
         category: 'Topomaps (ALL)',
@@ -144,6 +180,42 @@ const plotData = [
         id: 'all_n1_within_small',
         image: 'images/group_n1_plot_within_small_all.png',
         scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_plot_within_small_all.py'
+    },
+    {
+        category: 'Topomaps (ALL)',
+        subcategory: 'Landing on 2 (Decreasing)',
+        dataset: 'ALL',
+        name: 'P1',
+        id: 'all_p1_land2_decreasing',
+        image: 'images/group_p1_contrast_landing_on_2_decreasing_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_contrast_landing_on_2_decreasing_all.py'
+    },
+    {
+        category: 'Topomaps (ALL)',
+        subcategory: 'Landing on 2 (Decreasing)',
+        dataset: 'ALL',
+        name: 'N1',
+        id: 'all_n1_land2_decreasing',
+        image: 'images/group_n1_contrast_landing_on_2_decreasing_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_contrast_landing_on_2_decreasing_all.py'
+    },
+    {
+        category: 'Topomaps (ALL)',
+        subcategory: 'Landing on 2 (Any Preceding)',
+        dataset: 'ALL',
+        name: 'P1',
+        id: 'all_p1_land2_any',
+        image: 'images/group_p1_contrast_landing_on_2_any_preceding_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_contrast_landing_on_2_any_preceding_all.py'
+    },
+    {
+        category: 'Topomaps (ALL)',
+        subcategory: 'Landing on 2 (Any Preceding)',
+        dataset: 'ALL',
+        name: 'N1',
+        id: 'all_n1_land2_any',
+        image: 'images/group_n1_contrast_landing_on_2_any_preceding_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_contrast_landing_on_2_any_preceding_all.py'
     },
     // P1 vs N1 Analysis
     {
