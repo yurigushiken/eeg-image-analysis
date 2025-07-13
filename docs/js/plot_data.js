@@ -2,42 +2,42 @@
 const plotData = [
     // Topomaps - ACC=1
     {
-        category: 'Topomaps',
+        category: 'Topomaps (ACC=1)',
         dataset: 'ACC=1',
         name: 'N1 (Landing on Small)',
         id: 'acc1_n1_small',
         image: 'images/group_n1_plot_landing_on_small_acc=1.png'
     },
     {
-        category: 'Topomaps',
+        category: 'Topomaps (ACC=1)',
         dataset: 'ACC=1',
         name: 'N1 (Landing on Large)',
         id: 'acc1_n1_large',
         image: 'images/group_n1_plot_landing_on_large_acc=1.png'
     },
     {
-        category: 'Topomaps',
+        category: 'Topomaps (ACC=1)',
         dataset: 'ACC=1',
         name: 'P1 (Landing on Small)',
         id: 'acc1_p1_small',
         image: 'images/group_p1_plot_landing_on_small_acc=1.png'
     },
     {
-        category: 'Topomaps',
+        category: 'Topomaps (ACC=1)',
         dataset: 'ACC=1',
         name: 'P1 (Landing on Large)',
         id: 'acc1_p1_large',
         image: 'images/group_p1_plot_landing_on_large_acc=1.png'
     },
     {
-        category: 'Topomaps',
+        category: 'Topomaps (ACC=1)',
         dataset: 'ACC=1',
         name: 'N1 (Contrast on 1)',
         id: 'acc1_n1_contrast',
         image: 'images/group_n1_plot_landing_on_1_contrast_acc=1.png'
     },
     {
-        category: 'Topomaps',
+        category: 'Topomaps (ACC=1)',
         dataset: 'ACC=1',
         name: 'P1 (Contrast on 1)',
         id: 'acc1_p1_contrast',
@@ -45,42 +45,42 @@ const plotData = [
     },
     // Topomaps - ALL
     {
-        category: 'Topomaps',
+        category: 'Topomaps (ALL)',
         dataset: 'ALL',
         name: 'N1 (Landing on Small)',
         id: 'all_n1_small',
         image: 'images/group_n1_plot_landing_on_small_all.png'
     },
     {
-        category: 'Topomaps',
+        category: 'Topomaps (ALL)',
         dataset: 'ALL',
         name: 'N1 (Landing on Large)',
         id: 'all_n1_large',
         image: 'images/group_n1_plot_landing_on_large_all.png'
     },
     {
-        category: 'Topomaps',
+        category: 'Topomaps (ALL)',
         dataset: 'ALL',
         name: 'P1 (Landing on Small)',
         id: 'all_p1_small',
         image: 'images/group_p1_plot_landing_on_small_all.png'
     },
     {
-        category: 'Topomaps',
+        category: 'Topomaps (ALL)',
         dataset: 'ALL',
         name: 'P1 (Landing on Large)',
         id: 'all_p1_large',
         image: 'images/group_p1_plot_landing_on_large_all.png'
     },
     {
-        category: 'Topomaps',
+        category: 'Topomaps (ALL)',
         dataset: 'ALL',
         name: 'N1 (Contrast on 1)',
         id: 'all_n1_contrast',
         image: 'images/group_n1_plot_landing_on_1_contrast_all.png'
     },
     {
-        category: 'Topomaps',
+        category: 'Topomaps (ALL)',
         dataset: 'ALL',
         name: 'P1 (Contrast on 1)',
         id: 'all_p1_contrast',
