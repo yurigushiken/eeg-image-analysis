@@ -1,0 +1,40 @@
+Analysis 2: Interpretable Summary
+Hypothesis: Are N1 amplitude differences driven by the preceding P1?
+============================================================
+
+--- Step 1: Is there an initial difference in N1 amplitude? ---
+Finding: The effect of Condition on N1 amplitude is not significant, but shows a trend.
+   - F-statistic: 2.733
+   - p-value: 0.081
+   - Effect size (ng2): 0.044
+
+Raw ANOVA Table:
+----------------
+      Source            SS  DF            MS         F     p-unc       ng2       eps
+0  condition  1.093733e-11   2  5.468663e-12  2.733435  0.081185  0.043518  0.965138
+1      Error  6.001968e-11  30  2.000656e-12       NaN       NaN       NaN       NaN
+
+============================================================
+
+--- Step 2: What happens after we control for P1 amplitude? ---
+Finding 1: The P1 amplitude (covariate) is a significant predictor of N1 amplitude.
+   - F-statistic: 5.710
+   - p-value: 0.020 (Significant)
+   - Effect size (np2): 0.093
+
+Finding 2 (Key Result): After controlling for the P1, the effect of Condition on N1 amplitude disappears.
+   - F-statistic: 0.175
+   - p-value: 0.840 (Not significant)
+   - Effect size (np2): 0.006
+
+Raw ANCOVA Table:
+-----------------
+            Source            SS  DF         F     p-unc       np2
+0        condition  1.991757e-12   2  0.174747  0.840125  0.006202
+1  p1_amplitude_oz  3.254312e-11   1  5.710349  0.020256  0.092535
+2         Residual  3.191424e-10  56       NaN       NaN       NaN
+
+============================================================
+
+Conclusion: The trend towards a difference in N1 across conditions appears to be
+an artifact of the preceding P1 component's amplitude.

@@ -36,7 +36,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 const plotDiv = document.createElement('div');
                 plotDiv.className = 'plot-container';
                 plotDiv.id = plot.id;
-                plotDiv.innerHTML = `<h4>${plot.name}</h4><img src="${plot.image}" alt="${plot.name}">`;
+
+                // Check if the plot type is 'text'
+                if (plot.type === 'text') {
+                    plotDiv.innerHTML = `<h4>${plot.name}</h4>`;
+                    const pre = document.createElement('pre');
+                    pre.className = 'text-content-container';
+                    plotDiv.appendChild(pre);
+
+                    // Fetch and display the text content
+                    fetch(plot.path)
+                        .then(response => response.text())
+                        .then(text => pre.textContent = text)
+                        .catch(err => pre.textContent = `Error loading content: ${err}`);
+
+                } else {
+                    // Default to image rendering
+                    plotDiv.innerHTML = `<h4>${plot.name}</h4><img src="${plot.image}" alt="${plot.name}">`;
+                }
+
                 section.appendChild(plotDiv);
             });
             plotsContainer.appendChild(section);

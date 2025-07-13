@@ -86,6 +86,29 @@ const plotData = [
         id: 'all_p1_contrast',
         image: 'images/group_p1_plot_landing_on_1_contrast_all.png'
     },
+    // P1 vs N1 Analysis
+    {
+        category: 'P1 vs. N1 Analysis',
+        dataset: 'ACC=1',
+        name: 'P1-N1 Peak-to-Peak Amplitude',
+        id: 'p1n1_p2p_plot',
+        image: 'images/group_p1n1_p2p_plot.png'
+    },
+    {
+        category: 'P1 vs. N1 Analysis',
+        dataset: 'ACC=1',
+        name: 'ANCOVA Summary: N1 vs. P1',
+        id: 'n1_ancova_summary',
+        type: 'text',
+        path: 'results/group_n1_ancova_summary.txt'
+    },
+    {
+        category: 'P1 vs. N1 Analysis',
+        dataset: 'ACC=1',
+        name: 'P1-Normalized N1 Waveforms ("Flattening")',
+        id: 'flattened_n1_plot',
+        image: 'images/group_flattened_n1_plot.png'
+    },
     // ERP Waveforms
     {
         category: 'ERP Waveforms',
