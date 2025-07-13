@@ -3,7 +3,7 @@ const plotData = [
     // Topomaps - ACC=1
     {
         category: 'Topomaps (ACC=1)',
-        subcategory: 'Landing on Small (Preceding: 4, 5, 6)',
+        subcategory: 'Landing on Small (descending)',
         dataset: 'ACC=1',
         name: 'N1 (Descending)',
         id: 'acc1_n1_small_desc',
@@ -12,7 +12,7 @@ const plotData = [
     },
     {
         category: 'Topomaps (ACC=1)',
-        subcategory: 'Landing on Large (Preceding: 1, 2, 3)',
+        subcategory: 'Landing on Large (ascending)',
         dataset: 'ACC=1',
         name: 'N1 (Ascending)',
         id: 'acc1_n1_large_asc',
@@ -21,7 +21,7 @@ const plotData = [
     },
     {
         category: 'Topomaps (ACC=1)',
-        subcategory: 'Landing on Small (Preceding: 4, 5, 6)',
+        subcategory: 'Landing on Small (descending)',
         dataset: 'ACC=1',
         name: 'P1 (Descending)',
         id: 'acc1_p1_small_desc',
@@ -30,7 +30,7 @@ const plotData = [
     },
     {
         category: 'Topomaps (ACC=1)',
-        subcategory: 'Landing on Large (Preceding: 1, 2, 3)',
+        subcategory: 'Landing on Large (ascending)',
         dataset: 'ACC=1',
         name: 'P1 (Ascending)',
         id: 'acc1_p1_large_asc',
@@ -76,7 +76,7 @@ const plotData = [
     // Topomaps - ALL
     {
         category: 'Topomaps (ALL)',
-        subcategory: 'Landing on Small (Preceding: 4, 5, 6)',
+        subcategory: 'Landing on Small (descending)',
         dataset: 'ALL',
         name: 'N1 (Descending)',
         id: 'all_n1_small_desc',
@@ -85,7 +85,7 @@ const plotData = [
     },
     {
         category: 'Topomaps (ALL)',
-        subcategory: 'Landing on Large (Preceding: 1, 2, 3)',
+        subcategory: 'Landing on Large (ascending)',
         dataset: 'ALL',
         name: 'N1 (Ascending)',
         id: 'all_n1_large_asc',
@@ -94,7 +94,7 @@ const plotData = [
     },
     {
         category: 'Topomaps (ALL)',
-        subcategory: 'Landing on Small (Preceding: 4, 5, 6)',
+        subcategory: 'Landing on Small (descending)',
         dataset: 'ALL',
         name: 'P1 (Descending)',
         id: 'all_p1_small_desc',
@@ -103,7 +103,7 @@ const plotData = [
     },
     {
         category: 'Topomaps (ALL)',
-        subcategory: 'Landing on Large (Preceding: 1, 2, 3)',
+        subcategory: 'Landing on Large (ascending)',
         dataset: 'ALL',
         name: 'P1 (Ascending)',
         id: 'all_p1_large_asc',
