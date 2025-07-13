@@ -9,11 +9,10 @@ import numpy as np
 
 # --- 1. CONFIGURATION ---
 # Base conditions to load
-BASE_CONDITIONS = ['12', '32', '42', '52']
+BASE_CONDITIONS = ['32', '42', '52']
 
 # How to combine base conditions into key conditions
 KEY_CONDITIONS_MAP = {
-    "1 to 2": ["12"],
     "3 to 2": ["32"],
     "4 to 2": ["42"],
     "5 to 2": ["52"],
@@ -21,7 +20,6 @@ KEY_CONDITIONS_MAP = {
 
 # Define colors for plots
 CONDITION_COLORS = {
-    "1 to 2": '#e41a1c',  # Red
     "3 to 2": '#377eb8',  # Blue
     "4 to 2": '#4daf4a',  # Green
     "5 to 2": '#984ea3',  # Purple
@@ -41,7 +39,7 @@ NON_SCALP_CHANNELS = [
 
 def generate_p1_contrast_plots(subjects_to_process):
     """
-    Generates combined ERP and topomap plots for the P1 "landing on 2, any preceding" contrast.
+    Generates combined ERP and topomap plots for the P1 "landing on 2, descending" contrast.
     """
     base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     derivatives_dir = os.path.join(base_dir, 'derivatives')
@@ -73,31 +71,44 @@ def generate_p1_contrast_plots(subjects_to_process):
 
             # --- Create Plot ---
             fig = plt.figure(figsize=(12, 8))
-            fig.suptitle(f'Subject {subject_id}: P1 Contrast - Landing on "2" (Any Preceding, ACC=1)', fontsize=16)
+            fig.suptitle(f'Subject {subject_id}: P1 Contrast - Landing on "2" (Descending, ACC=1)', fontsize=16)
             gs = gridspec.GridSpec(2, len(key_evokeds), height_ratios=[2, 1.5])
             ax_erp = fig.add_subplot(gs[0, :])
 
             mne.viz.plot_compare_evokeds(key_evokeds, picks=P1_ELECTRODES, combine='mean', axes=ax_erp, title="Mean ERP over Oz Region", show=False, legend='upper left', ci=False, colors=CONDITION_COLORS)
 
             # --- Find Peaks and Plot Topomaps ---
+            peak_times = {}
+            for cond_name, evoked in key_evokeds.items():
+                try:
+                    roi_evoked = evoked.copy().pick(P1_ELECTRODES)
+                    mean_data = roi_evoked.data.mean(axis=0, keepdims=True)
+                    mean_info = mne.create_info(ch_names=['mean_roi'], sfreq=evoked.info['sfreq'], ch_types='eeg')
+                    mean_roi_evoked = mne.EvokedArray(mean_data, mean_info, tmin=evoked.tmin)
+                    _, peak_time, _ = mean_roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='pos', return_amplitude=True)
+                    peak_times[cond_name] = peak_time
+                except ValueError:
+                    peak_times[cond_name] = None
+                    print(f"    - No positive peak found for '{cond_name}' in subject {subject_id}. Skipping annotation.")
+
             for i, (cond_name, evoked) in enumerate(key_evokeds.items()):
                 ax_topo = fig.add_subplot(gs[1, i])
-                roi_evoked = evoked.copy().pick(P1_ELECTRODES)
-                mean_data = roi_evoked.data.mean(axis=0, keepdims=True)
-                mean_info = mne.create_info(ch_names=['mean_roi'], sfreq=evoked.info['sfreq'], ch_types='eeg')
-                mean_roi_evoked = mne.EvokedArray(mean_data, mean_info, tmin=evoked.tmin)
-                _, peak_time, _ = mean_roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='abs', return_amplitude=True)
-                
-                ax_erp.axvline(x=peak_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle='--', linewidth=1.5, alpha=0.8)
-                scalp_evoked = evoked.copy().pick('eeg', exclude=NON_SCALP_CHANNELS)
-                scalp_evoked.plot_topomap(times=peak_time, axes=ax_topo, show=False, vlim=(-6, 6), colorbar=False)
-                ax_topo.set_title(f"{cond_name}\nPeak at {int(peak_time*1000)} ms", color=CONDITION_COLORS.get(cond_name, 'black'))
+                peak_time = peak_times.get(cond_name)
+
+                if peak_time is not None:
+                    ax_erp.axvline(x=peak_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle='--', linewidth=1.5, alpha=0.8)
+                    scalp_evoked = evoked.copy().pick('eeg', exclude=NON_SCALP_CHANNELS)
+                    scalp_evoked.plot_topomap(times=peak_time, axes=ax_topo, show=False, vlim=(-6, 6), colorbar=False)
+                    ax_topo.set_title(f"{cond_name}\nPeak at {int(peak_time*1000)} ms", color=CONDITION_COLORS.get(cond_name, 'black'))
+                else:
+                    ax_topo.set_title(f"{cond_name}\n(No peak found)")
+                    ax_topo.axis('off')
 
             fig.subplots_adjust(right=0.85, bottom=0.1, top=0.9, hspace=0.4)
             cbar_ax = fig.add_axes([0.88, 0.15, 0.02, 0.2])
             plt.colorbar(plt.cm.ScalarMappable(norm=plt.Normalize(vmin=-6, vmax=6), cmap='RdBu_r'), cax=cbar_ax, label='µV')
             
-            fig_path = os.path.join(subject_figure_dir, f'sub-{subject_id}_p1_contrast_landing_on_2_any_preceding_acc=1.png')
+            fig_path = os.path.join(subject_figure_dir, f'sub-{subject_id}_p1_contrast_landing_on_2_descending_acc=1.png')
             fig.savefig(fig_path, bbox_inches='tight'); plt.close(fig)
             print(f"    - Saved P1 plot to {fig_path}")
 
@@ -117,7 +128,7 @@ def generate_p1_contrast_plots(subjects_to_process):
     print("\n--- Generating group-level grand average P1 contrast plot ---")
 
     fig_grp = plt.figure(figsize=(12, 8))
-    fig_grp.suptitle('Grand Average: P1 Contrast - Landing on "2" (Any Preceding, ACC=1)', fontsize=16)
+    fig_grp.suptitle('Grand Average: P1 Contrast - Landing on "2" (Descending, ACC=1)', fontsize=16)
     gs_grp = gridspec.GridSpec(2, len(grand_averages_key), height_ratios=[2, 1.5])
     ax_erp_grp = fig_grp.add_subplot(gs_grp[0, :])
 
@@ -128,34 +139,44 @@ def generate_p1_contrast_plots(subjects_to_process):
     )
     
     # --- Find P1 peaks for each condition for topomaps ---
+    peak_times_grp = {}
+    for cond_name, evoked in grand_averages_key.items():
+        try:
+            roi_evoked = evoked.copy().pick(P1_ELECTRODES)
+            mean_data = roi_evoked.data.mean(axis=0, keepdims=True)
+            mean_info = mne.create_info(ch_names=['mean_roi'], sfreq=evoked.info['sfreq'], ch_types='eeg')
+            mean_roi_evoked = mne.EvokedArray(mean_data, mean_info, tmin=evoked.tmin)
+            _, peak_time, _ = mean_roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='pos', return_amplitude=True)
+            peak_times_grp[cond_name] = peak_time
+        except ValueError:
+            peak_times_grp[cond_name] = None
+            print(f"    - No group-level positive peak found for '{cond_name}'. Skipping annotation.")
+
     for i, (cond_name, evoked) in enumerate(grand_averages_key.items()):
         ax_topo_grp = fig_grp.add_subplot(gs_grp[1, i])
+        peak_time = peak_times_grp.get(cond_name)
         
-        roi_evoked = evoked.copy().pick(P1_ELECTRODES)
-        mean_data = roi_evoked.data.mean(axis=0, keepdims=True)
-        mean_info = mne.create_info(ch_names=['mean_roi'], sfreq=evoked.info['sfreq'], ch_types='eeg')
-        mean_roi_evoked = mne.EvokedArray(mean_data, mean_info, tmin=evoked.tmin)
-        
-        _, peak_time, _ = mean_roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='abs', return_amplitude=True)
-        
-        ax_erp_grp.axvline(x=peak_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle='--', linewidth=1.5, alpha=0.8)
-
-        scalp_evoked = evoked.copy().pick('eeg', exclude=NON_SCALP_CHANNELS)
-        scalp_evoked.plot_topomap(times=peak_time, axes=ax_topo_grp, show=False, vlim=(-6, 6), colorbar=False)
-        ax_topo_grp.set_title(f"{cond_name}\nPeak at {int(peak_time*1000)} ms", color=CONDITION_COLORS.get(cond_name, 'black'))
+        if peak_time is not None:
+            ax_erp_grp.axvline(x=peak_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle='--', linewidth=1.5, alpha=0.8)
+            scalp_evoked = evoked.copy().pick('eeg', exclude=NON_SCALP_CHANNELS)
+            scalp_evoked.plot_topomap(times=peak_time, axes=ax_topo_grp, show=False, vlim=(-6, 6), colorbar=False)
+            ax_topo_grp.set_title(f"{cond_name}\nPeak at {int(peak_time*1000)} ms", color=CONDITION_COLORS.get(cond_name, 'black'))
+        else:
+            ax_topo_grp.set_title(f"{cond_name}\n(No peak found)")
+            ax_topo_grp.axis('off')
 
     fig_grp.subplots_adjust(right=0.85, bottom=0.1, top=0.9, hspace=0.4)
     cbar_ax_grp = fig_grp.add_axes([0.88, 0.15, 0.02, 0.2])
     plt.colorbar(plt.cm.ScalarMappable(norm=plt.Normalize(vmin=-6, vmax=6), cmap='RdBu_r'), cax=cbar_ax_grp, label='µV')
     
-    fig_path_grp = os.path.join(group_figure_dir, 'group_p1_contrast_landing_on_2_any_preceding_acc=1.png')
+    fig_path_grp = os.path.join(group_figure_dir, 'group_p1_contrast_landing_on_2_descending_acc=1.png')
     fig_grp.savefig(fig_path_grp, bbox_inches='tight'); plt.close(fig_grp)
     print(f"  - Saved grand average P1 plot to {fig_path_grp}")
 
     print("\n--- P1 contrast plot generation complete. ---")
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Generate EEG P1 contrast plots for landing on 2 (any preceding).')
+    parser = argparse.ArgumentParser(description='Generate EEG P1 contrast plots for landing on 2 (descending).')
     parser.add_argument('--subjects', nargs='*', help='Specific subject ID(s) to process. If not provided, all subjects will be processed.')
     args = parser.parse_args()
     generate_p1_contrast_plots(args.subjects) 

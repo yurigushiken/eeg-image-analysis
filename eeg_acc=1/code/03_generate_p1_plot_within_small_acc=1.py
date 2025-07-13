@@ -20,9 +20,9 @@ KEY_CONDITIONS_MAP = {
 
 # Define colors for plots
 CONDITION_COLORS = {
-    "Landing on 1 (from 2,3)": '#ff7f0e',  # Safety Orange
-    "Landing on 2 (from 1,3)": '#1f77b4',  # Muted Blue
-    "Landing on 3 (from 1,2)": '#2ca02c',  # Cooked Asparagus Green
+    "Landing on 1 (from 2,3)": '#1f77b4',  # Blue
+    "Landing on 2 (from 1,3)": '#2ca02c',  # Green
+    "Landing on 3 (from 1,2)": '#9467bd',  # Purple
 }
 
 # Electrodes of interest for P1 waveform (Oz area)

@@ -33,7 +33,7 @@ N1_ELECTRODES_R = ['E84', 'E76', 'E77', 'E85', 'E91', 'E90', 'E83']
 N1_ELECTRODES_BILATERAL = N1_ELECTRODES_L + N1_ELECTRODES_R
 
 # Time window for N1 peak search
-PEAK_TMIN, PEAK_TMAX = 0.080, 0.150
+PEAK_TMIN, PEAK_TMAX = 0.080, 0.200
 
 # Standard list of non-scalp channels to exclude
 NON_SCALP_CHANNELS = [
@@ -82,18 +82,32 @@ def generate_n1_contrast_plots(subjects_to_process):
             mne.viz.plot_compare_evokeds(key_evokeds, picks=N1_ELECTRODES_BILATERAL, combine='mean', axes=ax_erp, title="Mean ERP over Bilateral Posterior-Occipital Region", show=False, legend='upper left', ci=False, colors=CONDITION_COLORS)
 
             # --- Find Peaks and Plot Topomaps ---
+            peak_times = {}
+            for cond_name, evoked in key_evokeds.items():
+                try:
+                    roi_evoked = evoked.copy().pick(N1_ELECTRODES_BILATERAL)
+                    mean_data = roi_evoked.data.mean(axis=0, keepdims=True)
+                    mean_info = mne.create_info(ch_names=['mean_roi'], sfreq=evoked.info['sfreq'], ch_types='eeg')
+                    mean_roi_evoked = mne.EvokedArray(mean_data, mean_info, tmin=evoked.tmin)
+                    _, peak_time, _ = mean_roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='neg', return_amplitude=True)
+                    peak_times[cond_name] = peak_time
+                except ValueError:
+                    peak_times[cond_name] = None
+                    print(f"    - No negative peak found for '{cond_name}' in subject {subject_id}. Skipping annotation.")
+
             for i, (cond_name, evoked) in enumerate(key_evokeds.items()):
                 ax_topo = fig.add_subplot(gs[1, i])
-                roi_evoked = evoked.copy().pick(N1_ELECTRODES_BILATERAL)
-                mean_data = roi_evoked.data.mean(axis=0, keepdims=True)
-                mean_info = mne.create_info(ch_names=['mean_roi'], sfreq=evoked.info['sfreq'], ch_types='eeg')
-                mean_roi_evoked = mne.EvokedArray(mean_data, mean_info, tmin=evoked.tmin)
-                _, peak_time, _ = mean_roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='abs', return_amplitude=True)
+                peak_time = peak_times.get(cond_name)
                 
-                ax_erp.axvline(x=peak_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle='--', linewidth=1.5, alpha=0.8)
-                scalp_evoked = evoked.copy().pick('eeg', exclude=NON_SCALP_CHANNELS)
-                scalp_evoked.plot_topomap(times=peak_time, axes=ax_topo, show=False, vlim=(-6, 6), colorbar=False)
-                ax_topo.set_title(f"{cond_name}\nPeak at {int(peak_time*1000)} ms", color=CONDITION_COLORS.get(cond_name, 'black'))
+                if peak_time is not None:
+                    ax_erp.axvline(x=peak_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle='--', linewidth=1.5, alpha=0.8)
+                    scalp_evoked = evoked.copy().pick('eeg', exclude=NON_SCALP_CHANNELS)
+                    scalp_evoked.plot_topomap(times=peak_time, axes=ax_topo, show=False, vlim=(-6, 6), colorbar=False)
+                    ax_topo.set_title(f"{cond_name}\nPeak at {int(peak_time*1000)} ms", color=CONDITION_COLORS.get(cond_name, 'black'))
+                else:
+                    ax_topo.set_title(f"{cond_name}\n(No peak found)")
+                    ax_topo.axis('off')
+
 
             fig.subplots_adjust(right=0.85, bottom=0.1, top=0.9, hspace=0.4)
             cbar_ax = fig.add_axes([0.88, 0.15, 0.02, 0.2])
@@ -130,21 +144,31 @@ def generate_n1_contrast_plots(subjects_to_process):
     )
     
     # --- Find N1 peaks for each condition for topomaps ---
+    peak_times_grp = {}
+    for cond_name, evoked in grand_averages_key.items():
+        try:
+            roi_evoked = evoked.copy().pick(N1_ELECTRODES_BILATERAL)
+            mean_data = roi_evoked.data.mean(axis=0, keepdims=True)
+            mean_info = mne.create_info(ch_names=['mean_roi'], sfreq=evoked.info['sfreq'], ch_types='eeg')
+            mean_roi_evoked = mne.EvokedArray(mean_data, mean_info, tmin=evoked.tmin)
+            _, peak_time, _ = mean_roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='neg', return_amplitude=True)
+            peak_times_grp[cond_name] = peak_time
+        except ValueError:
+            peak_times_grp[cond_name] = None
+            print(f"    - No group-level negative peak found for '{cond_name}'. Skipping annotation.")
+
     for i, (cond_name, evoked) in enumerate(grand_averages_key.items()):
         ax_topo_grp = fig_grp.add_subplot(gs_grp[1, i])
+        peak_time = peak_times_grp.get(cond_name)
         
-        roi_evoked = evoked.copy().pick(N1_ELECTRODES_BILATERAL)
-        mean_data = roi_evoked.data.mean(axis=0, keepdims=True)
-        mean_info = mne.create_info(ch_names=['mean_roi'], sfreq=evoked.info['sfreq'], ch_types='eeg')
-        mean_roi_evoked = mne.EvokedArray(mean_data, mean_info, tmin=evoked.tmin)
-        
-        _, peak_time, _ = mean_roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='abs', return_amplitude=True)
-        
-        ax_erp_grp.axvline(x=peak_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle='--', linewidth=1.5, alpha=0.8)
-
-        scalp_evoked = evoked.copy().pick('eeg', exclude=NON_SCALP_CHANNELS)
-        scalp_evoked.plot_topomap(times=peak_time, axes=ax_topo_grp, show=False, vlim=(-6, 6), colorbar=False)
-        ax_topo_grp.set_title(f"{cond_name}\nPeak at {int(peak_time*1000)} ms", color=CONDITION_COLORS.get(cond_name, 'black'))
+        if peak_time is not None:
+            ax_erp_grp.axvline(x=peak_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle='--', linewidth=1.5, alpha=0.8)
+            scalp_evoked = evoked.copy().pick('eeg', exclude=NON_SCALP_CHANNELS)
+            scalp_evoked.plot_topomap(times=peak_time, axes=ax_topo_grp, show=False, vlim=(-6, 6), colorbar=False)
+            ax_topo_grp.set_title(f"{cond_name}\nPeak at {int(peak_time*1000)} ms", color=CONDITION_COLORS.get(cond_name, 'black'))
+        else:
+            ax_topo_grp.set_title(f"{cond_name}\n(No peak found)")
+            ax_topo_grp.axis('off')
 
     fig_grp.subplots_adjust(right=0.85, bottom=0.1, top=0.9, hspace=0.4)
     cbar_ax_grp = fig_grp.add_axes([0.88, 0.15, 0.02, 0.2])
