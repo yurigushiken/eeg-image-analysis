@@ -73,42 +73,6 @@ const plotData = [
         image: 'images/group_n1_plot_within_small_acc=1.png',
         scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_plot_within_small_acc%3D1.py'
     },
-    {
-        category: 'Topomaps (ACC=1)',
-        subcategory: 'Landing on 2 (Contrast)',
-        dataset: 'ACC=1',
-        name: 'P1 (Descending)',
-        id: 'acc1_p1_contrast_2_desc',
-        image: 'images/group_p1_contrast_landing_on_2_descending_acc=1.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/04_generate_p1_contrast_landing_on_2_descending_acc%3D1.py'
-    },
-    {
-        category: 'Topomaps (ACC=1)',
-        subcategory: 'Landing on 2 (Contrast)',
-        dataset: 'ACC=1',
-        name: 'P1 (Any Preceding)',
-        id: 'acc1_p1_contrast_2_any',
-        image: 'images/group_p1_contrast_landing_on_2_any_preceding_acc=1.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/04_generate_p1_contrast_landing_on_2_any_preceding_acc%3D1.py'
-    },
-    {
-        category: 'Topomaps (ACC=1)',
-        subcategory: 'Landing on 2 (Contrast)',
-        dataset: 'ACC=1',
-        name: 'N1 (Descending)',
-        id: 'acc1_n1_contrast_2_desc',
-        image: 'images/group_n1_contrast_landing_on_2_descending_acc=1.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/04_generate_n1_contrast_landing_on_2_descending_acc%3D1.py'
-    },
-    {
-        category: 'Topomaps (ACC=1)',
-        subcategory: 'Landing on 2 (Contrast)',
-        dataset: 'ACC=1',
-        name: 'N1 (Any Preceding)',
-        id: 'acc1_n1_contrast_2_any',
-        image: 'images/group_n1_contrast_landing_on_2_any_preceding_acc=1.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/04_generate_n1_contrast_landing_on_2_any_preceding_acc%3D1.py'
-    },
     // Topomaps - ALL
     {
         category: 'Topomaps (ALL)',
