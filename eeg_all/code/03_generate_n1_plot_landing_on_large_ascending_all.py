@@ -13,16 +13,16 @@ BASE_CONDITIONS = ['14', '24', '34', '25', '35', '45', '36', '46', '56']
 
 # How to combine base conditions into key conditions
 KEY_CONDITIONS_MAP = {
-    "Landing on 4": ["14", "24", "34"],
-    "Landing on 5": ["25", "35", "45"],
-    "Landing on 6": ["36", "46", "56"],
+    "Landing on 4 (from 1,2,3)": ["14", "24", "34"],
+    "Landing on 5 (from 2,3,4)": ["25", "35", "45"],
+    "Landing on 6 (from 3,4,5)": ["36", "46", "56"],
 }
 
 # Define colors for plots
 CONDITION_COLORS = {
-    "Landing on 4": '#1f77b4',  # Muted Blue
-    "Landing on 5": '#2ca02c',  # Cooked Asparagus Green
-    "Landing on 6": '#9467bd',  # Dull Purple
+    "Landing on 4 (from 1,2,3)": '#1f77b4',  # Muted Blue
+    "Landing on 5 (from 2,3,4)": '#2ca02c',  # Cooked Asparagus Green
+    "Landing on 6 (from 3,4,5)": '#9467bd',  # Dull Purple
 }
 
 # Electrodes of interest for N1 waveform (Left and Right hemispheres)
@@ -75,18 +75,15 @@ def generate_n1_plots(subjects_to_process):
             # --- Find N1 peaks for each condition ---
             peak_times = {}
             for cond_name, evoked in key_evokeds.items():
-                # Create a temporary evoked object with just the average of the ROI
                 roi_evoked_data = evoked.get_data(picks=N1_ELECTRODES_BILATERAL).mean(axis=0)
-                # Create a minimal info object for the single ROI channel
                 info = mne.create_info(['ROI_AVG'], evoked.info['sfreq'], ch_types='eeg')
                 roi_evoked = mne.EvokedArray(roi_evoked_data[np.newaxis, :], info, tmin=evoked.tmin)
-                # Find the peak in the specified time window for the ROI average
                 _, peak_time = roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='neg')
                 peak_times[cond_name] = peak_time
 
             # --- Create the plot ---
-            fig = plt.figure(figsize=(12, 8))
-            fig.suptitle(f'Subject {subject_id}: N1 Analysis (Landing on Large, ALL)', fontsize=16)
+            fig = plt.figure(figsize=(14, 8))
+            fig.suptitle(f'Subject {subject_id}: N1 Analysis (Landing on Large, Ascending, ALL)', fontsize=16)
             gs = gridspec.GridSpec(2, len(key_evokeds), height_ratios=[2, 1.5])
             ax_erp = fig.add_subplot(gs[0, :])
 
@@ -103,13 +100,9 @@ def generate_n1_plots(subjects_to_process):
                 colors=CONDITION_COLORS
             )
 
-            # Manually add vlines and text for each condition's peak
-            y_bounds = ax_erp.get_ylim()
             for cond_name, peak_time in peak_times.items():
                 color = CONDITION_COLORS.get(cond_name, 'k')
                 ax_erp.axvline(x=peak_time, color=color, linestyle='--', linewidth=1)
-                # Position text slightly above the bottom of the plot for clarity
-                text_y_pos = y_bounds[0] + 0.1 * (y_bounds[1] - y_bounds[0])
 
             # Plot Topomaps at detected peak times
             for i, (cond_name, evoked) in enumerate(key_evokeds.items()):
@@ -120,11 +113,11 @@ def generate_n1_plots(subjects_to_process):
                 ax_topo.set_title(f"{cond_name}\n{int(peak_time*1000)} ms", color=CONDITION_COLORS.get(cond_name, 'black'))
             
             # Shared colorbar
-            fig.subplots_adjust(right=0.85, bottom=0.1, top=0.9, hspace=0.4)
+            fig.subplots_adjust(right=0.85, bottom=0.1, top=0.9, hspace=0.4, wspace=0.4)
             cbar_ax = fig.add_axes([0.88, 0.15, 0.02, 0.2])
             plt.colorbar(plt.cm.ScalarMappable(norm=plt.Normalize(vmin=-6, vmax=6), cmap='RdBu_r'), cax=cbar_ax, label='µV')
 
-            fig_path = os.path.join(subject_figure_dir, f'sub-{subject_id}_n1_plot_landing_on_large_all.png')
+            fig_path = os.path.join(subject_figure_dir, f'sub-{subject_id}_n1_plot_landing_on_large_ascending_all.png')
             fig.savefig(fig_path, bbox_inches='tight'); plt.close(fig)
             print(f"    - Saved N1 plot to {fig_path}")
 
@@ -143,7 +136,6 @@ def generate_n1_plots(subjects_to_process):
 
     print("\n--- Generating group-level grand average N1 plot ---")
 
-    # --- Find N1 peaks for group grand average ---
     group_peak_times = {}
     for cond_name, evoked in grand_averages_key.items():
         roi_evoked_data = evoked.get_data(picks=N1_ELECTRODES_BILATERAL).mean(axis=0)
@@ -152,8 +144,8 @@ def generate_n1_plots(subjects_to_process):
         _, peak_time = roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='neg')
         group_peak_times[cond_name] = peak_time
 
-    fig_grp = plt.figure(figsize=(12, 8))
-    fig_grp.suptitle('Grand Average: N1 Analysis (Landing on Large, ALL)', fontsize=16)
+    fig_grp = plt.figure(figsize=(14, 8))
+    fig_grp.suptitle('Grand Average: N1 Analysis (Landing on Large, Ascending, ALL)', fontsize=16)
     gs_grp = gridspec.GridSpec(2, len(grand_averages_key), height_ratios=[2, 1.5])
     ax_erp_grp = fig_grp.add_subplot(gs_grp[0, :])
 
@@ -169,11 +161,9 @@ def generate_n1_plots(subjects_to_process):
         colors=CONDITION_COLORS
     )
     
-    y_bounds_grp = ax_erp_grp.get_ylim()
     for cond_name, peak_time in group_peak_times.items():
         color = CONDITION_COLORS.get(cond_name, 'k')
         ax_erp_grp.axvline(x=peak_time, color=color, linestyle='--', linewidth=1)
-        text_y_pos = y_bounds_grp[0] + 0.1 * (y_bounds_grp[1] - y_bounds_grp[0])
 
     for i, (cond_name, evoked) in enumerate(grand_averages_key.items()):
         ax_topo_grp = fig_grp.add_subplot(gs_grp[1, i])
@@ -182,11 +172,11 @@ def generate_n1_plots(subjects_to_process):
         scalp_evoked.plot_topomap(times=peak_time, axes=ax_topo_grp, show=False, vlim=(-6, 6), colorbar=False)
         ax_topo_grp.set_title(f"{cond_name}\n{int(peak_time*1000)} ms", color=CONDITION_COLORS.get(cond_name, 'black'))
 
-    fig_grp.subplots_adjust(right=0.85, bottom=0.1, top=0.9, hspace=0.4)
+    fig_grp.subplots_adjust(right=0.85, bottom=0.1, top=0.9, hspace=0.4, wspace=0.4)
     cbar_ax_grp = fig_grp.add_axes([0.88, 0.15, 0.02, 0.2])
     plt.colorbar(plt.cm.ScalarMappable(norm=plt.Normalize(vmin=-6, vmax=6), cmap='RdBu_r'), cax=cbar_ax_grp, label='µV')
     
-    fig_path_grp = os.path.join(group_figure_dir, f'group_n1_plot_landing_on_large_all.png')
+    fig_path_grp = os.path.join(group_figure_dir, f'group_n1_plot_landing_on_large_ascending_all.png')
     fig_grp.savefig(fig_path_grp, bbox_inches='tight'); plt.close(fig_grp)
     print(f"  - Saved grand average N1 plot to {fig_path_grp}")
 

@@ -11,9 +11,9 @@ const plotData = [
     {
         category: 'Topomaps (ACC=1)',
         dataset: 'ACC=1',
-        name: 'N1 (Landing on Large)',
-        id: 'acc1_n1_large',
-        image: 'images/group_n1_plot_landing_on_large_acc=1.png'
+        name: 'N1 (Landing on Large, Ascending)',
+        id: 'acc1_n1_large_asc',
+        image: 'images/group_n1_plot_landing_on_large_ascending_acc=1.png'
     },
     {
         category: 'Topomaps (ACC=1)',
@@ -25,9 +25,9 @@ const plotData = [
     {
         category: 'Topomaps (ACC=1)',
         dataset: 'ACC=1',
-        name: 'P1 (Landing on Large)',
-        id: 'acc1_p1_large',
-        image: 'images/group_p1_plot_landing_on_large_acc=1.png'
+        name: 'P1 (Landing on Large, Ascending)',
+        id: 'acc1_p1_large_asc',
+        image: 'images/group_p1_plot_landing_on_large_ascending_acc=1.png'
     },
     {
         category: 'Topomaps (ACC=1)',
@@ -54,9 +54,9 @@ const plotData = [
     {
         category: 'Topomaps (ALL)',
         dataset: 'ALL',
-        name: 'N1 (Landing on Large)',
-        id: 'all_n1_large',
-        image: 'images/group_n1_plot_landing_on_large_all.png'
+        name: 'N1 (Landing on Large, Ascending)',
+        id: 'all_n1_large_asc',
+        image: 'images/group_n1_plot_landing_on_large_ascending_all.png'
     },
     {
         category: 'Topomaps (ALL)',
@@ -68,9 +68,9 @@ const plotData = [
     {
         category: 'Topomaps (ALL)',
         dataset: 'ALL',
-        name: 'P1 (Landing on Large)',
-        id: 'all_p1_large',
-        image: 'images/group_p1_plot_landing_on_large_all.png'
+        name: 'P1 (Landing on Large, Ascending)',
+        id: 'all_p1_large_asc',
+        image: 'images/group_p1_plot_landing_on_large_ascending_all.png'
     },
     {
         category: 'Topomaps (ALL)',
