@@ -2,39 +2,39 @@ const plotData = [
     // Topomaps - ACC=1
     {
         category: 'Topomaps (ACC=1)',
-        subcategory: 'Landing on Small (descending)',
+        subcategory: 'Landing on Small (decreasing)',
         dataset: 'ACC=1',
-        name: 'P1 (Descending)',
+        name: 'P1 (Decreasing)',
         id: 'acc1_p1_small_desc',
-        image: 'images/group_p1_plot_landing_on_small_descending_acc=1.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_plot_landing_on_small_descending_acc%3D1.py'
+        image: 'images/group_p1_plot_landing_on_small_decreasing_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_plot_landing_on_small_decreasing_acc%3D1.py'
     },
     {
         category: 'Topomaps (ACC=1)',
-        subcategory: 'Landing on Small (descending)',
+        subcategory: 'Landing on Small (decreasing)',
         dataset: 'ACC=1',
-        name: 'N1 (Descending)',
+        name: 'N1 (Decreasing)',
         id: 'acc1_n1_small_desc',
-        image: 'images/group_n1_plot_landing_on_small_descending_acc=1.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_plot_landing_on_small_descending_acc%3D1.py'
+        image: 'images/group_n1_plot_landing_on_small_decreasing_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_plot_landing_on_small_decreasing_acc%3D1.py'
     },
     {
         category: 'Topomaps (ACC=1)',
-        subcategory: 'Landing on Large (ascending)',
+        subcategory: 'Landing on Large (increasing)',
         dataset: 'ACC=1',
-        name: 'P1 (Ascending)',
+        name: 'P1 (Increasing)',
         id: 'acc1_p1_large_asc',
-        image: 'images/group_p1_plot_landing_on_large_ascending_acc=1.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_plot_landing_on_large_ascending_acc%3D1.py'
+        image: 'images/group_p1_plot_landing_on_large_increasing_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_plot_landing_on_large_increasing_acc%3D1.py'
     },
     {
         category: 'Topomaps (ACC=1)',
-        subcategory: 'Landing on Large (ascending)',
+        subcategory: 'Landing on Large (increasing)',
         dataset: 'ACC=1',
-        name: 'N1 (Ascending)',
+        name: 'N1 (Increasing)',
         id: 'acc1_n1_large_asc',
-        image: 'images/group_n1_plot_landing_on_large_ascending_acc=1.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_plot_landing_on_large_ascending_acc%3D1.py'
+        image: 'images/group_n1_plot_landing_on_large_increasing_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_plot_landing_on_large_increasing_acc%3D1.py'
     },
     {
         category: 'Topomaps (ACC=1)',
@@ -75,39 +75,39 @@ const plotData = [
     // Topomaps - ALL
     {
         category: 'Topomaps (ALL)',
-        subcategory: 'Landing on Small (descending)',
+        subcategory: 'Landing on Small (decreasing)',
         dataset: 'ALL',
-        name: 'P1 (Descending)',
+        name: 'P1 (Decreasing)',
         id: 'all_p1_small_desc',
-        image: 'images/group_p1_plot_landing_on_small_descending_all.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_plot_landing_on_small_descending_all.py'
+        image: 'images/group_p1_plot_landing_on_small_decreasing_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_plot_landing_on_small_decreasing_all.py'
     },
     {
         category: 'Topomaps (ALL)',
-        subcategory: 'Landing on Small (descending)',
+        subcategory: 'Landing on Small (decreasing)',
         dataset: 'ALL',
-        name: 'N1 (Descending)',
+        name: 'N1 (Decreasing)',
         id: 'all_n1_small_desc',
-        image: 'images/group_n1_plot_landing_on_small_descending_all.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_plot_landing_on_small_descending_all.py'
+        image: 'images/group_n1_plot_landing_on_small_decreasing_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_plot_landing_on_small_decreasing_all.py'
     },
     {
         category: 'Topomaps (ALL)',
-        subcategory: 'Landing on Large (ascending)',
+        subcategory: 'Landing on Large (increasing)',
         dataset: 'ALL',
-        name: 'P1 (Ascending)',
+        name: 'P1 (Increasing)',
         id: 'all_p1_large_asc',
-        image: 'images/group_p1_plot_landing_on_large_ascending_all.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_plot_landing_on_large_ascending_all.py'
+        image: 'images/group_p1_plot_landing_on_large_increasing_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_plot_landing_on_large_increasing_all.py'
     },
     {
         category: 'Topomaps (ALL)',
-        subcategory: 'Landing on Large (ascending)',
+        subcategory: 'Landing on Large (increasing)',
         dataset: 'ALL',
-        name: 'N1 (Ascending)',
+        name: 'N1 (Increasing)',
         id: 'all_n1_large_asc',
-        image: 'images/group_n1_plot_landing_on_large_ascending_all.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_plot_landing_on_large_ascending_all.py'
+        image: 'images/group_n1_plot_landing_on_large_increasing_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_plot_landing_on_large_increasing_all.py'
     },
     {
         category: 'Topomaps (ALL)',

@@ -75,12 +75,12 @@ def generate_p1_plots(subjects_to_process):
                 roi_evoked_data = evoked.get_data(picks=P1_ELECTRODES).mean(axis=0)
                 info = mne.create_info(['ROI_AVG'], evoked.info['sfreq'], ch_types='eeg')
                 roi_evoked = mne.EvokedArray(roi_evoked_data[np.newaxis, :], info, tmin=evoked.tmin)
-                _, peak_time = roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='abs')
+                _, peak_time = roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='pos')
                 peak_times[cond_name] = peak_time
 
             # --- Create the plot ---
             fig = plt.figure(figsize=(14, 8))
-            fig.suptitle(f'Subject {subject_id}: P1 Analysis (Landing on Small, Descending, ALL)', fontsize=16)
+            fig.suptitle(f'Subject {subject_id}: P1 Analysis (Landing on Small, Decreasing, ACC=1)', fontsize=16)
             gs = gridspec.GridSpec(2, len(key_evokeds), height_ratios=[2, 1.5])
             ax_erp = fig.add_subplot(gs[0, :])
 
@@ -111,7 +111,7 @@ def generate_p1_plots(subjects_to_process):
             cbar_ax = fig.add_axes([0.88, 0.15, 0.02, 0.2])
             plt.colorbar(plt.cm.ScalarMappable(norm=plt.Normalize(vmin=-6, vmax=6), cmap='RdBu_r'), cax=cbar_ax, label='µV')
 
-            fig_path = os.path.join(subject_figure_dir, f'sub-{subject_id}_p1_plot_landing_on_small_descending_all.png')
+            fig_path = os.path.join(subject_figure_dir, f'sub-{subject_id}_p1_plot_landing_on_small_decreasing_acc=1.png')
             fig.savefig(fig_path, bbox_inches='tight'); plt.close(fig)
             print(f"    - Saved P1 plot to {fig_path}")
 
@@ -139,7 +139,7 @@ def generate_p1_plots(subjects_to_process):
         peak_times[cond_name] = peak_time
 
     fig_grp = plt.figure(figsize=(14, 8))
-    fig_grp.suptitle('Grand Average: P1 Analysis (Landing on Small, Descending, ALL)', fontsize=16)
+    fig_grp.suptitle('Grand Average: P1 Analysis (Landing on Small, Decreasing, ACC=1)', fontsize=16)
     gs_grp = gridspec.GridSpec(2, len(grand_averages_key), height_ratios=[2, 1.5])
     ax_erp_grp = fig_grp.add_subplot(gs_grp[0, :])
 
@@ -170,7 +170,7 @@ def generate_p1_plots(subjects_to_process):
     cbar_ax_grp = fig_grp.add_axes([0.88, 0.15, 0.02, 0.2])
     plt.colorbar(plt.cm.ScalarMappable(norm=plt.Normalize(vmin=-6, vmax=6), cmap='RdBu_r'), cax=cbar_ax_grp, label='µV')
     
-    fig_path_grp = os.path.join(group_figure_dir, f'group_p1_plot_landing_on_small_descending_all.png')
+    fig_path_grp = os.path.join(group_figure_dir, 'group_p1_plot_landing_on_small_decreasing_acc=1.png')
     fig_grp.savefig(fig_path_grp, bbox_inches='tight'); plt.close(fig_grp)
     print(f"  - Saved grand average P1 plot to {fig_path_grp}")
 

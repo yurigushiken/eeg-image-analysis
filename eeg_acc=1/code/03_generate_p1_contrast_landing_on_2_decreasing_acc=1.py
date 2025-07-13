@@ -39,7 +39,7 @@ NON_SCALP_CHANNELS = [
 
 def generate_p1_contrast_plots(subjects_to_process):
     """
-    Generates combined ERP and topomap plots for the P1 "landing on 2, descending" contrast.
+    Generates combined ERP and topomap plots for the P1 "landing on 2, decreasing" contrast.
     """
     base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     derivatives_dir = os.path.join(base_dir, 'derivatives')
@@ -71,7 +71,7 @@ def generate_p1_contrast_plots(subjects_to_process):
 
             # --- Create Plot ---
             fig = plt.figure(figsize=(12, 8))
-            fig.suptitle(f'Subject {subject_id}: P1 Contrast - Landing on "2" (Descending, ACC=1)', fontsize=16)
+            fig.suptitle(f'Subject {subject_id}: P1 Contrast - Landing on "2" (Decreasing, ACC=1)', fontsize=16)
             gs = gridspec.GridSpec(2, len(key_evokeds), height_ratios=[2, 1.5])
             ax_erp = fig.add_subplot(gs[0, :])
 
@@ -108,7 +108,7 @@ def generate_p1_contrast_plots(subjects_to_process):
             cbar_ax = fig.add_axes([0.88, 0.15, 0.02, 0.2])
             plt.colorbar(plt.cm.ScalarMappable(norm=plt.Normalize(vmin=-6, vmax=6), cmap='RdBu_r'), cax=cbar_ax, label='µV')
             
-            fig_path = os.path.join(subject_figure_dir, f'sub-{subject_id}_p1_contrast_landing_on_2_descending_acc=1.png')
+            fig_path = os.path.join(subject_figure_dir, f'sub-{subject_id}_p1_contrast_landing_on_2_decreasing_acc=1.png')
             fig.savefig(fig_path, bbox_inches='tight'); plt.close(fig)
             print(f"    - Saved P1 plot to {fig_path}")
 
@@ -128,7 +128,7 @@ def generate_p1_contrast_plots(subjects_to_process):
     print("\n--- Generating group-level grand average P1 contrast plot ---")
 
     fig_grp = plt.figure(figsize=(12, 8))
-    fig_grp.suptitle('Grand Average: P1 Contrast - Landing on "2" (Descending, ACC=1)', fontsize=16)
+    fig_grp.suptitle('Grand Average: P1 Contrast - Landing on "2" (Decreasing, ACC=1)', fontsize=16)
     gs_grp = gridspec.GridSpec(2, len(grand_averages_key), height_ratios=[2, 1.5])
     ax_erp_grp = fig_grp.add_subplot(gs_grp[0, :])
 
@@ -169,14 +169,14 @@ def generate_p1_contrast_plots(subjects_to_process):
     cbar_ax_grp = fig_grp.add_axes([0.88, 0.15, 0.02, 0.2])
     plt.colorbar(plt.cm.ScalarMappable(norm=plt.Normalize(vmin=-6, vmax=6), cmap='RdBu_r'), cax=cbar_ax_grp, label='µV')
     
-    fig_path_grp = os.path.join(group_figure_dir, 'group_p1_contrast_landing_on_2_descending_acc=1.png')
+    fig_path_grp = os.path.join(group_figure_dir, 'group_p1_contrast_landing_on_2_decreasing_acc=1.png')
     fig_grp.savefig(fig_path_grp, bbox_inches='tight'); plt.close(fig_grp)
     print(f"  - Saved grand average P1 plot to {fig_path_grp}")
 
     print("\n--- P1 contrast plot generation complete. ---")
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Generate EEG P1 contrast plots for landing on 2 (descending).')
+    parser = argparse.ArgumentParser(description='Generate EEG P1 contrast plots for landing on 2 (decreasing).')
     parser.add_argument('--subjects', nargs='*', help='Specific subject ID(s) to process. If not provided, all subjects will be processed.')
     args = parser.parse_args()
     generate_p1_contrast_plots(args.subjects) 
