@@ -9,11 +9,12 @@ import numpy as np
 
 # --- 1. CONFIGURATION ---
 # Base conditions to load
-BASE_CONDITIONS = ['12', '32', '42', '52']
+BASE_CONDITIONS = ['12', '22', '32', '42', '52']
 
 # How to combine base conditions into key conditions
 KEY_CONDITIONS_MAP = {
     "1 to 2": ["12"],
+    "2 to 2": ["22"],
     "3 to 2": ["32"],
     "4 to 2": ["42"],
     "5 to 2": ["52"],
@@ -22,6 +23,7 @@ KEY_CONDITIONS_MAP = {
 # Define colors for plots
 CONDITION_COLORS = {
     "1 to 2": '#e41a1c',  # Red
+    "2 to 2": '#ff7f00',  # Orange
     "3 to 2": '#377eb8',  # Blue
     "4 to 2": '#4daf4a',  # Green
     "5 to 2": '#984ea3',  # Purple

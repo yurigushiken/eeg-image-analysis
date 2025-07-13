@@ -9,11 +9,12 @@ import numpy as np
 
 # --- 1. CONFIGURATION ---
 # Base conditions to load
-BASE_CONDITIONS = ['12', '32', '42', '52']
+BASE_CONDITIONS = ['12', '22', '32', '42', '52']
 
 # How to combine base conditions into key conditions
 KEY_CONDITIONS_MAP = {
     "1 to 2": ["12"],
+    "2 to 2": ["22"],
     "3 to 2": ["32"],
     "4 to 2": ["42"],
     "5 to 2": ["52"],
@@ -22,6 +23,7 @@ KEY_CONDITIONS_MAP = {
 # Define colors for plots
 CONDITION_COLORS = {
     "1 to 2": '#e41a1c',  # Red
+    "2 to 2": '#ff7f00',  # Orange
     "3 to 2": '#377eb8',  # Blue
     "4 to 2": '#4daf4a',  # Green
     "5 to 2": '#984ea3',  # Purple
@@ -89,7 +91,7 @@ def generate_n1_contrast_plots(subjects_to_process):
                     mean_data = roi_evoked.data.mean(axis=0, keepdims=True)
                     mean_info = mne.create_info(ch_names=['mean_roi'], sfreq=evoked.info['sfreq'], ch_types='eeg')
                     mean_roi_evoked = mne.EvokedArray(mean_data, mean_info, tmin=evoked.tmin)
-                    _, peak_time, _ = mean_roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='neg', return_amplitude=True)
+                    _, peak_time, _ = mean_roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='abs', return_amplitude=True)
                     peak_times[cond_name] = peak_time
                 except ValueError:
                     peak_times[cond_name] = None
@@ -151,11 +153,11 @@ def generate_n1_contrast_plots(subjects_to_process):
             mean_data = roi_evoked.data.mean(axis=0, keepdims=True)
             mean_info = mne.create_info(ch_names=['mean_roi'], sfreq=evoked.info['sfreq'], ch_types='eeg')
             mean_roi_evoked = mne.EvokedArray(mean_data, mean_info, tmin=evoked.tmin)
-            _, peak_time, _ = mean_roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='neg', return_amplitude=True)
+            _, peak_time, _ = mean_roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='abs', return_amplitude=True)
             peak_times_grp[cond_name] = peak_time
         except ValueError:
             peak_times_grp[cond_name] = None
-            print(f"    - No group-level negative peak found for '{cond_name}'. Skipping annotation.")
+            print(f"    - No group-level peak found for '{cond_name}'. Skipping annotation.")
 
     for i, (cond_name, evoked) in enumerate(grand_averages_key.items()):
         ax_topo_grp = fig_grp.add_subplot(gs_grp[1, i])
