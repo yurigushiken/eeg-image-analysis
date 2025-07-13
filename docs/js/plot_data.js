@@ -1,6 +1,14 @@
-
 const plotData = [
     // Topomaps - ACC=1
+    {
+        category: 'Topomaps (ACC=1)',
+        subcategory: 'Landing on Small (descending)',
+        dataset: 'ACC=1',
+        name: 'P1 (Descending)',
+        id: 'acc1_p1_small_desc',
+        image: 'images/group_p1_plot_landing_on_small_descending_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_plot_landing_on_small_descending_acc%3D1.py'
+    },
     {
         category: 'Topomaps (ACC=1)',
         subcategory: 'Landing on Small (descending)',
@@ -14,24 +22,6 @@ const plotData = [
         category: 'Topomaps (ACC=1)',
         subcategory: 'Landing on Large (ascending)',
         dataset: 'ACC=1',
-        name: 'N1 (Ascending)',
-        id: 'acc1_n1_large_asc',
-        image: 'images/group_n1_plot_landing_on_large_ascending_acc=1.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_plot_landing_on_large_ascending_acc%3D1.py'
-    },
-    {
-        category: 'Topomaps (ACC=1)',
-        subcategory: 'Landing on Small (descending)',
-        dataset: 'ACC=1',
-        name: 'P1 (Descending)',
-        id: 'acc1_p1_small_desc',
-        image: 'images/group_p1_plot_landing_on_small_descending_acc=1.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_plot_landing_on_small_descending_acc%3D1.py'
-    },
-    {
-        category: 'Topomaps (ACC=1)',
-        subcategory: 'Landing on Large (ascending)',
-        dataset: 'ACC=1',
         name: 'P1 (Ascending)',
         id: 'acc1_p1_large_asc',
         image: 'images/group_p1_plot_landing_on_large_ascending_acc=1.png',
@@ -39,12 +29,12 @@ const plotData = [
     },
     {
         category: 'Topomaps (ACC=1)',
-        subcategory: 'Landing on 1 (Contrast)',
+        subcategory: 'Landing on Large (ascending)',
         dataset: 'ACC=1',
-        name: 'N1',
-        id: 'acc1_n1_contrast',
-        image: 'images/group_n1_plot_landing_on_1_contrast_acc=1.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_plot_landing_on_1_contrast_acc%3D1.py'
+        name: 'N1 (Ascending)',
+        id: 'acc1_n1_large_asc',
+        image: 'images/group_n1_plot_landing_on_large_ascending_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_plot_landing_on_large_ascending_acc%3D1.py'
     },
     {
         category: 'Topomaps (ACC=1)',
@@ -54,6 +44,15 @@ const plotData = [
         id: 'acc1_p1_contrast',
         image: 'images/group_p1_plot_landing_on_1_contrast_acc=1.png',
         scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_plot_landing_on_1_contrast_acc%3D1.py'
+    },
+    {
+        category: 'Topomaps (ACC=1)',
+        subcategory: 'Landing on 1 (Contrast)',
+        dataset: 'ACC=1',
+        name: 'N1',
+        id: 'acc1_n1_contrast',
+        image: 'images/group_n1_plot_landing_on_1_contrast_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_plot_landing_on_1_contrast_acc%3D1.py'
     },
     {
         category: 'Topomaps (ACC=1)',
@@ -78,28 +77,19 @@ const plotData = [
         category: 'Topomaps (ALL)',
         subcategory: 'Landing on Small (descending)',
         dataset: 'ALL',
-        name: 'N1 (Descending)',
-        id: 'all_n1_small_desc',
-        image: 'images/group_n1_plot_landing_on_small_descending_all.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_plot_landing_on_small_descending_all.py'
-    },
-    {
-        category: 'Topomaps (ALL)',
-        subcategory: 'Landing on Large (ascending)',
-        dataset: 'ALL',
-        name: 'N1 (Ascending)',
-        id: 'all_n1_large_asc',
-        image: 'images/group_n1_plot_landing_on_large_ascending_all.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_plot_landing_on_large_ascending_all.py'
+        name: 'P1 (Descending)',
+        id: 'all_p1_small_desc',
+        image: 'images/group_p1_plot_landing_on_small_descending_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_plot_landing_on_small_descending_all.py'
     },
     {
         category: 'Topomaps (ALL)',
         subcategory: 'Landing on Small (descending)',
         dataset: 'ALL',
-        name: 'P1 (Descending)',
-        id: 'all_p1_small_desc',
-        image: 'images/group_p1_plot_landing_on_small_descending_all.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_plot_landing_on_small_descending_all.py'
+        name: 'N1 (Descending)',
+        id: 'all_n1_small_desc',
+        image: 'images/group_n1_plot_landing_on_small_descending_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_plot_landing_on_small_descending_all.py'
     },
     {
         category: 'Topomaps (ALL)',
@@ -112,12 +102,12 @@ const plotData = [
     },
     {
         category: 'Topomaps (ALL)',
-        subcategory: 'Landing on 1 (Contrast)',
+        subcategory: 'Landing on Large (ascending)',
         dataset: 'ALL',
-        name: 'N1',
-        id: 'all_n1_contrast',
-        image: 'images/group_n1_plot_landing_on_1_contrast_all.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_plot_landing_on_1_contrast_all.py'
+        name: 'N1 (Ascending)',
+        id: 'all_n1_large_asc',
+        image: 'images/group_n1_plot_landing_on_large_ascending_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_plot_landing_on_large_ascending_all.py'
     },
     {
         category: 'Topomaps (ALL)',
@@ -127,6 +117,15 @@ const plotData = [
         id: 'all_p1_contrast',
         image: 'images/group_p1_plot_landing_on_1_contrast_all.png',
         scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_plot_landing_on_1_contrast_all.py'
+    },
+    {
+        category: 'Topomaps (ALL)',
+        subcategory: 'Landing on 1 (Contrast)',
+        dataset: 'ALL',
+        name: 'N1',
+        id: 'all_n1_contrast',
+        image: 'images/group_n1_plot_landing_on_1_contrast_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_plot_landing_on_1_contrast_all.py'
     },
     {
         category: 'Topomaps (ALL)',
