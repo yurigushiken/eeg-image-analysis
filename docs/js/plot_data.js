@@ -16,7 +16,8 @@ const plotData = [
         dataset: 'ACC=1',
         name: 'N1 (Ascending)',
         id: 'acc1_n1_large_asc',
-        image: 'images/group_n1_plot_landing_on_large_ascending_acc=1.png'
+        image: 'images/group_n1_plot_landing_on_large_ascending_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_plot_landing_on_large_ascending_acc%3D1.py'
     },
     {
         category: 'Topomaps (ACC=1)',
@@ -24,7 +25,8 @@ const plotData = [
         dataset: 'ACC=1',
         name: 'P1 (Descending)',
         id: 'acc1_p1_small_desc',
-        image: 'images/group_p1_plot_landing_on_small_descending_acc=1.png'
+        image: 'images/group_p1_plot_landing_on_small_descending_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_plot_landing_on_small_descending_acc%3D1.py'
     },
     {
         category: 'Topomaps (ACC=1)',
@@ -32,7 +34,8 @@ const plotData = [
         dataset: 'ACC=1',
         name: 'P1 (Ascending)',
         id: 'acc1_p1_large_asc',
-        image: 'images/group_p1_plot_landing_on_large_ascending_acc=1.png'
+        image: 'images/group_p1_plot_landing_on_large_ascending_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_plot_landing_on_large_ascending_acc%3D1.py'
     },
     {
         category: 'Topomaps (ACC=1)',
@@ -40,7 +43,8 @@ const plotData = [
         dataset: 'ACC=1',
         name: 'N1',
         id: 'acc1_n1_contrast',
-        image: 'images/group_n1_plot_landing_on_1_contrast_acc=1.png'
+        image: 'images/group_n1_plot_landing_on_1_contrast_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_plot_landing_on_1_contrast_acc%3D1.py'
     },
     {
         category: 'Topomaps (ACC=1)',
@@ -48,7 +52,8 @@ const plotData = [
         dataset: 'ACC=1',
         name: 'P1',
         id: 'acc1_p1_contrast',
-        image: 'images/group_p1_plot_landing_on_1_contrast_acc=1.png'
+        image: 'images/group_p1_plot_landing_on_1_contrast_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_plot_landing_on_1_contrast_acc%3D1.py'
     },
     // Topomaps - ALL
     {
@@ -57,7 +62,8 @@ const plotData = [
         dataset: 'ALL',
         name: 'N1 (Descending)',
         id: 'all_n1_small_desc',
-        image: 'images/group_n1_plot_landing_on_small_descending_all.png'
+        image: 'images/group_n1_plot_landing_on_small_descending_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_plot_landing_on_small_descending_all.py'
     },
     {
         category: 'Topomaps (ALL)',
@@ -65,7 +71,8 @@ const plotData = [
         dataset: 'ALL',
         name: 'N1 (Ascending)',
         id: 'all_n1_large_asc',
-        image: 'images/group_n1_plot_landing_on_large_ascending_all.png'
+        image: 'images/group_n1_plot_landing_on_large_ascending_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_plot_landing_on_large_ascending_all.py'
     },
     {
         category: 'Topomaps (ALL)',
@@ -73,7 +80,8 @@ const plotData = [
         dataset: 'ALL',
         name: 'P1 (Descending)',
         id: 'all_p1_small_desc',
-        image: 'images/group_p1_plot_landing_on_small_descending_all.png'
+        image: 'images/group_p1_plot_landing_on_small_descending_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_plot_landing_on_small_descending_all.py'
     },
     {
         category: 'Topomaps (ALL)',
@@ -81,7 +89,8 @@ const plotData = [
         dataset: 'ALL',
         name: 'P1 (Ascending)',
         id: 'all_p1_large_asc',
-        image: 'images/group_p1_plot_landing_on_large_ascending_all.png'
+        image: 'images/group_p1_plot_landing_on_large_ascending_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_plot_landing_on_large_ascending_all.py'
     },
     {
         category: 'Topomaps (ALL)',
@@ -89,7 +98,8 @@ const plotData = [
         dataset: 'ALL',
         name: 'N1',
         id: 'all_n1_contrast',
-        image: 'images/group_n1_plot_landing_on_1_contrast_all.png'
+        image: 'images/group_n1_plot_landing_on_1_contrast_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_plot_landing_on_1_contrast_all.py'
     },
     {
         category: 'Topomaps (ALL)',
@@ -97,7 +107,8 @@ const plotData = [
         dataset: 'ALL',
         name: 'P1',
         id: 'all_p1_contrast',
-        image: 'images/group_p1_plot_landing_on_1_contrast_all.png'
+        image: 'images/group_p1_plot_landing_on_1_contrast_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_plot_landing_on_1_contrast_all.py'
     },
     // P1 vs N1 Analysis
     {
@@ -105,7 +116,8 @@ const plotData = [
         dataset: 'ACC=1',
         name: 'P1-N1 Peak-to-Peak Amplitude',
         id: 'p1n1_p2p_plot',
-        image: 'images/group_p1n1_p2p_plot.png'
+        image: 'images/group_p1n1_p2p_plot.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/05_analysis_p1n1_p2p_landing_on_small.py'
     },
     {
         category: 'P1 vs. N1 Analysis',
@@ -113,14 +125,16 @@ const plotData = [
         name: 'ANCOVA Summary: N1 vs. P1',
         id: 'n1_ancova_summary',
         type: 'text',
-        path: 'results/group_n1_ancova_summary.txt'
+        path: 'results/group_n1_ancova_summary.txt',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/05_analysis_n1_ancova_vs_p1_landing_on_small.py'
     },
     {
         category: 'P1 vs. N1 Analysis',
         dataset: 'ACC=1',
         name: 'P1-Normalized N1 Waveforms ("Flattening")',
         id: 'flattened_n1_plot',
-        image: 'images/group_flattened_n1_plot.png'
+        image: 'images/group_flattened_n1_plot.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/05_viz_flattened_n1_landing_on_small.py'
     },
     // ERP Waveforms
     {
