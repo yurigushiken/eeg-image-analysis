@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from matplotlib.lines import Line2D
 import numpy as np
+from scipy.signal import find_peaks
 
 # --- 1. CONFIGURATION ---
 # Base conditions to load
@@ -79,30 +80,72 @@ def generate_p1_contrast_plots(subjects_to_process):
 
             # --- Find Peaks and Plot Topomaps ---
             peak_times = {}
-            for cond_name, evoked in key_evokeds.items():
-                try:
-                    roi_evoked = evoked.copy().pick(P1_ELECTRODES)
-                    mean_data = roi_evoked.data.mean(axis=0, keepdims=True)
-                    mean_info = mne.create_info(ch_names=['mean_roi'], sfreq=evoked.info['sfreq'], ch_types='eeg')
-                    mean_roi_evoked = mne.EvokedArray(mean_data, mean_info, tmin=evoked.tmin)
-                    _, peak_time, _ = mean_roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='abs', return_amplitude=True)
-                    peak_times[cond_name] = peak_time
-                except ValueError:
-                    peak_times[cond_name] = None
-                    print(f"    - No positive peak found for '{cond_name}' in subject {subject_id}. Skipping annotation.")
+            peak_found_info = {}
+            sfreq = key_evokeds[list(key_evokeds.keys())[0]].info["sfreq"]
+
+            for condition in key_evokeds:
+                # Find the peak in the P1 time window
+                data = key_evokeds[condition].get_data(picks=P1_ELECTRODES)
+                data = data.mean(axis=0)
+                times = key_evokeds[condition].times * 1000  # convert to ms
+
+                # Find peak using scipy's find_peaks
+                peaks, properties = find_peaks(
+                    data,
+                    height=0,
+                    prominence=1.2,
+                    distance=sfreq * 0.05,
+                )
+
+                # Filter peaks to be in the P1 time window (e.g., 80-130 ms)
+                time_min, time_max = 80, 130
+                peak_indices_in_window = [
+                    p
+                    for p in peaks
+                    if time_min <= times[p] <= time_max
+                ]
+
+                if len(peak_indices_in_window) > 0:
+                    # Find the peak with the highest prominence
+                    prominences = properties["prominences"][
+                        [np.where(peaks == p)[0][0] for p in peak_indices_in_window]
+                    ]
+                    max_prominence_index = np.argmax(prominences)
+                    peak_index = peak_indices_in_window[max_prominence_index]
+                    peak_time = times[peak_index] / 1000 # convert back to seconds
+                    peak_times[condition] = peak_time
+                    peak_found_info[condition] = True
+                else:
+                    peak_times[condition] = None
+                    peak_found_info[condition] = False
+
+            # If any peak time is None, use the average of the other peak times
+            valid_peak_times = [t for t in peak_times.values() if t is not None]
+            if len(valid_peak_times) > 0:
+                average_peak_time = np.mean(valid_peak_times)
+            else:
+                average_peak_time = 0.112  # Fallback if no peaks are found in any condition
+
+            for condition in peak_times:
+                if peak_times[condition] is None:
+                    peak_times[condition] = average_peak_time
 
             for i, (cond_name, evoked) in enumerate(key_evokeds.items()):
                 ax_topo = fig.add_subplot(gs[1, i])
-                peak_time = peak_times.get(cond_name)
+                plot_time = peak_times.get(cond_name)
+                
+                peak_found = peak_found_info[cond_name]
 
-                if peak_time is not None:
-                    ax_erp.axvline(x=peak_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle='--', linewidth=1.5, alpha=0.8)
-                    scalp_evoked = evoked.copy().pick('eeg', exclude=NON_SCALP_CHANNELS)
-                    scalp_evoked.plot_topomap(times=peak_time, axes=ax_topo, show=False, vlim=(-6, 6), colorbar=False)
-                    ax_topo.set_title(f"{cond_name}\nPeak at {int(peak_time*1000)} ms", color=CONDITION_COLORS.get(cond_name, 'black'))
+                if peak_found:
+                    title = f"{cond_name}\\nPeak at {int(plot_time*1000)} ms"
+                    ax_erp.axvline(x=plot_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle='--', linewidth=1.5, alpha=0.8)
                 else:
-                    ax_topo.set_title(f"{cond_name}\n(No peak found)")
-                    ax_topo.axis('off')
+                    title = f"{cond_name}\\n({int(plot_time*1000)} ms)"
+                    ax_erp.axvline(x=plot_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle=':', linewidth=1.5, alpha=0.6)
+
+                scalp_evoked = evoked.copy().pick('eeg', exclude=NON_SCALP_CHANNELS)
+                scalp_evoked.plot_topomap(times=plot_time, axes=ax_topo, show=False, vlim=(-6, 6), colorbar=False)
+                ax_topo.set_title(title, color=CONDITION_COLORS.get(cond_name, 'black'))
 
             fig.subplots_adjust(right=0.85, bottom=0.1, top=0.9, hspace=0.4)
             cbar_ax = fig.add_axes([0.88, 0.15, 0.02, 0.2])
@@ -140,30 +183,72 @@ def generate_p1_contrast_plots(subjects_to_process):
     
     # --- Find P1 peaks for each condition for topomaps ---
     peak_times_grp = {}
-    for cond_name, evoked in grand_averages_key.items():
-        try:
-            roi_evoked = evoked.copy().pick(P1_ELECTRODES)
-            mean_data = roi_evoked.data.mean(axis=0, keepdims=True)
-            mean_info = mne.create_info(ch_names=['mean_roi'], sfreq=evoked.info['sfreq'], ch_types='eeg')
-            mean_roi_evoked = mne.EvokedArray(mean_data, mean_info, tmin=evoked.tmin)
-            _, peak_time, _ = mean_roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='abs', return_amplitude=True)
-            peak_times_grp[cond_name] = peak_time
-        except ValueError:
-            peak_times_grp[cond_name] = None
-            print(f"    - No group-level positive peak found for '{cond_name}'. Skipping annotation.")
+    peak_found_info_grp = {}
+    sfreq = grand_averages_key[list(grand_averages_key.keys())[0]].info["sfreq"]
+
+    for condition in grand_averages_key:
+        # Find the peak in the P1 time window
+        data = grand_averages_key[condition].get_data(picks=P1_ELECTRODES)
+        data = data.mean(axis=0)
+        times = grand_averages_key[condition].times * 1000  # convert to ms
+
+        # Find peak using scipy's find_peaks
+        peaks, properties = find_peaks(
+            data,
+            height=0,
+            prominence=1.2,
+            distance=sfreq * 0.05,
+        )
+
+        # Filter peaks to be in the P1 time window (e.g., 80-130 ms)
+        time_min, time_max = 80, 130
+        peak_indices_in_window = [
+            p
+            for p in peaks
+            if time_min <= times[p] <= time_max
+        ]
+
+        if len(peak_indices_in_window) > 0:
+            # Find the peak with the highest prominence
+            prominences = properties["prominences"][
+                [np.where(peaks == p)[0][0] for p in peak_indices_in_window]
+            ]
+            max_prominence_index = np.argmax(prominences)
+            peak_index = peak_indices_in_window[max_prominence_index]
+            peak_time = times[peak_index] / 1000 # convert back to seconds
+            peak_times_grp[condition] = peak_time
+            peak_found_info_grp[condition] = True
+        else:
+            peak_times_grp[condition] = None
+            peak_found_info_grp[condition] = False
+
+    # If any peak time is None, use the average of the other peak times
+    valid_peak_times = [t for t in peak_times_grp.values() if t is not None]
+    if len(valid_peak_times) > 0:
+        average_peak_time = np.mean(valid_peak_times)
+    else:
+        average_peak_time = 0.112  # Fallback if no peaks are found in any condition
+
+    for condition in peak_times_grp:
+        if peak_times_grp[condition] is None:
+            peak_times_grp[condition] = average_peak_time
 
     for i, (cond_name, evoked) in enumerate(grand_averages_key.items()):
         ax_topo_grp = fig_grp.add_subplot(gs_grp[1, i])
-        peak_time = peak_times_grp.get(cond_name)
+        plot_time = peak_times_grp.get(cond_name)
         
-        if peak_time is not None:
-            ax_erp_grp.axvline(x=peak_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle='--', linewidth=1.5, alpha=0.8)
-            scalp_evoked = evoked.copy().pick('eeg', exclude=NON_SCALP_CHANNELS)
-            scalp_evoked.plot_topomap(times=peak_time, axes=ax_topo_grp, show=False, vlim=(-6, 6), colorbar=False)
-            ax_topo_grp.set_title(f"{cond_name}\nPeak at {int(peak_time*1000)} ms", color=CONDITION_COLORS.get(cond_name, 'black'))
+        peak_found = peak_found_info_grp[cond_name]
+        
+        if peak_found:
+            title = f"{cond_name}\\nPeak at {int(plot_time*1000)} ms"
+            ax_erp_grp.axvline(x=plot_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle='--', linewidth=1.5, alpha=0.8)
         else:
-            ax_topo_grp.set_title(f"{cond_name}\n(No peak found)")
-            ax_topo_grp.axis('off')
+            title = f"{cond_name}\\n({int(plot_time*1000)} ms)"
+            ax_erp_grp.axvline(x=plot_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle=':', linewidth=1.5, alpha=0.6)
+        
+        scalp_evoked = evoked.copy().pick('eeg', exclude=NON_SCALP_CHANNELS)
+        scalp_evoked.plot_topomap(times=plot_time, axes=ax_topo_grp, show=False, vlim=(-6, 6), colorbar=False)
+        ax_topo_grp.set_title(title, color=CONDITION_COLORS.get(cond_name, 'black'))
 
     fig_grp.subplots_adjust(right=0.85, bottom=0.1, top=0.9, hspace=0.4)
     cbar_ax_grp = fig_grp.add_axes([0.88, 0.15, 0.02, 0.2])
@@ -179,4 +264,4 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generate EEG P1 contrast plots for landing on 3 (decreasing).')
     parser.add_argument('--subjects', nargs='*', help='Specific subject ID(s) to process. If not provided, all subjects will be processed.')
     args = parser.parse_args()
-    generate_p1_contrast_plots(args.subjects) 
+    generate_p1_contrast_plots(args.subjects)

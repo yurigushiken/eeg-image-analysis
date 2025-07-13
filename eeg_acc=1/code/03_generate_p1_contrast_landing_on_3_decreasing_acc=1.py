@@ -80,37 +80,63 @@ def generate_p1_contrast_plots(subjects_to_process):
 
             # --- Find Peaks and Plot Topomaps ---
             peak_times = {}
-            valid_peak_times = []
-            for cond_name, evoked in key_evokeds.items():
-                try:
-                    roi_evoked = evoked.copy().pick(P1_ELECTRODES)
-                    t_start_idx, t_stop_idx = evoked.time_as_index([PEAK_TMIN, PEAK_TMAX], use_rounding=True)
-                    roi_data = roi_evoked.data.mean(axis=0)[t_start_idx:t_stop_idx]
-                    
-                    peaks, properties = find_peaks(roi_data, prominence=0.5)
+            peak_found_info = {}
+            sfreq = key_evokeds[list(key_evokeds.keys())[0]].info["sfreq"]
 
-                    if len(peaks) > 0:
-                        highest_peak_idx = peaks[np.argmax(properties['prominences'])]
-                        peak_time = evoked.times[t_start_idx + highest_peak_idx]
-                        peak_times[cond_name] = peak_time
-                        valid_peak_times.append(peak_time)
-                    else:
-                        peak_times[cond_name] = None
-                except Exception as e:
-                    peak_times[cond_name] = None
-                    print(f"    - Error finding peak for '{cond_name}' in subject {subject_id}: {e}")
-            
-            if valid_peak_times:
-                avg_peak_time = np.mean(valid_peak_times)
+            for condition in key_evokeds:
+                # Find the peak in the P1 time window
+                data = key_evokeds[condition].get_data(picks=P1_ELECTRODES)
+                data = data.mean(axis=0)
+                times = key_evokeds[condition].times * 1000  # convert to ms
+
+                # Find peak using scipy's find_peaks
+                peaks, properties = find_peaks(
+                    data,
+                    height=0,
+                    prominence=1.2,
+                    distance=sfreq * 0.05,
+                )
+
+                # Filter peaks to be in the P1 time window (e.g., 80-130 ms)
+                time_min, time_max = 80, 130
+                peak_indices_in_window = [
+                    p
+                    for p in peaks
+                    if time_min <= times[p] <= time_max
+                ]
+
+                if len(peak_indices_in_window) > 0:
+                    # Find the peak with the highest prominence
+                    prominences = properties["prominences"][
+                        [np.where(peaks == p)[0][0] for p in peak_indices_in_window]
+                    ]
+                    max_prominence_index = np.argmax(prominences)
+                    peak_index = peak_indices_in_window[max_prominence_index]
+                    peak_time = times[peak_index] / 1000 # convert back to seconds
+                    peak_times[condition] = peak_time
+                    peak_found_info[condition] = True
+                else:
+                    peak_times[condition] = None
+                    peak_found_info[condition] = False
+
+            # If any peak time is None, use the average of the other peak times
+            valid_peak_times = [t for t in peak_times.values() if t is not None]
+            if len(valid_peak_times) > 0:
+                average_peak_time = np.mean(valid_peak_times)
             else:
-                avg_peak_time = (PEAK_TMIN + PEAK_TMAX) / 2
+                average_peak_time = 0.112  # Fallback if no peaks are found in any condition
+
+            for condition in peak_times:
+                if peak_times[condition] is None:
+                    peak_times[condition] = average_peak_time
 
             for i, (cond_name, evoked) in enumerate(key_evokeds.items()):
                 ax_topo = fig.add_subplot(gs[1, i])
-                peak_time = peak_times.get(cond_name)
-                plot_time = peak_time if peak_time is not None else avg_peak_time
+                plot_time = peak_times.get(cond_name)
+                
+                peak_found = peak_found_info[cond_name]
 
-                if peak_time is not None:
+                if peak_found:
                     title = f"{cond_name}\nPeak at {int(plot_time*1000)} ms"
                     ax_erp.axvline(x=plot_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle='--', linewidth=1.5, alpha=0.8)
                 else:
@@ -157,43 +183,63 @@ def generate_p1_contrast_plots(subjects_to_process):
     
     # --- Find P1 peaks for each condition for topomaps ---
     peak_times_grp = {}
-    valid_peak_times = []
-    
-    for cond_name, evoked in grand_averages_key.items():
-        try:
-            roi_evoked = evoked.copy().pick(P1_ELECTRODES)
-            t_start_idx, t_stop_idx = evoked.time_as_index([PEAK_TMIN, PEAK_TMAX], use_rounding=True)
-            roi_data = roi_evoked.data.mean(axis=0)[t_start_idx:t_stop_idx]
-            
-            peaks, properties = find_peaks(roi_data, prominence=0.5)
+    peak_found_info_grp = {}
+    sfreq = grand_averages_key[list(grand_averages_key.keys())[0]].info["sfreq"]
 
-            if len(peaks) > 0:
-                highest_peak_idx = peaks[np.argmax(properties['prominences'])]
-                peak_time = evoked.times[t_start_idx + highest_peak_idx]
-                peak_times_grp[cond_name] = peak_time
-                valid_peak_times.append(peak_time)
-                print(f"    - Found group-level peak for '{cond_name}' at {peak_time:.3f}s.")
-            else:
-                peak_times_grp[cond_name] = None
-                print(f"    - No prominent group-level peak found for '{cond_name}'.")
-        except Exception as e:
-            peak_times_grp[cond_name] = None
-            print(f"    - Error finding group-level peak for '{cond_name}': {e}")
+    for condition in grand_averages_key:
+        # Find the peak in the P1 time window
+        data = grand_averages_key[condition].get_data(picks=P1_ELECTRODES)
+        data = data.mean(axis=0)
+        times = grand_averages_key[condition].times * 1000  # convert to ms
 
-    if valid_peak_times:
-        avg_peak_time = np.mean(valid_peak_times)
-        print(f"    - Using average peak time for missing peaks: {avg_peak_time:.3f}s")
+        # Find peak using scipy's find_peaks
+        peaks, properties = find_peaks(
+            data,
+            height=0,
+            prominence=1.2,
+            distance=sfreq * 0.05,
+        )
+
+        # Filter peaks to be in the P1 time window (e.g., 80-130 ms)
+        time_min, time_max = 80, 130
+        peak_indices_in_window = [
+            p
+            for p in peaks
+            if time_min <= times[p] <= time_max
+        ]
+
+        if len(peak_indices_in_window) > 0:
+            # Find the peak with the highest prominence
+            prominences = properties["prominences"][
+                [np.where(peaks == p)[0][0] for p in peak_indices_in_window]
+            ]
+            max_prominence_index = np.argmax(prominences)
+            peak_index = peak_indices_in_window[max_prominence_index]
+            peak_time = times[peak_index] / 1000 # convert back to seconds
+            peak_times_grp[condition] = peak_time
+            peak_found_info_grp[condition] = True
+        else:
+            peak_times_grp[condition] = None
+            peak_found_info_grp[condition] = False
+
+    # If any peak time is None, use the average of the other peak times
+    valid_peak_times = [t for t in peak_times_grp.values() if t is not None]
+    if len(valid_peak_times) > 0:
+        average_peak_time = np.mean(valid_peak_times)
     else:
-        avg_peak_time = (PEAK_TMIN + PEAK_TMAX) / 2
-        print(f"    - No valid peaks found. Using fallback time: {avg_peak_time:.3f}s")
+        average_peak_time = 0.112  # Fallback if no peaks are found in any condition
 
+    for condition in peak_times_grp:
+        if peak_times_grp[condition] is None:
+            peak_times_grp[condition] = average_peak_time
 
     for i, (cond_name, evoked) in enumerate(grand_averages_key.items()):
         ax_topo_grp = fig_grp.add_subplot(gs_grp[1, i])
-        peak_time = peak_times_grp.get(cond_name)
-        plot_time = peak_time if peak_time is not None else avg_peak_time
+        plot_time = peak_times_grp.get(cond_name)
         
-        if peak_time is not None:
+        peak_found = peak_found_info_grp[cond_name]
+        
+        if peak_found:
             title = f"{cond_name}\nPeak at {int(plot_time*1000)} ms"
             ax_erp_grp.axvline(x=plot_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle='--', linewidth=1.5, alpha=0.8)
         else:
