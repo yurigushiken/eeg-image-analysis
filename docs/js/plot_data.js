@@ -55,6 +55,24 @@ const plotData = [
         image: 'images/group_p1_plot_landing_on_1_contrast_acc=1.png',
         scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_plot_landing_on_1_contrast_acc%3D1.py'
     },
+    {
+        category: 'Topomaps (ACC=1)',
+        subcategory: 'Within Small Numbers',
+        dataset: 'ACC=1',
+        name: 'P1',
+        id: 'acc1_p1_within_small',
+        image: 'images/group_p1_plot_within_small_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_plot_within_small_acc%3D1.py'
+    },
+    {
+        category: 'Topomaps (ACC=1)',
+        subcategory: 'Within Small Numbers',
+        dataset: 'ACC=1',
+        name: 'N1',
+        id: 'acc1_n1_within_small',
+        image: 'images/group_n1_plot_within_small_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_plot_within_small_acc%3D1.py'
+    },
     // Topomaps - ALL
     {
         category: 'Topomaps (ALL)',
@@ -109,6 +127,24 @@ const plotData = [
         id: 'all_p1_contrast',
         image: 'images/group_p1_plot_landing_on_1_contrast_all.png',
         scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_plot_landing_on_1_contrast_all.py'
+    },
+    {
+        category: 'Topomaps (ALL)',
+        subcategory: 'Within Small Numbers',
+        dataset: 'ALL',
+        name: 'P1',
+        id: 'all_p1_within_small',
+        image: 'images/group_p1_plot_within_small_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_plot_within_small_all.py'
+    },
+    {
+        category: 'Topomaps (ALL)',
+        subcategory: 'Within Small Numbers',
+        dataset: 'ALL',
+        name: 'N1',
+        id: 'all_n1_within_small',
+        image: 'images/group_n1_plot_within_small_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_plot_within_small_all.py'
     },
     // P1 vs N1 Analysis
     {
