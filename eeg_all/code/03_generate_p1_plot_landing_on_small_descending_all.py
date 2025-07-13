@@ -75,7 +75,7 @@ def generate_p1_plots(subjects_to_process):
                 roi_evoked_data = evoked.get_data(picks=P1_ELECTRODES).mean(axis=0)
                 info = mne.create_info(['ROI_AVG'], evoked.info['sfreq'], ch_types='eeg')
                 roi_evoked = mne.EvokedArray(roi_evoked_data[np.newaxis, :], info, tmin=evoked.tmin)
-                _, peak_time = roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='pos')
+                _, peak_time = roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='abs')
                 peak_times[cond_name] = peak_time
 
             # --- Create the plot ---
