@@ -57,7 +57,7 @@ const plotData = [
     },
     {
         category: 'Topomaps (ACC=1)',
-        subcategory: 'Within Small Numbers',
+        subcategory: 'Landing Within Small Numbers',
         dataset: 'ACC=1',
         name: 'P1',
         id: 'acc1_p1_within_small',
@@ -66,7 +66,7 @@ const plotData = [
     },
     {
         category: 'Topomaps (ACC=1)',
-        subcategory: 'Within Small Numbers',
+        subcategory: 'Landing Within Small Numbers',
         dataset: 'ACC=1',
         name: 'N1',
         id: 'acc1_n1_within_small',
@@ -130,7 +130,7 @@ const plotData = [
     },
     {
         category: 'Topomaps (ALL)',
-        subcategory: 'Within Small Numbers',
+        subcategory: 'Landing Within Small Numbers',
         dataset: 'ALL',
         name: 'P1',
         id: 'all_p1_within_small',
@@ -139,7 +139,7 @@ const plotData = [
     },
     {
         category: 'Topomaps (ALL)',
-        subcategory: 'Within Small Numbers',
+        subcategory: 'Landing Within Small Numbers',
         dataset: 'ALL',
         name: 'N1',
         id: 'all_n1_within_small',
