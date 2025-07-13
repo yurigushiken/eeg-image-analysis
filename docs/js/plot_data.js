@@ -7,7 +7,8 @@ const plotData = [
         dataset: 'ACC=1',
         name: 'N1 (Descending)',
         id: 'acc1_n1_small_desc',
-        image: 'images/group_n1_plot_landing_on_small_descending_acc=1.png'
+        image: 'images/group_n1_plot_landing_on_small_descending_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_plot_landing_on_small_descending_acc%3D1.py'
     },
     {
         category: 'Topomaps (ACC=1)',

@@ -244,4 +244,18 @@ main {
 /* Forcing scroll to land correctly */
 .plot-container[id] {
   scroll-margin-top: 100px; /* Must be slightly larger than nav height */
+}
+
+/* Source Script Link */
+.source-script-link {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.75rem;
+    color: #6c757d;
+    text-decoration: none;
+}
+
+.source-script-link:hover {
+    text-decoration: underline;
 } 

@@ -57,6 +57,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     plotDiv.innerHTML = `<h4>${plot.name}</h4><img src="${plot.image}" alt="${plot.name}">`;
                 }
 
+                // Add the source script link if it exists
+                if (plot.scriptUrl) {
+                    const link = document.createElement('a');
+                    link.href = plot.scriptUrl;
+                    link.textContent = 'View Source Script';
+                    link.className = 'source-script-link';
+                    link.target = '_blank'; // Open in new tab
+                    plotDiv.appendChild(link);
+                }
+
                 section.appendChild(plotDiv);
             });
             plotsContainer.appendChild(section);
