@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from matplotlib.lines import Line2D
 import numpy as np
+from scipy.signal import find_peaks
 
 # --- 1. CONFIGURATION ---
 # Base conditions to load
@@ -83,30 +84,46 @@ def generate_p1_contrast_plots(subjects_to_process):
 
             # --- Find Peaks and Plot Topomaps ---
             peak_times = {}
+            valid_peak_times = []
             for cond_name, evoked in key_evokeds.items():
                 try:
                     roi_evoked = evoked.copy().pick(P1_ELECTRODES)
-                    mean_data = roi_evoked.data.mean(axis=0, keepdims=True)
-                    mean_info = mne.create_info(ch_names=['mean_roi'], sfreq=evoked.info['sfreq'], ch_types='eeg')
-                    mean_roi_evoked = mne.EvokedArray(mean_data, mean_info, tmin=evoked.tmin)
-                    _, peak_time, _ = mean_roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='pos', return_amplitude=True)
-                    peak_times[cond_name] = peak_time
-                except ValueError:
+                    t_start_idx, t_stop_idx = evoked.time_as_index([PEAK_TMIN, PEAK_TMAX], use_rounding=True)
+                    roi_data = roi_evoked.data.mean(axis=0)[t_start_idx:t_stop_idx]
+                    
+                    peaks, properties = find_peaks(roi_data, prominence=0.5)
+
+                    if len(peaks) > 0:
+                        highest_peak_idx = peaks[np.argmax(properties['prominences'])]
+                        peak_time = evoked.times[t_start_idx + highest_peak_idx]
+                        peak_times[cond_name] = peak_time
+                        valid_peak_times.append(peak_time)
+                    else:
+                        peak_times[cond_name] = None
+                except Exception as e:
                     peak_times[cond_name] = None
-                    print(f"    - No positive peak found for '{cond_name}' in subject {subject_id}. Skipping annotation.")
+                    print(f"    - Error finding peak for '{cond_name}' in subject {subject_id}: {e}")
+            
+            if valid_peak_times:
+                avg_peak_time = np.mean(valid_peak_times)
+            else:
+                avg_peak_time = (PEAK_TMIN + PEAK_TMAX) / 2
 
             for i, (cond_name, evoked) in enumerate(key_evokeds.items()):
                 ax_topo = fig.add_subplot(gs[1, i])
                 peak_time = peak_times.get(cond_name)
+                plot_time = peak_time if peak_time is not None else avg_peak_time
 
                 if peak_time is not None:
-                    ax_erp.axvline(x=peak_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle='--', linewidth=1.5, alpha=0.8)
-                    scalp_evoked = evoked.copy().pick('eeg', exclude=NON_SCALP_CHANNELS)
-                    scalp_evoked.plot_topomap(times=peak_time, axes=ax_topo, show=False, vlim=(-6, 6), colorbar=False)
-                    ax_topo.set_title(f"{cond_name}\nPeak at {int(peak_time*1000)} ms", color=CONDITION_COLORS.get(cond_name, 'black'))
+                    title = f"{cond_name}\nPeak at {int(plot_time*1000)} ms"
+                    ax_erp.axvline(x=plot_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle='--', linewidth=1.5, alpha=0.8)
                 else:
-                    ax_topo.set_title(f"{cond_name}\n(No peak found)")
-                    ax_topo.axis('off')
+                    title = f"{cond_name}\n({int(plot_time*1000)} ms)"
+                    ax_erp.axvline(x=plot_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle=':', linewidth=1.5, alpha=0.6)
+
+                scalp_evoked = evoked.copy().pick('eeg', exclude=NON_SCALP_CHANNELS)
+                scalp_evoked.plot_topomap(times=plot_time, axes=ax_topo, show=False, vlim=(-6, 6), colorbar=False)
+                ax_topo.set_title(title, color=CONDITION_COLORS.get(cond_name, 'black'))
 
             fig.subplots_adjust(right=0.85, bottom=0.1, top=0.9, hspace=0.4)
             cbar_ax = fig.add_axes([0.88, 0.15, 0.02, 0.2])
@@ -144,30 +161,52 @@ def generate_p1_contrast_plots(subjects_to_process):
     
     # --- Find P1 peaks for each condition for topomaps ---
     peak_times_grp = {}
+    valid_peak_times = []
+    
     for cond_name, evoked in grand_averages_key.items():
         try:
             roi_evoked = evoked.copy().pick(P1_ELECTRODES)
-            mean_data = roi_evoked.data.mean(axis=0, keepdims=True)
-            mean_info = mne.create_info(ch_names=['mean_roi'], sfreq=evoked.info['sfreq'], ch_types='eeg')
-            mean_roi_evoked = mne.EvokedArray(mean_data, mean_info, tmin=evoked.tmin)
-            _, peak_time, _ = mean_roi_evoked.get_peak(tmin=PEAK_TMIN, tmax=PEAK_TMAX, mode='pos', return_amplitude=True)
-            peak_times_grp[cond_name] = peak_time
-        except ValueError:
+            t_start_idx, t_stop_idx = evoked.time_as_index([PEAK_TMIN, PEAK_TMAX], use_rounding=True)
+            roi_data = roi_evoked.data.mean(axis=0)[t_start_idx:t_stop_idx]
+            
+            peaks, properties = find_peaks(roi_data, prominence=0.5)
+
+            if len(peaks) > 0:
+                highest_peak_idx = peaks[np.argmax(properties['prominences'])]
+                peak_time = evoked.times[t_start_idx + highest_peak_idx]
+                peak_times_grp[cond_name] = peak_time
+                valid_peak_times.append(peak_time)
+                print(f"    - Found group-level peak for '{cond_name}' at {peak_time:.3f}s.")
+            else:
+                peak_times_grp[cond_name] = None
+                print(f"    - No prominent group-level peak found for '{cond_name}'.")
+        except Exception as e:
             peak_times_grp[cond_name] = None
-            print(f"    - No group-level positive peak found for '{cond_name}'. Skipping annotation.")
+            print(f"    - Error finding group-level peak for '{cond_name}': {e}")
+
+    if valid_peak_times:
+        avg_peak_time = np.mean(valid_peak_times)
+        print(f"    - Using average peak time for missing peaks: {avg_peak_time:.3f}s")
+    else:
+        avg_peak_time = (PEAK_TMIN + PEAK_TMAX) / 2
+        print(f"    - No valid peaks found. Using fallback time: {avg_peak_time:.3f}s")
+
 
     for i, (cond_name, evoked) in enumerate(grand_averages_key.items()):
         ax_topo_grp = fig_grp.add_subplot(gs_grp[1, i])
         peak_time = peak_times_grp.get(cond_name)
+        plot_time = peak_time if peak_time is not None else avg_peak_time
         
         if peak_time is not None:
-            ax_erp_grp.axvline(x=peak_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle='--', linewidth=1.5, alpha=0.8)
-            scalp_evoked = evoked.copy().pick('eeg', exclude=NON_SCALP_CHANNELS)
-            scalp_evoked.plot_topomap(times=peak_time, axes=ax_topo_grp, show=False, vlim=(-6, 6), colorbar=False)
-            ax_topo_grp.set_title(f"{cond_name}\nPeak at {int(peak_time*1000)} ms", color=CONDITION_COLORS.get(cond_name, 'black'))
+            title = f"{cond_name}\nPeak at {int(plot_time*1000)} ms"
+            ax_erp_grp.axvline(x=plot_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle='--', linewidth=1.5, alpha=0.8)
         else:
-            ax_topo_grp.set_title(f"{cond_name}\n(No peak found)")
-            ax_topo_grp.axis('off')
+            title = f"{cond_name}\n({int(plot_time*1000)} ms)"
+            ax_erp_grp.axvline(x=plot_time, color=CONDITION_COLORS.get(cond_name, 'k'), linestyle=':', linewidth=1.5, alpha=0.6)
+        
+        scalp_evoked = evoked.copy().pick('eeg', exclude=NON_SCALP_CHANNELS)
+        scalp_evoked.plot_topomap(times=plot_time, axes=ax_topo_grp, show=False, vlim=(-6, 6), colorbar=False)
+        ax_topo_grp.set_title(title, color=CONDITION_COLORS.get(cond_name, 'black'))
 
     fig_grp.subplots_adjust(right=0.85, bottom=0.1, top=0.9, hspace=0.4)
     cbar_ax_grp = fig_grp.add_axes([0.88, 0.15, 0.02, 0.2])
