@@ -4,9 +4,9 @@ const plotData = [
     {
         category: 'Topomaps (ACC=1)',
         dataset: 'ACC=1',
-        name: 'N1 (Landing on Small)',
-        id: 'acc1_n1_small',
-        image: 'images/group_n1_plot_landing_on_small_acc=1.png'
+        name: 'N1 (Landing on Small, Descending)',
+        id: 'acc1_n1_small_desc',
+        image: 'images/group_n1_plot_landing_on_small_descending_acc=1.png'
     },
     {
         category: 'Topomaps (ACC=1)',
@@ -18,9 +18,9 @@ const plotData = [
     {
         category: 'Topomaps (ACC=1)',
         dataset: 'ACC=1',
-        name: 'P1 (Landing on Small)',
-        id: 'acc1_p1_small',
-        image: 'images/group_p1_plot_landing_on_small_acc=1.png'
+        name: 'P1 (Landing on Small, Descending)',
+        id: 'acc1_p1_small_desc',
+        image: 'images/group_p1_plot_landing_on_small_descending_acc=1.png'
     },
     {
         category: 'Topomaps (ACC=1)',
@@ -47,9 +47,9 @@ const plotData = [
     {
         category: 'Topomaps (ALL)',
         dataset: 'ALL',
-        name: 'N1 (Landing on Small)',
-        id: 'all_n1_small',
-        image: 'images/group_n1_plot_landing_on_small_all.png'
+        name: 'N1 (Landing on Small, Descending)',
+        id: 'all_n1_small_desc',
+        image: 'images/group_n1_plot_landing_on_small_descending_all.png'
     },
     {
         category: 'Topomaps (ALL)',
@@ -61,9 +61,9 @@ const plotData = [
     {
         category: 'Topomaps (ALL)',
         dataset: 'ALL',
-        name: 'P1 (Landing on Small)',
-        id: 'all_p1_small',
-        image: 'images/group_p1_plot_landing_on_small_all.png'
+        name: 'P1 (Landing on Small, Descending)',
+        id: 'all_p1_small_desc',
+        image: 'images/group_p1_plot_landing_on_small_descending_all.png'
     },
     {
         category: 'Topomaps (ALL)',

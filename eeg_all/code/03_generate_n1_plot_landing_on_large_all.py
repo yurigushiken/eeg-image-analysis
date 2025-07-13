@@ -20,9 +20,9 @@ KEY_CONDITIONS_MAP = {
 
 # Define colors for plots
 CONDITION_COLORS = {
-    "Landing on 4": '#d62728',  # Red
-    "Landing on 5": '#ff7f0e',  # Orange
-    "Landing on 6": '#8c564b',  # Copper
+    "Landing on 4": '#1f77b4',  # Muted Blue
+    "Landing on 5": '#2ca02c',  # Cooked Asparagus Green
+    "Landing on 6": '#9467bd',  # Dull Purple
 }
 
 # Electrodes of interest for N1 waveform (Left and Right hemispheres)
