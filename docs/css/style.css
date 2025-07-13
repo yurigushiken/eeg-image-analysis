@@ -163,6 +163,15 @@ main {
     color: #495057;
 }
 
+.sidebar-subcategory {
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: #6c757d; /* Grey color */
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding-left: 10px;
+}
+
 .checkbox-container {
     display: flex;
     align-items: center;

@@ -3,86 +3,98 @@ const plotData = [
     // Topomaps - ACC=1
     {
         category: 'Topomaps (ACC=1)',
+        subcategory: 'Landing on Small (Preceding: 4, 5, 6)',
         dataset: 'ACC=1',
-        name: 'N1 (Landing on Small, Descending)',
+        name: 'N1 (Descending)',
         id: 'acc1_n1_small_desc',
         image: 'images/group_n1_plot_landing_on_small_descending_acc=1.png'
     },
     {
         category: 'Topomaps (ACC=1)',
+        subcategory: 'Landing on Large (Preceding: 1, 2, 3)',
         dataset: 'ACC=1',
-        name: 'N1 (Landing on Large, Ascending)',
+        name: 'N1 (Ascending)',
         id: 'acc1_n1_large_asc',
         image: 'images/group_n1_plot_landing_on_large_ascending_acc=1.png'
     },
     {
         category: 'Topomaps (ACC=1)',
+        subcategory: 'Landing on Small (Preceding: 4, 5, 6)',
         dataset: 'ACC=1',
-        name: 'P1 (Landing on Small, Descending)',
+        name: 'P1 (Descending)',
         id: 'acc1_p1_small_desc',
         image: 'images/group_p1_plot_landing_on_small_descending_acc=1.png'
     },
     {
         category: 'Topomaps (ACC=1)',
+        subcategory: 'Landing on Large (Preceding: 1, 2, 3)',
         dataset: 'ACC=1',
-        name: 'P1 (Landing on Large, Ascending)',
+        name: 'P1 (Ascending)',
         id: 'acc1_p1_large_asc',
         image: 'images/group_p1_plot_landing_on_large_ascending_acc=1.png'
     },
     {
         category: 'Topomaps (ACC=1)',
+        subcategory: 'Landing on 1 (Contrast)',
         dataset: 'ACC=1',
-        name: 'N1 (Contrast on 1)',
+        name: 'N1',
         id: 'acc1_n1_contrast',
         image: 'images/group_n1_plot_landing_on_1_contrast_acc=1.png'
     },
     {
         category: 'Topomaps (ACC=1)',
+        subcategory: 'Landing on 1 (Contrast)',
         dataset: 'ACC=1',
-        name: 'P1 (Contrast on 1)',
+        name: 'P1',
         id: 'acc1_p1_contrast',
         image: 'images/group_p1_plot_landing_on_1_contrast_acc=1.png'
     },
     // Topomaps - ALL
     {
         category: 'Topomaps (ALL)',
+        subcategory: 'Landing on Small (Preceding: 4, 5, 6)',
         dataset: 'ALL',
-        name: 'N1 (Landing on Small, Descending)',
+        name: 'N1 (Descending)',
         id: 'all_n1_small_desc',
         image: 'images/group_n1_plot_landing_on_small_descending_all.png'
     },
     {
         category: 'Topomaps (ALL)',
+        subcategory: 'Landing on Large (Preceding: 1, 2, 3)',
         dataset: 'ALL',
-        name: 'N1 (Landing on Large, Ascending)',
+        name: 'N1 (Ascending)',
         id: 'all_n1_large_asc',
         image: 'images/group_n1_plot_landing_on_large_ascending_all.png'
     },
     {
         category: 'Topomaps (ALL)',
+        subcategory: 'Landing on Small (Preceding: 4, 5, 6)',
         dataset: 'ALL',
-        name: 'P1 (Landing on Small, Descending)',
+        name: 'P1 (Descending)',
         id: 'all_p1_small_desc',
         image: 'images/group_p1_plot_landing_on_small_descending_all.png'
     },
     {
         category: 'Topomaps (ALL)',
+        subcategory: 'Landing on Large (Preceding: 1, 2, 3)',
         dataset: 'ALL',
-        name: 'P1 (Landing on Large, Ascending)',
+        name: 'P1 (Ascending)',
         id: 'all_p1_large_asc',
         image: 'images/group_p1_plot_landing_on_large_ascending_all.png'
     },
     {
         category: 'Topomaps (ALL)',
+        subcategory: 'Landing on 1 (Contrast)',
         dataset: 'ALL',
-        name: 'N1 (Contrast on 1)',
+        name: 'N1',
         id: 'all_n1_contrast',
         image: 'images/group_n1_plot_landing_on_1_contrast_all.png'
     },
     {
         category: 'Topomaps (ALL)',
+        subcategory: 'Landing on 1 (Contrast)',
         dataset: 'ALL',
-        name: 'P1 (Contrast on 1)',
+        name: 'P1',
         id: 'all_p1_contrast',
         image: 'images/group_p1_plot_landing_on_1_contrast_all.png'
     },

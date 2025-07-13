@@ -19,18 +19,20 @@ document.addEventListener('DOMContentLoaded', () => {
         plotsContainer.innerHTML = ''; // Clear existing plots
         const plotsToRender = plotData.filter(p => p.category === category);
 
-        // Group plots by dataset (e.g., ACC=1, ALL)
-        const plotsByDataset = plotsToRender.reduce((acc, plot) => {
-            const key = plot.dataset || 'General';
+        // Group plots by subcategory
+        const plotsBySubcategory = plotsToRender.reduce((acc, plot) => {
+            const key = plot.subcategory || 'General';
             if (!acc[key]) acc[key] = [];
             acc[key].push(plot);
             return acc;
         }, {});
 
-        // Create HTML for each dataset group
-        for (const [dataset, plots] of Object.entries(plotsByDataset)) {
+        // Create HTML for each subcategory group
+        for (const [subcategory, plots] of Object.entries(plotsBySubcategory)) {
             const section = document.createElement('section');
-            section.innerHTML = `<h3>${dataset}</h3>`;
+            if (subcategory !== 'General') {
+                section.innerHTML = `<h3>${subcategory}</h3>`;
+            }
             
             plots.forEach(plot => {
                 const plotDiv = document.createElement('div');
@@ -79,13 +81,27 @@ document.addEventListener('DOMContentLoaded', () => {
         categories.forEach(category => {
             html += `<div class="sidebar-category"><strong>${category}</strong></div>`;
             const plotsInCategory = plotData.filter(p => p.category === category);
-            plotsInCategory.forEach(plot => {
-                html += `
-                    <div class="checkbox-container">
-                        <input type="checkbox" id="cb-${plot.id}" data-plot-id="${plot.id}">
-                        <a href="#${plot.id}" class="jump-link">${plot.dataset} - ${plot.name}</a>
-                    </div>`;
-            });
+            
+            // Group plots by subcategory
+            const plotsBySubcategory = plotsInCategory.reduce((acc, plot) => {
+                const key = plot.subcategory || 'General';
+                if (!acc[key]) acc[key] = [];
+                acc[key].push(plot);
+                return acc;
+            }, {});
+
+            for (const [subcategory, plots] of Object.entries(plotsBySubcategory)) {
+                if (subcategory !== 'General') {
+                    html += `<div class="sidebar-subcategory">${subcategory}</div>`;
+                }
+                plots.forEach(plot => {
+                    html += `
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="cb-${plot.id}" data-plot-id="${plot.id}">
+                            <a href="#${plot.id}" class="jump-link">${plot.dataset} - ${plot.name}</a>
+                        </div>`;
+                });
+            }
         });
         comparisonControls.innerHTML = html;
     }
