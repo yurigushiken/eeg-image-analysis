@@ -1,0 +1,12 @@
+P1-N1 P2P Amplitude (Oz ROI)
+============================
+      Source            SS  DF            MS         F     p-unc       ng2       eps
+0  condition  1.557283e-11   2  7.786417e-12  2.788674  0.078625  0.059727  0.914025
+1      Error  7.818041e-11  28  2.792158e-12       NaN       NaN       NaN       NaN
+
+P1-N1 P2P Amplitude (POT Bilateral ROI)
+=======================================
+      Source            SS  DF            MS         F     p-unc       ng2       eps
+0  condition  6.661594e-13   2  3.330797e-13  0.122574  0.885054  0.002095  0.985046
+1      Error  8.695628e-11  32  2.717384e-12       NaN       NaN       NaN       NaN
+

@@ -126,7 +126,7 @@ def generate_p1_contrast_plots(subjects_to_process):
             if len(valid_peak_times) > 0:
                 average_peak_time = np.mean(valid_peak_times)
             else:
-                average_peak_time = 0.112  # Fallback if no peaks are found in any condition
+                average_peak_time = 0.100  # Fallback if no peaks are found in any condition
 
             for condition in peak_times:
                 if peak_times[condition] is None:
@@ -155,6 +155,7 @@ def generate_p1_contrast_plots(subjects_to_process):
             plt.colorbar(plt.cm.ScalarMappable(norm=plt.Normalize(vmin=-6, vmax=6), cmap='RdBu_r'), cax=cbar_ax, label='µV')
             
             fig_path = os.path.join(subject_figure_dir, f'sub-{subject_id}_p1_contrast_landing_on_5_increasing_all.png')
+            if os.path.exists(fig_path): os.remove(fig_path)
             fig.savefig(fig_path, bbox_inches='tight'); plt.close(fig)
             print(f"    - Saved P1 plot to {fig_path}")
 
@@ -230,7 +231,7 @@ def generate_p1_contrast_plots(subjects_to_process):
     if len(valid_peak_times) > 0:
         average_peak_time = np.mean(valid_peak_times)
     else:
-        average_peak_time = 0.112  # Fallback if no peaks are found in any condition
+        average_peak_time = 0.100  # Fallback if no peaks are found in any condition
 
     for condition in peak_times_grp:
         if peak_times_grp[condition] is None:
@@ -258,8 +259,8 @@ def generate_p1_contrast_plots(subjects_to_process):
     plt.colorbar(plt.cm.ScalarMappable(norm=plt.Normalize(vmin=-6, vmax=6), cmap='RdBu_r'), cax=cbar_ax_grp, label='µV')
     
     grp_fig_path = os.path.join(group_figure_dir, f'group_p1_contrast_landing_on_5_increasing_all.png')
-    fig_grp.savefig(grp_fig_path, bbox_inches='tight')
-    plt.close(fig_grp)
+    if os.path.exists(grp_fig_path): os.remove(grp_fig_path)
+    fig_grp.savefig(grp_fig_path, bbox_inches='tight'); plt.close(fig_grp)
     print(f"--- Saved group P1 plot to {grp_fig_path} ---")
 
 def main():
