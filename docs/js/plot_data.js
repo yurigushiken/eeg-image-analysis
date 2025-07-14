@@ -661,6 +661,24 @@ const plotData = [
     {
         category: 'P1 vs. N1 Analysis',
         dataset: 'ACC=1',
+        name: 'P1-N1 Peak-to-Peak Amplitude (POT ROI)',
+        id: 'p1n1_p2p_pot_plot',
+        image: 'images/group_p1n1_p2p_pot_roi_plot.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/05_analysis_p1n1_p2p_landing_on_small.py'
+    },
+    // Combined ANOVA summary text
+    {
+        category: 'P1 vs. N1 Analysis',
+        dataset: 'ACC=1',
+        name: 'ANOVA Summary: P1-N1 P2P (Oz & POT ROIs)',
+        id: 'p1n1_p2p_anova_summary',
+        type: 'text',
+        path: 'results/group_p1n1_p2p_anova_summary.txt',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/05_analysis_p1n1_p2p_landing_on_small.py'
+    },
+    {
+        category: 'P1 vs. N1 Analysis',
+        dataset: 'ACC=1',
         name: 'ANCOVA Summary: N1 vs. P1',
         id: 'n1_ancova_summary',
         type: 'text',
