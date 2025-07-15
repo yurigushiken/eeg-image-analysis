@@ -974,7 +974,7 @@ const plotData = [
     datasets.forEach(ds => {
       components.forEach(comp => {
         plotData.push({
-          category: `Numbers Pair Analysis (${ds.key})`,
+          category: `Topomaps (${ds.key})`,
           subcategory: label,
           dataset: ds.key,
           name: comp.name,
