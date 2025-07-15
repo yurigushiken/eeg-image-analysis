@@ -260,23 +260,21 @@ main {
     text-decoration: underline;
 }
 
-/* Floating compare bar */
-.compare-bar {
-    position: fixed;
+/* Floating compare bar inside sidebar */
+.sidebar .compare-bar {
+    position: sticky;
     bottom: 0;
-    left: 0;
-    right: 0;
     background: #343a40;
     color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
-    padding: 0.5rem 1rem;
-    z-index: 1000;
+    gap: 0.5rem;
+    padding: 0.4rem 0.5rem;
+    width: 100%;
     box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
 }
-.compare-bar.hidden {
+.sidebar .compare-bar.hidden {
     display: none;
 }
 .compare-bar button {

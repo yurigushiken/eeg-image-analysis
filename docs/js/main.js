@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <span id="compare-count">0 selected</span>
         <button id="floating-compare-btn">Compare Selected</button>
     `;
-    document.body.appendChild(floatingBar);
+    const sidebarElement = document.querySelector('.sidebar');
+    sidebarElement.appendChild(floatingBar);
 
     const floatingCompareBtn = document.getElementById('floating-compare-btn');
 
