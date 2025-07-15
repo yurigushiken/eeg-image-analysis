@@ -2,6 +2,33 @@ const plotData = [
     // Topomaps - ACC=1
     {
         category: 'Topomaps (ACC=1)',
+        subcategory: 'Numbers Pair',
+        dataset: 'ACC=1',
+        name: 'P1 (Inc12 vs Dec21)',
+        id: 'acc1_p1_inc12_dec21',
+        image: 'images/group_p1_numbers_pair_plot_inc12_vs_dec21_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_numbers_pair_plot_inc12_vs_dec21_acc%3D1.py'
+    },
+    {
+        category: 'Topomaps (ACC=1)',
+        subcategory: 'Numbers Pair',
+        dataset: 'ACC=1',
+        name: 'N1 (Inc12 vs Dec21)',
+        id: 'acc1_n1_inc12_dec21',
+        image: 'images/group_n1_numbers_pair_plot_inc12_vs_dec21_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_numbers_pair_plot_inc12_vs_dec21_acc%3D1.py'
+    },
+    {
+        category: 'Topomaps (ACC=1)',
+        subcategory: 'Numbers Pair',
+        dataset: 'ACC=1',
+        name: 'P3b (Inc12 vs Dec21)',
+        id: 'acc1_p3b_inc12_dec21',
+        image: 'images/group_p3b_numbers_pair_plot_inc12_vs_dec21_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p3b_numbers_pair_plot_inc12_vs_dec21_acc%3D1.py'
+    },
+    {
+        category: 'Topomaps (ACC=1)',
         subcategory: 'Landing on Small (decreasing)',
         dataset: 'ACC=1',
         name: 'P1 (Decreasing)',
@@ -336,12 +363,30 @@ const plotData = [
     },
     {
         category: 'Topomaps (ALL)',
-        subcategory: 'Landing on Small (decreasing)',
+        subcategory: 'Numbers Pair',
         dataset: 'ALL',
-        name: 'N1 (Decreasing)',
-        id: 'all_n1_small_desc',
-        image: 'images/group_n1_plot_landing_on_small_decreasing_all.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_plot_landing_on_small_decreasing_all.py'
+        name: 'P1 (Inc12 vs Dec21)',
+        id: 'all_p1_inc12_dec21',
+        image: 'images/group_p1_numbers_pair_plot_inc12_vs_dec21_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_numbers_pair_plot_inc12_vs_dec21_all.py'
+    },
+    {
+        category: 'Topomaps (ALL)',
+        subcategory: 'Numbers Pair',
+        dataset: 'ALL',
+        name: 'N1 (Inc12 vs Dec21)',
+        id: 'all_n1_inc12_dec21',
+        image: 'images/group_n1_numbers_pair_plot_inc12_vs_dec21_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_numbers_pair_plot_inc12_vs_dec21_all.py'
+    },
+    {
+        category: 'Topomaps (ALL)',
+        subcategory: 'Numbers Pair',
+        dataset: 'ALL',
+        name: 'P3b (Inc12 vs Dec21)',
+        id: 'all_p3b_inc12_dec21',
+        image: 'images/group_p3b_numbers_pair_plot_inc12_vs_dec21_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p3b_numbers_pair_plot_inc12_vs_dec21_all.py'
     },
     {
         category: 'Topomaps (ALL)',
