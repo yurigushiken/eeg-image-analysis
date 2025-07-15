@@ -960,7 +960,7 @@ const plotData = [
 (function () {
   const pairs = ['inc12_vs_dec21','inc13_vs_dec31','inc14_vs_dec41','inc23_vs_dec32','inc24_vs_dec42','inc25_vs_dec52','inc34_vs_dec43','inc35_vs_dec53','inc36_vs_dec63','inc45_vs_dec54','inc46_vs_dec64','inc56_vs_dec65'];
   const datasets = [
-    { key: 'ACC=1', slug: 'acc1', imgSuffix: 'acc=1', path: 'eeg_acc=1', fileSuffix: 'acc=1' },
+    { key: 'ACC=1', slug: 'acc1', imgSuffix: 'acc=1', path: 'eeg_acc%3D1', fileSuffix: 'acc=1' },
     { key: 'ALL',   slug: 'all',  imgSuffix: 'all',   path: 'eeg_all',     fileSuffix: 'all' }
   ];
   const components = [
