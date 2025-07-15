@@ -7,6 +7,54 @@ document.addEventListener('DOMContentLoaded', () => {
     const comparisonControls = document.getElementById('comparison-controls');
     const compareBtn = document.getElementById('compare-btn');
 
+    /* Floating compare bar */
+    const floatingBar = document.createElement('div');
+    floatingBar.id = 'compare-bar';
+    floatingBar.className = 'compare-bar hidden';
+    floatingBar.innerHTML = `
+        <span id="compare-count">0 selected</span>
+        <button id="floating-compare-btn">Compare Selected</button>
+    `;
+    document.body.appendChild(floatingBar);
+
+    const floatingCompareBtn = document.getElementById('floating-compare-btn');
+
+    function getSelectedPlotIds() {
+        const ids = [];
+        document.querySelectorAll('#comparison-controls input:checked').forEach(cb => ids.push(cb.dataset.plotId));
+        return ids;
+    }
+
+    function updateFloatingBar() {
+        const ids = getSelectedPlotIds();
+        const countSpan = document.getElementById('compare-count');
+        countSpan.textContent = `${ids.length} selected`;
+        if (ids.length > 0) {
+            floatingBar.classList.remove('hidden');
+        } else {
+            floatingBar.classList.add('hidden');
+        }
+    }
+
+    // Listen for checkbox changes to update bar
+    comparisonControls.addEventListener('change', (e) => {
+        if (e.target.matches('input[type="checkbox"]')) {
+            updateFloatingBar();
+        }
+    });
+
+    function openComparison(ids) {
+        if (ids.length > 0) {
+            window.open(`comparison.html?plots=${ids.join(',')}`, '_blank');
+        } else {
+            alert('Please select at least one plot to compare.');
+        }
+    }
+
+    // Hook buttons to comparison action
+    compareBtn.addEventListener('click', () => openComparison(getSelectedPlotIds()));
+    floatingCompareBtn.addEventListener('click', () => openComparison(getSelectedPlotIds()));
+
     // --- 1. DATA PROCESSING AND INITIALIZATION ---
 
     // Get unique categories from plotData to create tabs
@@ -156,21 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
             e.target.classList.add('active');
             // Render plots for the selected category
             renderPlots(e.target.dataset.category);
-        }
-    });
-
-    // Event listener for the compare button
-    compareBtn.addEventListener('click', () => {
-        const selectedIds = [];
-        document.querySelectorAll('#comparison-controls input:checked').forEach(checkbox => {
-            selectedIds.push(checkbox.dataset.plotId);
-        });
-
-        if (selectedIds.length > 0) {
-            const url = `comparison.html?plots=${selectedIds.join(',')}`;
-            window.open(url, '_blank');
-        } else {
-            alert('Please select at least one plot to compare.');
         }
     });
 
