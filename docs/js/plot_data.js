@@ -1008,6 +1008,33 @@ const plotData = [
         id: 'acc1_p3b_contrast_inc_plus_3',
         image: 'images/group_03_generate_p3b_contrast_increasing_plus_3_acc=1.png',
         scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc=1/code/03_generate_p3b_contrast_increasing_plus_3_acc=1.py'
+    },
+    {
+        category: 'Topomaps (ALL)',
+        subcategory: 'P3b Contrast (Decreasing)',
+        dataset: 'ALL',
+        name: 'P3b Contrast (Decreasing) -1',
+        id: 'all_p3b_contrast_dec_minus_1',
+        image: 'images/group_03_generate_p3b_contrast_decreasing_minus_1_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p3b_contrast_decreasing_minus_1_all.py'
+    },
+    {
+        category: 'Topomaps (ALL)',
+        subcategory: 'P3b Contrast (Decreasing)',
+        dataset: 'ALL',
+        name: 'P3b Contrast (Decreasing) -2',
+        id: 'all_p3b_contrast_dec_minus_2',
+        image: 'images/group_03_generate_p3b_contrast_decreasing_minus_2_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p3b_contrast_decreasing_minus_2_all.py'
+    },
+    {
+        category: 'Topomaps (ALL)',
+        subcategory: 'P3b Contrast (Decreasing)',
+        dataset: 'ALL',
+        name: 'P3b Contrast (Decreasing) -3',
+        id: 'all_p3b_contrast_dec_minus_3',
+        image: 'images/group_03_generate_p3b_contrast_decreasing_minus_3_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p3b_contrast_decreasing_minus_3_all.py'
     }
 ]; 
 // Dynamically add Numbers Pair Analysis plots (ACC=1 and ALL)
