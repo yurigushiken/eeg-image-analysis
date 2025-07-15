@@ -2,33 +2,6 @@ const plotData = [
     // Topomaps - ACC=1
     {
         category: 'Topomaps (ACC=1)',
-        subcategory: 'Numbers Pair',
-        dataset: 'ACC=1',
-        name: 'P1 (Inc12 vs Dec21)',
-        id: 'acc1_p1_inc12_dec21',
-        image: 'images/group_p1_numbers_pair_plot_inc12_vs_dec21_acc=1.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_numbers_pair_plot_inc12_vs_dec21_acc%3D1.py'
-    },
-    {
-        category: 'Topomaps (ACC=1)',
-        subcategory: 'Numbers Pair',
-        dataset: 'ACC=1',
-        name: 'N1 (Inc12 vs Dec21)',
-        id: 'acc1_n1_inc12_dec21',
-        image: 'images/group_n1_numbers_pair_plot_inc12_vs_dec21_acc=1.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_numbers_pair_plot_inc12_vs_dec21_acc%3D1.py'
-    },
-    {
-        category: 'Topomaps (ACC=1)',
-        subcategory: 'Numbers Pair',
-        dataset: 'ACC=1',
-        name: 'P3b (Inc12 vs Dec21)',
-        id: 'acc1_p3b_inc12_dec21',
-        image: 'images/group_p3b_numbers_pair_plot_inc12_vs_dec21_acc=1.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p3b_numbers_pair_plot_inc12_vs_dec21_acc%3D1.py'
-    },
-    {
-        category: 'Topomaps (ACC=1)',
         subcategory: 'Landing on Small (decreasing)',
         dataset: 'ACC=1',
         name: 'P1 (Decreasing)',
@@ -363,33 +336,6 @@ const plotData = [
     },
     {
         category: 'Topomaps (ALL)',
-        subcategory: 'Numbers Pair',
-        dataset: 'ALL',
-        name: 'P1 (Inc12 vs Dec21)',
-        id: 'all_p1_inc12_dec21',
-        image: 'images/group_p1_numbers_pair_plot_inc12_vs_dec21_all.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_numbers_pair_plot_inc12_vs_dec21_all.py'
-    },
-    {
-        category: 'Topomaps (ALL)',
-        subcategory: 'Numbers Pair',
-        dataset: 'ALL',
-        name: 'N1 (Inc12 vs Dec21)',
-        id: 'all_n1_inc12_dec21',
-        image: 'images/group_n1_numbers_pair_plot_inc12_vs_dec21_all.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_numbers_pair_plot_inc12_vs_dec21_all.py'
-    },
-    {
-        category: 'Topomaps (ALL)',
-        subcategory: 'Numbers Pair',
-        dataset: 'ALL',
-        name: 'P3b (Inc12 vs Dec21)',
-        id: 'all_p3b_inc12_dec21',
-        image: 'images/group_p3b_numbers_pair_plot_inc12_vs_dec21_all.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p3b_numbers_pair_plot_inc12_vs_dec21_all.py'
-    },
-    {
-        category: 'Topomaps (ALL)',
         subcategory: 'Landing on Large (increasing)',
         dataset: 'ALL',
         name: 'P1 (Increasing)',
@@ -629,7 +575,7 @@ const plotData = [
         name: 'P1',
         id: 'all_p1_land5_any',
         image: 'images/group_p1_contrast_landing_on_5_any_preceding_all.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_contrast_landing_on_5_any_preceding_all.py'
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_contrast_landing_on_5_any_preceding_all.py'
     },
     {
         category: 'Topomaps (ALL)',
@@ -647,7 +593,7 @@ const plotData = [
         name: 'P1',
         id: 'all_p1_land5_increasing',
         image: 'images/group_p1_contrast_landing_on_5_increasing_all.png',
-        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_contrast_landing_on_5_increasing_all.py'
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_contrast_landing_on_5_increasing_all.py'
     },
     {
         category: 'Topomaps (ALL)',
@@ -1008,5 +954,655 @@ const plotData = [
         name: 'LORETA Contrast: P3b',
         id: 'loreta_p3b',
         image: 'images/group_loreta_core_systems_contrast_P3b.png'
+    },
+    // Numbers Pair Analysis (ACC=1)
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '12 vs 21',
+        dataset: 'ACC=1',
+        name: 'P1',
+        id: 'acc1_p1_inc12_vs_dec21',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc12_vs_dec21_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '12 vs 21',
+        dataset: 'ACC=1',
+        name: 'N1',
+        id: 'acc1_n1_inc12_vs_dec21',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc12_vs_dec21_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '12 vs 21',
+        dataset: 'ACC=1',
+        name: 'P3B',
+        id: 'acc1_p3b_inc12_vs_dec21',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc12_vs_dec21_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p3b_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '13 vs 31',
+        dataset: 'ACC=1',
+        name: 'P1',
+        id: 'acc1_p1_inc13_vs_dec31',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc13_vs_dec31_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '13 vs 31',
+        dataset: 'ACC=1',
+        name: 'N1',
+        id: 'acc1_n1_inc13_vs_dec31',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc13_vs_dec31_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '13 vs 31',
+        dataset: 'ACC=1',
+        name: 'P3B',
+        id: 'acc1_p3b_inc13_vs_dec31',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc13_vs_dec31_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p3b_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '14 vs 41',
+        dataset: 'ACC=1',
+        name: 'P1',
+        id: 'acc1_p1_inc14_vs_dec41',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc14_vs_dec41_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '14 vs 41',
+        dataset: 'ACC=1',
+        name: 'N1',
+        id: 'acc1_n1_inc14_vs_dec41',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc14_vs_dec41_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '14 vs 41',
+        dataset: 'ACC=1',
+        name: 'P3B',
+        id: 'acc1_p3b_inc14_vs_dec41',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc14_vs_dec41_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p3b_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '23 vs 32',
+        dataset: 'ACC=1',
+        name: 'P1',
+        id: 'acc1_p1_inc23_vs_dec32',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc23_vs_dec32_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '23 vs 32',
+        dataset: 'ACC=1',
+        name: 'N1',
+        id: 'acc1_n1_inc23_vs_dec32',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc23_vs_dec32_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '23 vs 32',
+        dataset: 'ACC=1',
+        name: 'P3B',
+        id: 'acc1_p3b_inc23_vs_dec32',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc23_vs_dec32_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p3b_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '24 vs 42',
+        dataset: 'ACC=1',
+        name: 'P1',
+        id: 'acc1_p1_inc24_vs_dec42',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc24_vs_dec42_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '24 vs 42',
+        dataset: 'ACC=1',
+        name: 'N1',
+        id: 'acc1_n1_inc24_vs_dec42',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc24_vs_dec42_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '24 vs 42',
+        dataset: 'ACC=1',
+        name: 'P3B',
+        id: 'acc1_p3b_inc24_vs_dec42',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc24_vs_dec42_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p3b_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '25 vs 52',
+        dataset: 'ACC=1',
+        name: 'P1',
+        id: 'acc1_p1_inc25_vs_dec52',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc25_vs_dec52_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '25 vs 52',
+        dataset: 'ACC=1',
+        name: 'N1',
+        id: 'acc1_n1_inc25_vs_dec52',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc25_vs_dec52_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '25 vs 52',
+        dataset: 'ACC=1',
+        name: 'P3B',
+        id: 'acc1_p3b_inc25_vs_dec52',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc25_vs_dec52_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p3b_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '34 vs 43',
+        dataset: 'ACC=1',
+        name: 'P1',
+        id: 'acc1_p1_inc34_vs_dec43',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc34_vs_dec43_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '34 vs 43',
+        dataset: 'ACC=1',
+        name: 'N1',
+        id: 'acc1_n1_inc34_vs_dec43',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc34_vs_dec43_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '34 vs 43',
+        dataset: 'ACC=1',
+        name: 'P3B',
+        id: 'acc1_p3b_inc34_vs_dec43',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc34_vs_dec43_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p3b_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '35 vs 53',
+        dataset: 'ACC=1',
+        name: 'P1',
+        id: 'acc1_p1_inc35_vs_dec53',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc35_vs_dec53_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '35 vs 53',
+        dataset: 'ACC=1',
+        name: 'N1',
+        id: 'acc1_n1_inc35_vs_dec53',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc35_vs_dec53_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '35 vs 53',
+        dataset: 'ACC=1',
+        name: 'P3B',
+        id: 'acc1_p3b_inc35_vs_dec53',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc35_vs_dec53_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p3b_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '36 vs 63',
+        dataset: 'ACC=1',
+        name: 'P1',
+        id: 'acc1_p1_inc36_vs_dec63',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc36_vs_dec63_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '36 vs 63',
+        dataset: 'ACC=1',
+        name: 'N1',
+        id: 'acc1_n1_inc36_vs_dec63',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc36_vs_dec63_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '36 vs 63',
+        dataset: 'ACC=1',
+        name: 'P3B',
+        id: 'acc1_p3b_inc36_vs_dec63',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc36_vs_dec63_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p3b_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '45 vs 54',
+        dataset: 'ACC=1',
+        name: 'P1',
+        id: 'acc1_p1_inc45_vs_dec54',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc45_vs_dec54_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '45 vs 54',
+        dataset: 'ACC=1',
+        name: 'N1',
+        id: 'acc1_n1_inc45_vs_dec54',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc45_vs_dec54_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '45 vs 54',
+        dataset: 'ACC=1',
+        name: 'P3B',
+        id: 'acc1_p3b_inc45_vs_dec54',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc45_vs_dec54_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p3b_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '46 vs 64',
+        dataset: 'ACC=1',
+        name: 'P1',
+        id: 'acc1_p1_inc46_vs_dec64',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc46_vs_dec64_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '46 vs 64',
+        dataset: 'ACC=1',
+        name: 'N1',
+        id: 'acc1_n1_inc46_vs_dec64',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc46_vs_dec64_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '46 vs 64',
+        dataset: 'ACC=1',
+        name: 'P3B',
+        id: 'acc1_p3b_inc46_vs_dec64',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc46_vs_dec64_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p3b_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '56 vs 65',
+        dataset: 'ACC=1',
+        name: 'P1',
+        id: 'acc1_p1_inc56_vs_dec65',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc56_vs_dec65_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '56 vs 65',
+        dataset: 'ACC=1',
+        name: 'N1',
+        id: 'acc1_n1_inc56_vs_dec65',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc56_vs_dec65_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_numbers_pair_plots_acc%3D1.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ACC=1)',
+        subcategory: '56 vs 65',
+        dataset: 'ACC=1',
+        name: 'P3B',
+        id: 'acc1_p3b_inc56_vs_dec65',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc56_vs_dec65_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p3b_numbers_pair_plots_acc%3D1.py'
+    },
+    // Numbers Pair Analysis (ALL)
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '12 vs 21',
+        dataset: 'ALL',
+        name: 'P1',
+        id: 'all_p1_inc12_vs_dec21',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc12_vs_dec21_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '12 vs 21',
+        dataset: 'ALL',
+        name: 'N1',
+        id: 'all_n1_inc12_vs_dec21',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc12_vs_dec21_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '12 vs 21',
+        dataset: 'ALL',
+        name: 'P3B',
+        id: 'all_p3b_inc12_vs_dec21',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc12_vs_dec21_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p3b_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '13 vs 31',
+        dataset: 'ALL',
+        name: 'P1',
+        id: 'all_p1_inc13_vs_dec31',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc13_vs_dec31_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '13 vs 31',
+        dataset: 'ALL',
+        name: 'N1',
+        id: 'all_n1_inc13_vs_dec31',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc13_vs_dec31_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '13 vs 31',
+        dataset: 'ALL',
+        name: 'P3B',
+        id: 'all_p3b_inc13_vs_dec31',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc13_vs_dec31_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p3b_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '14 vs 41',
+        dataset: 'ALL',
+        name: 'P1',
+        id: 'all_p1_inc14_vs_dec41',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc14_vs_dec41_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '14 vs 41',
+        dataset: 'ALL',
+        name: 'N1',
+        id: 'all_n1_inc14_vs_dec41',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc14_vs_dec41_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '14 vs 41',
+        dataset: 'ALL',
+        name: 'P3B',
+        id: 'all_p3b_inc14_vs_dec41',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc14_vs_dec41_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p3b_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '23 vs 32',
+        dataset: 'ALL',
+        name: 'P1',
+        id: 'all_p1_inc23_vs_dec32',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc23_vs_dec32_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '23 vs 32',
+        dataset: 'ALL',
+        name: 'N1',
+        id: 'all_n1_inc23_vs_dec32',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc23_vs_dec32_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '23 vs 32',
+        dataset: 'ALL',
+        name: 'P3B',
+        id: 'all_p3b_inc23_vs_dec32',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc23_vs_dec32_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p3b_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '24 vs 42',
+        dataset: 'ALL',
+        name: 'P1',
+        id: 'all_p1_inc24_vs_dec42',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc24_vs_dec42_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '24 vs 42',
+        dataset: 'ALL',
+        name: 'N1',
+        id: 'all_n1_inc24_vs_dec42',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc24_vs_dec42_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '24 vs 42',
+        dataset: 'ALL',
+        name: 'P3B',
+        id: 'all_p3b_inc24_vs_dec42',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc24_vs_dec42_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p3b_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '25 vs 52',
+        dataset: 'ALL',
+        name: 'P1',
+        id: 'all_p1_inc25_vs_dec52',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc25_vs_dec52_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '25 vs 52',
+        dataset: 'ALL',
+        name: 'N1',
+        id: 'all_n1_inc25_vs_dec52',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc25_vs_dec52_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '25 vs 52',
+        dataset: 'ALL',
+        name: 'P3B',
+        id: 'all_p3b_inc25_vs_dec52',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc25_vs_dec52_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p3b_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '34 vs 43',
+        dataset: 'ALL',
+        name: 'P1',
+        id: 'all_p1_inc34_vs_dec43',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc34_vs_dec43_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '34 vs 43',
+        dataset: 'ALL',
+        name: 'N1',
+        id: 'all_n1_inc34_vs_dec43',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc34_vs_dec43_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '34 vs 43',
+        dataset: 'ALL',
+        name: 'P3B',
+        id: 'all_p3b_inc34_vs_dec43',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc34_vs_dec43_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p3b_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '35 vs 53',
+        dataset: 'ALL',
+        name: 'P1',
+        id: 'all_p1_inc35_vs_dec53',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc35_vs_dec53_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '35 vs 53',
+        dataset: 'ALL',
+        name: 'N1',
+        id: 'all_n1_inc35_vs_dec53',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc35_vs_dec53_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '35 vs 53',
+        dataset: 'ALL',
+        name: 'P3B',
+        id: 'all_p3b_inc35_vs_dec53',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc35_vs_dec53_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p3b_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '36 vs 63',
+        dataset: 'ALL',
+        name: 'P1',
+        id: 'all_p1_inc36_vs_dec63',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc36_vs_dec63_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '36 vs 63',
+        dataset: 'ALL',
+        name: 'N1',
+        id: 'all_n1_inc36_vs_dec63',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc36_vs_dec63_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '36 vs 63',
+        dataset: 'ALL',
+        name: 'P3B',
+        id: 'all_p3b_inc36_vs_dec63',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc36_vs_dec63_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p3b_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '45 vs 54',
+        dataset: 'ALL',
+        name: 'P1',
+        id: 'all_p1_inc45_vs_dec54',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc45_vs_dec54_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '45 vs 54',
+        dataset: 'ALL',
+        name: 'N1',
+        id: 'all_n1_inc45_vs_dec54',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc45_vs_dec54_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '45 vs 54',
+        dataset: 'ALL',
+        name: 'P3B',
+        id: 'all_p3b_inc45_vs_dec54',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc45_vs_dec54_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p3b_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '46 vs 64',
+        dataset: 'ALL',
+        name: 'P1',
+        id: 'all_p1_inc46_vs_dec64',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc46_vs_dec64_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '46 vs 64',
+        dataset: 'ALL',
+        name: 'N1',
+        id: 'all_n1_inc46_vs_dec64',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc46_vs_dec64_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '46 vs 64',
+        dataset: 'ALL',
+        name: 'P3B',
+        id: 'all_p3b_inc46_vs_dec64',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc46_vs_dec64_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p3b_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '56 vs 65',
+        dataset: 'ALL',
+        name: 'P1',
+        id: 'all_p1_inc56_vs_dec65',
+        image: 'images/group_03_generate_p1_numbers_pair_plot_inc56_vs_dec65_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '56 vs 65',
+        dataset: 'ALL',
+        name: 'N1',
+        id: 'all_n1_inc56_vs_dec65',
+        image: 'images/group_03_generate_n1_numbers_pair_plot_inc56_vs_dec65_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_numbers_pair_plots_all.py'
+    },
+    {
+        category: 'Numbers Pair Analysis (ALL)',
+        subcategory: '56 vs 65',
+        dataset: 'ALL',
+        name: 'P3B',
+        id: 'all_p3b_inc56_vs_dec65',
+        image: 'images/group_03_generate_p3b_numbers_pair_plot_inc56_vs_dec65_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p3b_numbers_pair_plots_all.py'
     }
 ]; 
