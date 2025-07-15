@@ -981,6 +981,33 @@ const plotData = [
         id: 'acc1_p3b_contrast_dec_minus_3',
         image: 'images/group_03_generate_p3b_contrast_decreasing_minus_3_acc=1.png',
         scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc=1/code/03_generate_p3b_contrast_decreasing_minus_3_acc=1.py'
+    },
+    {
+        category: 'Topomaps (ACC=1)',
+        subcategory: 'P3b Contrast (Increasing)',
+        dataset: 'ACC=1',
+        name: 'P3b Contrast (Increasing) +1',
+        id: 'acc1_p3b_contrast_inc_plus_1',
+        image: 'images/group_03_generate_p3b_contrast_increasing_plus_1_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc=1/code/03_generate_p3b_contrast_increasing_plus_1_acc=1.py'
+    },
+    {
+        category: 'Topomaps (ACC=1)',
+        subcategory: 'P3b Contrast (Increasing)',
+        dataset: 'ACC=1',
+        name: 'P3b Contrast (Increasing) +2',
+        id: 'acc1_p3b_contrast_inc_plus_2',
+        image: 'images/group_03_generate_p3b_contrast_increasing_plus_2_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc=1/code/03_generate_p3b_contrast_increasing_plus_2_acc=1.py'
+    },
+    {
+        category: 'Topomaps (ACC=1)',
+        subcategory: 'P3b Contrast (Increasing)',
+        dataset: 'ACC=1',
+        name: 'P3b Contrast (Increasing) +3',
+        id: 'acc1_p3b_contrast_inc_plus_3',
+        image: 'images/group_03_generate_p3b_contrast_increasing_plus_3_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc=1/code/03_generate_p3b_contrast_increasing_plus_3_acc=1.py'
     }
 ]; 
 // Dynamically add Numbers Pair Analysis plots (ACC=1 and ALL)
