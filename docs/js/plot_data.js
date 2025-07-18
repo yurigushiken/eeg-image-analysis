@@ -324,6 +324,33 @@ const plotData = [
         image: 'images/group_n1_contrast_landing_on_6_increasing_acc=1.png',
         scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_contrast_landing_on_6_increasing_acc%3D1.py'
     },
+    {
+        category: 'Topomaps (ACC=1)',
+        subcategory: 'From 1',
+        dataset: 'ACC=1',
+        name: 'N1 (From 1)',
+        id: 'acc1_n1_from_1',
+        image: 'images/group_n1_contrast_from_1_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_contrast_from_1_acc%3D1.py'
+    },
+    {
+        category: 'Topomaps (ACC=1)',
+        subcategory: 'From 1',
+        dataset: 'ACC=1',
+        name: 'P1 (From 1)',
+        id: 'acc1_p1_from_1',
+        image: 'images/group_p1_contrast_from_1_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_contrast_from_1_acc%3D1.py'
+    },
+    {
+        category: 'Topomaps (ACC=1)',
+        subcategory: 'From 1',
+        dataset: 'ACC=1',
+        name: 'P3b (From 1)',
+        id: 'acc1_p3b_from_1',
+        image: 'images/group_03_generate_p3b_contrast_from_1_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p3b_contrast_from_1_acc%3D1.py'
+    },
     // Topomaps - ALL
     {
         category: 'Topomaps (ALL)',
@@ -639,6 +666,33 @@ const plotData = [
         id: 'all_n1_land6_increasing',
         image: 'images/group_n1_contrast_landing_on_6_increasing_all.png',
         scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_contrast_landing_on_6_increasing_all.py'
+    },
+    {
+        category: 'Topomaps (ALL)',
+        subcategory: 'From 1',
+        dataset: 'ALL',
+        name: 'N1 (From 1)',
+        id: 'all_n1_from_1',
+        image: 'images/group_n1_contrast_from_1_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_contrast_from_1_all.py'
+    },
+    {
+        category: 'Topomaps (ALL)',
+        subcategory: 'From 1',
+        dataset: 'ALL',
+        name: 'P1 (From 1)',
+        id: 'all_p1_from_1',
+        image: 'images/group_p1_contrast_from_1_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_contrast_from_1_all.py'
+    },
+    {
+        category: 'Topomaps (ALL)',
+        subcategory: 'From 1',
+        dataset: 'ALL',
+        name: 'P3b (From 1)',
+        id: 'all_p3b_from_1',
+        image: 'images/group_03_generate_p3b_contrast_from_1_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p3b_contrast_from_1_all.py'
     },
     // P1 vs N1 Analysis
     {
