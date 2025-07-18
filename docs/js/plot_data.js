@@ -351,6 +351,33 @@ const plotData = [
         image: 'images/group_03_generate_p3b_contrast_from_1_acc=1.png',
         scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p3b_contrast_from_1_acc%3D1.py'
     },
+    {
+        category: 'Topomaps (ACC=1)',
+        subcategory: 'From Any',
+        dataset: 'ACC=1',
+        name: 'N1 (From Any)',
+        id: 'acc1_n1_from_any',
+        image: 'images/group_n1_contrast_from_any_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_n1_contrast_from_any_acc%3D1.py'
+    },
+    {
+        category: 'Topomaps (ACC=1)',
+        subcategory: 'From Any',
+        dataset: 'ACC=1',
+        name: 'P1 (From Any)',
+        id: 'acc1_p1_from_any',
+        image: 'images/group_p1_contrast_from_any_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p1_contrast_from_any_acc%3D1.py'
+    },
+    {
+        category: 'Topomaps (ACC=1)',
+        subcategory: 'From Any',
+        dataset: 'ACC=1',
+        name: 'P3b (From Any)',
+        id: 'acc1_p3b_from_any',
+        image: 'images/group_p3b_contrast_from_any_acc=1.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_acc%3D1/code/03_generate_p3b_contrast_from_any_acc%3D1.py'
+    },
     // Topomaps - ALL
     {
         category: 'Topomaps (ALL)',
