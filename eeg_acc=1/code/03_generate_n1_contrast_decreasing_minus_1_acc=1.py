@@ -9,7 +9,7 @@ import numpy as np
 
 # --- 1. CONFIGURATION ---
 # Base conditions to load
-BASE_CONDITIONS = ['21', '32', '43', '54', '65', '76', '87', '98']
+BASE_CONDITIONS = ['21', '32', '43', '54', '65']
 
 # How to combine base conditions into key conditions
 KEY_CONDITIONS_MAP = {
@@ -18,9 +18,6 @@ KEY_CONDITIONS_MAP = {
     "4 to 3": ["43"],
     "5 to 4": ["54"],
     "6 to 5": ["65"],
-    "7 to 6": ["76"],
-    "8 to 7": ["87"],
-    "9 to 8": ["98"],
 }
 
 # Define colors for plots
@@ -30,9 +27,6 @@ CONDITION_COLORS = {
     "4 to 3": '#4daf4a',  # Green
     "5 to 4": '#984ea3',  # Purple
     "6 to 5": '#ff7f00',  # Orange
-    "7 to 6": '#a65628',  # Brown
-    "8 to 7": '#f781bf',  # Pink
-    "9 to 8": '#999999',  # Grey
 }
 
 # Electrodes of interest for N1 waveform (Bilateral Posterior-Occipito-Temporal)
