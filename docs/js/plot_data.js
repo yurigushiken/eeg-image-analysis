@@ -721,6 +721,33 @@ const plotData = [
         image: 'images/group_03_generate_p3b_contrast_from_1_all.png',
         scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p3b_contrast_from_1_all.py'
     },
+    {
+        category: 'Topomaps (ALL)',
+        subcategory: 'From Any',
+        dataset: 'ALL',
+        name: 'N1 (From Any)',
+        id: 'all_n1_from_any',
+        image: 'images/group_n1_contrast_from_any_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_contrast_from_any_all.py'
+    },
+    {
+        category: 'Topomaps (ALL)',
+        subcategory: 'From Any',
+        dataset: 'ALL',
+        name: 'P1 (From Any)',
+        id: 'all_p1_from_any',
+        image: 'images/group_p1_contrast_from_any_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p1_contrast_from_any_all.py'
+    },
+    {
+        category: 'Topomaps (ALL)',
+        subcategory: 'From Any',
+        dataset: 'ALL',
+        name: 'P3b (From Any)',
+        id: 'all_p3b_from_any',
+        image: 'images/group_p3b_contrast_from_any_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_p3b_contrast_from_any_all.py'
+    },
     // P1 vs N1 Analysis
     {
         category: 'P1 vs. N1 Analysis',
