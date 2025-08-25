@@ -390,6 +390,15 @@ const plotData = [
     },
     {
         category: 'Topomaps (ALL)',
+        subcategory: 'Landing on Small (decreasing)',
+        dataset: 'ALL',
+        name: 'N1 (Decreasing)',
+        id: 'all_n1_small_desc',
+        image: 'images/group_n1_plot_landing_on_small_decreasing_all.png',
+        scriptUrl: 'https://github.com/yurigushiken/eeg-image-analysis/blob/main/eeg_all/code/03_generate_n1_plot_landing_on_small_decreasing_all.py'
+    },
+    {
+        category: 'Topomaps (ALL)',
         subcategory: 'Landing on Large (increasing)',
         dataset: 'ALL',
         name: 'P1 (Increasing)',
