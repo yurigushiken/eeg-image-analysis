@@ -1,0 +1,36 @@
+# SFN/configs/topo_p1_landing_digits.yaml
+
+# This file defines the parameters for a topographical analysis.
+# It's used by the topography_analysis.py script to compare the scalp
+# distribution of an ERP component across two different conditions.
+
+-
+  # A unique name for this analysis, used for the output directory.
+  analysis_name: "P1_Landing_Digits_1-6_Topography"
+
+  # The ERP component to analyze. This is used for labeling and for determining
+  # whether to look for a positive or negative peak.
+  # Options: "P1", "N1", "P3b"
+  erp_component: "P1"
+
+  # The time window (in seconds) to average over for finding the top electrodes.
+  # This should be based on prior knowledge of the component's timing.
+  time_window: [0.083, 0.124]
+
+  # The number of electrodes to include in the "top" list for comparison.
+  n_top_electrodes: 10
+
+  # This section defines the conditions you want to compare. The script will
+  # find the top N electrodes for each of these conditions and then calculate
+  # the overlap between all pairs.
+  conditions_to_compare:
+    - "Landing on 1"
+    - "Landing on 2"
+    - "Landing on 3"
+    - "Landing on 4"
+    - "Landing on 5"
+    - "Landing on 6"
+
+  # The path to the main analysis config file. This is needed so the script
+  # knows how the conditions are defined from the raw data condition numbers.
+  source_config_file: "SFN/configs/p1_landing_digit_change.yaml"

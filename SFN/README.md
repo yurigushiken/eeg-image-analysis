@@ -25,7 +25,7 @@ python SFN/code/generate_plots.py --config <path_to_config_file> --accuracy <dat
 
 -   `--config`: The path to the `.yaml` file that defines the analysis you want to run.
 -   `--accuracy`: The dataset to use.
-    -   `correct`: Use the `eeg_acc=1` dataset (only correct trials).
+    -   `acc1`: Use the `eeg_acc=1` dataset (only correct trials).
     -   `all`: Use the `eeg_all` dataset (all trials).
 
 **Example:**
@@ -55,3 +55,50 @@ Creating a new analysis is simple and does not require writing new Python code.
 -   `conditions`: A dictionary defining how to group raw condition numbers into the conditions for your plot. The keys are the names that will appear in the plot legend.
 -   `plot_title`: The main title that will appear on the final generated plot.
 -   `generate_individual_plots`: Set to `false` for this project to only generate the group-level plot.
+
+---
+
+### Topographical Consistency Analysis
+
+To support robust methodological validation, this project includes a script for analyzing the topographical consistency of ERP components across different experimental conditions. This is used to verify that it is appropriate to use a single, fixed Region of Interest (ROI) for a given component (e.g., P1) when comparing different stimuli (e.g., "Landing on 1" vs. "Landing on 6").
+
+This analysis was implemented based on the "Top 10" comparison method used by Hyde and Spelke (2012).
+
+#### File Structure
+
+-   `SFN/code/topography_analysis.py`: The master script for this analysis.
+-   `SFN/configs/topo_*.yaml`: Configuration files that define the parameters for a specific topographical comparison (e.g., `topo_p1_landing_digits.yaml`).
+
+#### How it Works
+
+The script loads the grand-average data for a list of conditions specified in the config file. For each condition, it identifies the `N` electrodes with the highest mean amplitude within a given time window. It then calculates the overlap between these electrode sets for every possible pair of conditions.
+
+#### How to Run the Analysis
+
+The analysis is run from the project's root directory:
+
+```bash
+python SFN/code/topography_analysis.py --config <path_to_topo_config> --accuracy <dataset>
+```
+
+**Arguments:**
+
+-   `--config`: The path to the `topo_*.yaml` file defining the analysis.
+-   `--accuracy`: The dataset to use.
+    -   `acc1`: Use the `eeg_acc=1` dataset (only correct trials).
+    -   `all`: Use the `eeg_all` dataset (all trials).
+
+**Example:**
+
+```bash
+python SFN/code/topography_analysis.py --config SFN/configs/topo_p1_landing_digits.yaml --accuracy acc1
+```
+
+#### Outputs
+
+The script generates a new directory for each analysis run, named after the `analysis_name` in the config file and the accuracy dataset (e.g., `P1_Landing_Digits_1-6_Topography_acc1`). This directory is saved within `SFN/derivatives/topography_analysis/` and contains two key files:
+
+1.  **A Summary Report (`*_report.txt`):** A text file containing:
+    *   A list of the top N electrodes for each condition.
+    *   A pairwise overlap matrix showing the number of shared electrodes between every pair of conditions.
+2.  **A Summary Plot (`*_summary.png`):** A single image file that displays the topomaps for all analyzed conditions side-by-side, allowing for quick visual comparison.
