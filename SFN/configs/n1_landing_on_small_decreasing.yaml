@@ -1,0 +1,34 @@
+# SFN/configs/n1_landing_on_small_decreasing.yaml
+
+# This file defines a single analysis. The script will load the first entry '[...]'
+-
+  # A unique name for this analysis, used for saving files.
+  analysis_name: "N1_Landing_on_Small_Decreasing"
+
+  # The ERP component to analyze. Must be a key in ELECTRODE_GROUPS in utils.py.
+  erp_component: "N1"
+  
+  # The electrode group to use for the ERP waveform. Must be a key under the component.
+  # e.g., 'bilateral' for N1, 'midline' for P3b.
+  electrode_group_for_erp: "bilateral"
+
+  # The time window (in seconds) to search for the ERP peak.
+  time_window_peak_detection: [0.125, 0.225]
+  
+  # The half-width of the final analysis window (in ms) centered on the detected peak.
+  time_window_half_width_ms: 20
+
+  # Defines how to group the raw conditions into conditions for the plot.
+  # The keys are the names that will appear in the legend.
+  # The values are the raw condition numbers from the filenames.
+  conditions:
+    "Landing on 1 (from 2,3,4)": ["21", "31", "41"]
+    "Landing on 2 (from 3,4,5)": ["32", "42", "52"]
+    "Landing on 3 (from 4,5,6)": ["43", "53", "63"]
+
+  # The main title for the final plot.
+  plot_title: "Grand Average: N1 Analysis (Landing on Small, Decreasing)"
+
+  # A boolean to control whether individual subject plots are generated.
+  # For the SFN project, we set this to false to save time.
+  generate_individual_plots: false

@@ -1,0 +1,26 @@
+# SFN/configs/p1_landing_digit_change.yaml
+-
+  analysis_name: "P1_Landing_Digit_Change"
+  
+  erp_component: "P1"
+  electrode_group_for_erp: "Oz"
+
+  # Standard time window for P1 peak search
+  time_window_peak_detection: [0.080, 0.130]
+  time_window_half_width_ms: 20
+
+  # MANUAL OVERRIDE for the analysis window (in seconds).
+  # If this is present, the peak detection above will be skipped.
+  # fixed_analysis_window: [0.085, 0.125]
+
+  conditions:
+    "Landing on 1": ["21", "31", "41"]
+    "Landing on 2": ["12", "32", "42", "52"]
+    "Landing on 3": ["13", "23", "43", "53", "63"]
+    "Landing on 4": ["14", "24", "34", "54", "64"]
+    "Landing on 5": ["25", "35", "45", "65"]
+    "Landing on 6": ["36", "46", "56"]
+
+  plot_title: "Grand Average: P1 by Landing Digit (Change Trials Only)"
+  
+  generate_individual_plots: false

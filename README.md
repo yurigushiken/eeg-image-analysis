@@ -1,3 +1,6 @@
+
+always connect to the env conda activate numbers-eeg
+
 [**View the Live Project Website**](https://yurigushiken.github.io/eeg-image-analysis/)
 
 ![N1 Analysis ERP and Topomaps](media/group_n1_plot.png)
@@ -133,3 +136,14 @@ These assets are stored in a dedicated subdirectory to keep them separate from p
 `eeg_ds_all/derivatives/fsaverage/`
 
 This `fsaverage` directory will contain the `fs_subjects_dir/`, `fsaverage-fwd.fif`, and `fsaverage-src.fif` files for that specific dataset. 
+
+## SFN Conference Project Workflow
+
+This project includes a modernized, efficient workflow for generating plots for the Society for Neuroscience (SFN) conference. This new system is designed to be highly flexible and removes the need for dozens of individual analysis scripts.
+
+For detailed instructions on how this config-driven system works and how to create new analyses, please see the dedicated documentation:
+
+[**SFN Project Documentation (`SFN/README.md`)**](./SFN/README.md)
+
+
+conda activate numbers-eeg
