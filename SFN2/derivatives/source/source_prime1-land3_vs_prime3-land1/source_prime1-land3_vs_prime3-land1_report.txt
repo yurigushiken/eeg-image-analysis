@@ -1,0 +1,37 @@
+================================================================================
+Source Cluster Analysis Report: source_prime1-land3_vs_prime3-land1
+================================================================================
+
+Analysis Parameters:
+--------------------
+Contrast: Prime 1/Land 3 vs. Prime 3/Land 1
+  Condition A set: PRIME_1_LAND_3
+  Condition B set: PRIME_3_LAND_1
+Time Window: -0.1s to 0.6s
+Source Method: dSPM
+Source SNR: 3.0
+
+Statistical Parameters:
+--------------------
+Cluster-forming p-value (initial): 0.001
+Cluster significance alpha: 0.05
+Number of permutations: 1024
+
+================================================================================
+RESULTS
+================================================================================
+
+Found 2 significant cluster(s).
+
+----------------------------------------
+Cluster #1 (p-value = 0.0010)
+----------------------------------------
+  Time window: -100.0 ms to 596.0 ms
+  Number of vertices: 1792096
+
+----------------------------------------
+Cluster #2 (p-value = 0.0010)
+----------------------------------------
+  Time window: -100.0 ms to 596.0 ms
+  Number of vertices: 1792234
+

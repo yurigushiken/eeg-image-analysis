@@ -1,0 +1,44 @@
+# SFN2/configs/sensor_prime2-land5_vs_prime5-land2.yaml
+#
+# Configuration for a sensor-space analysis comparing two specific trial types:
+#   - Condition A: Priming on digit 2, landing on digit 5 (code '25')
+#   - Condition B: Priming on digit 5, landing on digit 2 (code '52')
+#
+
+# 1. General Analysis Information
+analysis_name: "sensor_prime2-land5_vs_prime5-land2"
+domain: "sensor"
+
+# 2. Epoch Time Window and Baseline Correction
+tmin: -0.1
+tmax: 0.6
+baseline: [-0.1, 0.0]
+
+# 3. Contrast Definition
+contrast:
+  name: "Prime 2/Land 5 vs. Prime 5/Land 2"
+  condition_A:
+    name: "Prime 2, Land 5"
+    condition_set_name: "PRIME_2_LAND_5"
+  condition_B:
+    name: "Prime 5, Land 2"
+    condition_set_name: "PRIME_5_LAND_2"
+  combination_weights: [1, -1]
+
+# 4. Statistical Analysis Parameters
+stats:
+  p_threshold: 0.001
+  cluster_alpha: 0.05
+  n_permutations: 1024
+  tail: 0  # two-sided test
+  seed: 42 # for reproducibility
+  connectivity:
+    method: "distance"
+    threshold: 0.04 # 4 cm
+
+# 5. Visualization Parameters
+visualizations:
+  erp:
+    channels: [] # If empty, will use channels from the most significant cluster
+  topomap:
+    times: [] # If empty, will use time window from the most significant cluster

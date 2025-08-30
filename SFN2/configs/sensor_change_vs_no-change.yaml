@@ -1,0 +1,63 @@
+# SFN2/configs/sensor_change_vs_no-change.yaml
+
+# 1. Metadata
+analysis_name: "sensor_change_vs_no-change"
+domain: "sensor"  # 'sensor' or 'source'
+
+# 2. Data Selection
+tmin: -0.1
+tmax: 0.6
+baseline: [-0.1, 0.0]
+
+# 3. Contrast Definition
+# Defines the two groups of conditions to be contrasted.
+# The `include` lists should contain condition names that are present
+# in the MNE Epochs metadata. The original project's `condition_sets.yaml`
+# can be a reference, but the core script will filter based on metadata columns.
+contrast:
+  name: "Change vs. NoChange"
+  condition_A:
+    name: "Change"
+    condition_set_name: "DIRECTION_CHANGE"
+  condition_B:
+    name: "NoChange"
+    condition_set_name: "CARDINALITY_NO_CHANGE"
+  # Parameter from the Jas et al. (2018) paper and the IA's report.
+  # Using explicit numeric weights `[1, -1]` is the clearest way to define a subtraction.
+  # This avoids ambiguity with trial counts.
+  combination_weights: [1, -1]
+
+# 4. Cluster Statistics Parameters (mirroring MNE function arguments)
+stats:
+  # The initial p-value for a t-test to define candidate clusters.
+  # A value of 0.001 is used in the Jas et al. paper.
+  p_threshold: 0.001
+
+  # The final alpha for assessing cluster significance after permutation.
+  cluster_alpha: 0.05
+
+  # Number of permutations to generate the null distribution.
+  # 1024 is a reasonable minimum for testing, but should be >= 5000 for publication.
+  n_permutations: 1024
+
+  # Use a two-sided test, as we don't have a strong directional hypothesis.
+  tail: 0 # 0 for two-sided, 1 for positive effects, -1 for negative
+
+  # Defines how to connect features to form clusters.
+  # For sensor-space, MNE can find adjacency between sensors automatically.
+  # This will be passed to `mne.channels.find_ch_adjacency`.
+  connectivity: "eeg"
+
+# 5. Visualization Parameters
+visualizations:
+  # Parameters for the final ERP plot showing the contrast.
+  erp_plot:
+    # 'auto' will instruct the script to average over sensors
+    # that are part of the most significant cluster.
+    picks: "auto"
+
+  # Parameters for plotting topomaps of the t-values.
+  topomap:
+    # 'auto' will instruct the script to average t-values
+    # over the time window of the most significant cluster.
+    times: "auto"

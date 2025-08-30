@@ -1,0 +1,39 @@
+================================================================================
+Cluster Analysis Report: sensor_prime1-land3_vs_prime3-land1
+================================================================================
+
+Analysis Parameters:
+--------------------
+Contrast: Prime 1/Land 3 vs. Prime 3/Land 1
+  Condition A set: PRIME_1_LAND_3
+  Condition B set: PRIME_3_LAND_1
+Time Window: -0.1s to 0.6s
+Baseline: -0.1s to 0.0s
+
+Statistical Parameters:
+--------------------
+Cluster-forming p-value (initial): 0.001
+Cluster significance alpha: 0.05
+Number of permutations: 1024
+Test tail: two-sided
+
+================================================================================
+RESULTS
+================================================================================
+
+Found 2 significant cluster(s).
+
+----------------------------------------
+Cluster #1 (p-value = 0.0010)
+----------------------------------------
+  Time window: 112.0 ms to 208.0 ms
+  Number of channels: 29
+  Channels involved: E59, E60, E61, E62, E65, E66, E67, E70, E71, E72, E75, E76, E77, E78, E79, E81, E82, E83, E84, E85, E86, E88, E89, E90, E91, E92, E95, E96, E97
+
+----------------------------------------
+Cluster #2 (p-value = 0.0059)
+----------------------------------------
+  Time window: 116.0 ms to 168.0 ms
+  Number of channels: 17
+  Channels involved: E4, E10, E11, E12, E14, E15, E16, E17, E18, E19, E20, E21, E22, E23, E24, E25, E26
+

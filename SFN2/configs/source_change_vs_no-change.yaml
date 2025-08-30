@@ -1,0 +1,35 @@
+# SFN2/configs/source_change_vs_no-change.yaml
+
+# 1. Metadata
+analysis_name: "source_change_vs_no-change"
+domain: "source"
+
+# 2. Data Selection (same as sensor space for contrast creation)
+tmin: -0.1
+tmax: 0.6
+baseline: [-0.1, 0.0]
+
+# 3. Contrast Definition (same as sensor space)
+contrast:
+  name: "Change vs. NoChange"
+  condition_A:
+    name: "Change"
+    condition_set_name: "DIRECTION_CHANGE"
+  condition_B:
+    name: "NoChange"
+    condition_set_name: "CARDINALITY_NO_CHANGE"
+  combination_weights: [1, -1]
+
+# 4. Source Reconstruction Parameters
+source:
+  # Method for inverse solution ('MNE', 'dSPM', 'sLORETA')
+  method: "dSPM"
+  # Signal-to-noise ratio
+  snr: 3.0
+
+# 5. Cluster Statistics Parameters
+stats:
+  p_threshold: 0.001
+  cluster_alpha: 0.05
+  n_permutations: 1024
+  tail: 0 # two-sided

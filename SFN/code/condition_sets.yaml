@@ -1,0 +1,84 @@
+# SFN/code/condition_sets.yaml
+# This file contains centralized definitions for reusable condition sets.
+# Each top-level key is a unique name for a condition set that can be
+# referenced by any analysis configuration file.
+
+LANDING_DIGIT_CHANGE:
+  "Landing on 1": ["21", "31", "41"]
+  "Landing on 2": ["12", "32", "42", "52"]
+  "Landing on 3": ["13", "23", "43", "53", "63"]
+  "Landing on 4": ["14", "24", "34", "54", "64"]
+  "Landing on 5": ["25", "35", "45", "65"]
+  "Landing on 6": ["36", "46", "56"]
+
+LANDING_ON_SMALL_DECREASING:
+  "Landing on 1 (from 2,3,4)": ["21", "31", "41"]
+  "Landing on 2 (from 3,4,5)": ["32", "42", "52"]
+  "Landing on 3 (from 4,5,6)": ["43", "53", "63"]
+
+CARDINALITY_NO_CHANGE:
+  "Cardinality 1": ["11"]
+  "Cardinality 2": ["22"]
+  "Cardinality 3": ["33"]
+  "Cardinality 4": ["44"]
+  "Cardinality 5": ["55"]
+  "Cardinality 6": ["66"]
+
+DIRECTION_CHANGE:
+  "Decreasing": [
+    "21", "31", "32", "41", "42", "43", "52", "53", "54", "63", "64", "65"
+    ]
+  "Increasing": [
+    "12", "13", "14", "23", "24", "25", "34", "35", "36", "45", "46", "56"
+    ]
+
+PRIME_DIGIT_CHANGE:
+  "Prime 1": ["12", "13", "14"]
+  "Prime 2": ["21", "23", "24", "25"]
+  "Prime 3": ["31", "32", "34", "35", "36"]
+  "Prime 4": ["41", "42", "43", "45", "46"]
+  "Prime 5": ["52", "53", "54", "56"]
+  "Prime 6": ["63", "64", "65"]
+
+LANDING_ON_2:
+  "1 to 2": ["12"]
+  "3 to 2": ["32"]
+  "4 to 2": ["42"]
+  "5 to 2": ["52"]
+  "2 to 2 (Cardinality)": ["22"]
+
+LANDING_ON_2_AND_3:
+  "Cardinality 2": ["22"]
+  "Cardinality 3": ["33"]
+  "3 to 2": ["32"]
+  "2 to 3": ["23"]
+
+LANDING_DIGIT_1_VS_2: {
+  "Landing_1": ["21", "31", "41"],
+  "Landing_2": ["12", "32", "42", "52"]
+}
+
+NUMERICAL_DISTANCE:
+  "Distance 1": ["12", "21", "23", "32", "34", "43", "45", "54", "56", "65"]
+  "Distance 2": ["13", "31", "24", "42", "35", "53", "46", "64"]
+  "Distance 3": ["14", "41", "25", "52", "36", "63"]
+
+NUMERICAL_DISTANCE_DIRECTIONAL:
+  "Increasing Distance 1": ["12", "23", "34", "45", "56"]
+  "Decreasing Distance 1": ["21", "32", "43", "54", "65"]
+  "Increasing Distance 2": ["13", "24", "35", "46"]
+  "Decreasing Distance 2": ["31", "42", "53", "64"]
+  "Increasing Distance 3": ["14", "25", "36"]
+  "Decreasing Distance 3": ["41", "52", "63"]
+
+PRIME_2_LAND_5:
+  "Prime 2 Land 5": ["25"]
+
+PRIME_5_LAND_2:
+  "Prime 5 Land 2": ["52"]
+
+PRIME_3_LAND_1:
+  "Prime 3 Land 1": ["31"]
+
+PRIME_1_LAND_3:
+  "Prime 1 Land 3": ["13"]

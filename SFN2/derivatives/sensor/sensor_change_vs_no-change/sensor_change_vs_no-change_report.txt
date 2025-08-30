@@ -1,0 +1,39 @@
+================================================================================
+Cluster Analysis Report: sensor_change_vs_no-change
+================================================================================
+
+Analysis Parameters:
+--------------------
+Contrast: Change vs. NoChange
+  Condition A set: DIRECTION_CHANGE
+  Condition B set: CARDINALITY_NO_CHANGE
+Time Window: -0.1s to 0.6s
+Baseline: -0.1s to 0.0s
+
+Statistical Parameters:
+--------------------
+Cluster-forming p-value (initial): 0.001
+Cluster significance alpha: 0.05
+Number of permutations: 1024
+Test tail: two-sided
+
+================================================================================
+RESULTS
+================================================================================
+
+Found 2 significant cluster(s).
+
+----------------------------------------
+Cluster #1 (p-value = 0.0010)
+----------------------------------------
+  Time window: 380.0 ms to 596.0 ms
+  Number of channels: 35
+  Channels involved: E31, E37, E40, E41, E42, E46, E47, E51, E52, E53, E54, E55, E59, E60, E61, E62, E65, E66, E67, E70, E71, E72, E76, E77, E78, E79, E84, E85, E86, E87, E91, E92, E93, E103, E104
+
+----------------------------------------
+Cluster #2 (p-value = 0.0215)
+----------------------------------------
+  Time window: 404.0 ms to 516.0 ms
+  Number of channels: 4
+  Channels involved: E1, E114, E121, E122
+
